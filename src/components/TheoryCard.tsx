@@ -65,8 +65,8 @@ export function TheoryCard({
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-        <ScoreBadge scale="SES" score={ses.score} />
         <ScoreBadge scale="ETS" score={ets.score} />
+        <ScoreBadge scale="SES" score={ses.score} />
         <ScoreBadge scale="EIS" score={eis.score} />
         <span
           className={cn(

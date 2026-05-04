@@ -25,9 +25,10 @@ function TriptychPanel({
   justification,
   pillClass,
 }: PanelProps) {
+  const isTruth = acronym === 'ETS'
   const aria = `${acronym}, ${fullName}, score ${formatSigned(
     score
-  )}, ${label}`;
+  )}, ${label}`
 
   return (
     <Tooltip.Root delayDuration={200}>
@@ -36,18 +37,46 @@ function TriptychPanel({
           role="group"
           aria-label={aria}
           className={cn(
-            'flex min-w-0 flex-1 flex-col items-center rounded-atlas-card border border-atlas-border bg-atlas-deep p-4 shadow-atlas-card transition-all duration-300 sm:p-6',
-            'hover:border-atlas-border-glow hover:shadow-atlas-glow-md'
+            'flex min-w-0 flex-1 flex-col items-center rounded-atlas-card p-4 transition-all duration-300 sm:p-6',
+            isTruth
+              ? cn(
+                  'relative z-[1] border-2 border-atlas-bloom bg-gradient-to-br from-atlas-brand/50 via-atlas-rich/80 to-atlas-deep',
+                  'shadow-atlas-glow-lg ring-1 ring-inset ring-atlas-bloom/25',
+                  'hover:border-atlas-glow hover:shadow-atlas-bloom hover:ring-atlas-bloom/40'
+                )
+              : cn(
+                  'border border-atlas-border bg-atlas-deep shadow-atlas-card',
+                  'hover:border-atlas-border-glow hover:shadow-atlas-glow-md'
+                )
           )}
         >
-          <span className="font-mono text-xl font-bold tracking-widest text-atlas-vivid sm:text-2xl">
+          <span
+            className={cn(
+              'font-mono text-xl font-bold tracking-widest sm:text-2xl',
+              isTruth
+                ? 'text-atlas-bloom drop-shadow-[0_0_16px_rgba(168,85,247,0.55)]'
+                : 'text-atlas-vivid'
+            )}
+          >
             {acronym}
           </span>
-          <span className="mt-1 text-center text-xs uppercase tracking-wider text-atlas-label">
+          <span
+            className={cn(
+              'mt-1 text-center text-xs uppercase tracking-wider',
+              isTruth ? 'text-atlas-bright-text' : 'text-atlas-label'
+            )}
+          >
             {fullName}
           </span>
           <div className="my-3 sm:my-4">
-            <span className="font-mono text-5xl font-black text-atlas-white sm:text-6xl">
+            <span
+              className={cn(
+                'font-mono text-5xl font-black sm:text-6xl',
+                isTruth
+                  ? 'text-atlas-bright-text drop-shadow-[0_0_22px_rgba(139,92,246,0.35)]'
+                  : 'text-atlas-white'
+              )}
+            >
               {formatSigned(score)}
             </span>
           </div>
@@ -86,12 +115,12 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
     <div className="w-full">
       <div className="flex flex-col gap-0 md:flex-row md:items-stretch md:gap-0">
         <TriptychPanel
-          acronym="SES"
-          fullName="Scientific Engagement Scale"
-          score={ses.score}
-          label={ses.label}
-          justification={ses.justification}
-          pillClass={getSecondaryPillClass(ses.score)}
+          acronym="ETS"
+          fullName="Established Truth Scale"
+          score={ets.score}
+          label={ets.label}
+          justification={ets.justification}
+          pillClass={getETSPillClass(ets.score)}
         />
         <Separator.Root
           orientation="vertical"
@@ -104,12 +133,12 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           className="h-px w-full bg-atlas-border md:hidden"
         />
         <TriptychPanel
-          acronym="ETS"
-          fullName="Established Truth Scale"
-          score={ets.score}
-          label={ets.label}
-          justification={ets.justification}
-          pillClass={getETSPillClass(ets.score)}
+          acronym="SES"
+          fullName="Scientific Engagement Scale"
+          score={ses.score}
+          label={ses.label}
+          justification={ses.justification}
+          pillClass={getSecondaryPillClass(ses.score)}
         />
         <Separator.Root
           orientation="vertical"
