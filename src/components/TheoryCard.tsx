@@ -3,9 +3,12 @@ import type { AtlasEvaluation } from '../types/evaluation';
 import { cn } from '../lib/cn';
 import { ScoreBadge } from './ScoreBadge';
 import {
+  getCompositeAccentColor,
+  getCompositeBarFillStyle,
   getCompositeBarWidth,
-  getScoreTextClass,
   formatSigned,
+  getTheoryCardChromeStyle,
+  hexAlpha,
 } from '../utils/scoreColor';
 
 interface TheoryCardProps {
@@ -28,28 +31,21 @@ export function TheoryCard({
   ].slice(0, 5);
 
   const barWidth = getCompositeBarWidth(composite_score);
+  const cardAccent = getCompositeAccentColor(composite_score);
 
   return (
     <button
       type="button"
       onClick={onSelect}
       className={cn(
-        'group relative w-full rounded-atlas-card border p-5 text-left shadow-atlas-card transition-all duration-300',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
-        selected
-          ? 'border-atlas-border-glow bg-atlas-mid shadow-atlas-glow-md'
-          : 'cursor-pointer border-atlas-border bg-atlas-deep hover:border-atlas-border-glow hover:shadow-atlas-glow-md'
+        'group relative w-full cursor-pointer rounded-atlas-card border p-5 text-left transition-all duration-300',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void'
       )}
+      style={getTheoryCardChromeStyle(composite_score, selected)}
     >
       <div
-        className={cn(
-          'absolute left-0 right-0 top-0 h-0.5 rounded-t-atlas-card',
-          ets.score <= -1
-            ? 'bg-atlas-debunked'
-            : ets.score === 0
-              ? 'bg-atlas-dim'
-              : 'bg-atlas-vivid'
-        )}
+        className="absolute left-0 right-0 top-0 h-0.5 rounded-t-atlas-card"
+        style={{ backgroundColor: cardAccent }}
       />
       <h3 className="mb-1 text-lg font-bold text-atlas-white">
         {framework_name}
@@ -69,18 +65,24 @@ export function TheoryCard({
         <ScoreBadge scale="SES" score={ses.score} />
         <ScoreBadge scale="EIS" score={eis.score} />
         <span
-          className={cn(
-            'ml-auto font-mono text-2xl font-black',
-            getScoreTextClass(composite_score)
-          )}
+          className="ml-auto font-mono text-2xl font-black"
+          style={{
+            color: cardAccent,
+            textShadow: `0 0 16px ${hexAlpha(cardAccent, 0.4)}`,
+          }}
         >
           {formatSigned(composite_score)}
         </span>
       </div>
       <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-atlas-mid">
         <div
-          className="atlas-bar-fill h-full rounded-full bg-gradient-to-r from-atlas-vivid to-atlas-bloom"
-          style={{ '--bar-width': barWidth } as CSSProperties}
+          className="atlas-bar-fill h-full rounded-full"
+          style={
+            {
+              '--bar-width': barWidth,
+              ...getCompositeBarFillStyle(composite_score),
+            } as CSSProperties
+          }
         />
       </div>
     </button>

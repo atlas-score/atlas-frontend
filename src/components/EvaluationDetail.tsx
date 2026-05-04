@@ -2,7 +2,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 import type { ReactNode } from 'react';
 import type { AtlasEvaluation } from '../types/evaluation';
 import { cn } from '../lib/cn';
-import { formatSigned } from '../utils/scoreColor';
+import { formatSigned, getCompositeAccentColor } from '../utils/scoreColor';
 
 const ANALYSIS_LABELS: Record<string, string> = {
   scientific_significance: 'Scientific significance',
@@ -92,7 +92,10 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
 
       <Tabs.Content value="scoring" className="space-y-4 outline-none">
         <InfoBlock title="Composite score">
-          <p className="font-mono text-3xl font-black text-atlas-bloom">
+          <p
+            className="font-mono text-3xl font-black"
+            style={{ color: getCompositeAccentColor(evaluation.composite_score) }}
+          >
             {formatSigned(evaluation.composite_score)}
           </p>
         </InfoBlock>

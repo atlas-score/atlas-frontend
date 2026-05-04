@@ -1,6 +1,6 @@
 import * as Popover from '@radix-ui/react-popover';
 import { cn } from '../lib/cn';
-import { formatSigned } from '../utils/scoreColor';
+import { formatSigned, getSubscalePillStyle } from '../utils/scoreColor';
 
 const SCALE_BLURBS: Record<string, string> = {
   ETS:
@@ -12,6 +12,12 @@ const SCALE_BLURBS: Record<string, string> = {
 };
 
 type Scale = 'ETS' | 'SES' | 'EIS';
+
+const SCALE_KEY: Record<Scale, 'ets' | 'ses' | 'eis'> = {
+  ETS: 'ets',
+  SES: 'ses',
+  EIS: 'eis',
+};
 
 interface ScoreBadgeProps {
   scale: Scale;
@@ -26,12 +32,13 @@ export function ScoreBadge({ scale, score, className }: ScoreBadgeProps) {
         <button
           type="button"
           className={cn(
-            'inline-flex items-center gap-1 rounded-full border border-atlas-vivid bg-atlas-bright px-2.5 py-1 font-mono text-xs font-bold text-atlas-white shadow-atlas-glow-sm transition-colors hover:border-atlas-border-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
+            'inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
             className
           )}
+          style={getSubscalePillStyle(SCALE_KEY[scale], score)}
           aria-label={`${scale} score ${formatSigned(score)}, open scale definition`}
         >
-          <span className="text-atlas-label">{scale}</span>
+          <span className="text-white/80">{scale}</span>
           <span>{formatSigned(score)}</span>
         </button>
       </Popover.Trigger>

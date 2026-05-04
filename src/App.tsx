@@ -11,9 +11,11 @@ import { ScoreTriptych } from './components/ScoreTriptych';
 import { EvaluationDetail } from './components/EvaluationDetail';
 import { ExplorerGuide } from './components/ExplorerGuide';
 import {
+  getCompositeAccentColor,
+  getCompositeBarFillStyle,
   getCompositeBarWidth,
-  getScoreTextClass,
   formatSigned,
+  hexAlpha,
 } from './utils/scoreColor';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
@@ -58,6 +60,7 @@ export default function App() {
   }
 
   const heroBar = getCompositeBarWidth(current.composite_score);
+  const heroAccent = getCompositeAccentColor(current.composite_score);
 
   return (
     <Tooltip.Provider delayDuration={200}>
@@ -178,7 +181,11 @@ export default function App() {
                         Composite
                       </p>
                       <p
-                        className={`font-mono text-4xl font-black sm:text-5xl ${getScoreTextClass(current.composite_score)}`}
+                        className="font-mono text-4xl font-black sm:text-5xl"
+                        style={{
+                          color: heroAccent,
+                          textShadow: `0 0 28px ${hexAlpha(heroAccent, 0.45)}`,
+                        }}
                       >
                         {formatSigned(current.composite_score)}
                       </p>
@@ -186,8 +193,13 @@ export default function App() {
                     <div className="min-w-[120px] flex-1 pb-1">
                       <div className="h-2 overflow-hidden rounded-full bg-atlas-mid">
                         <div
-                          className="atlas-bar-fill h-full rounded-full bg-gradient-to-r from-atlas-vivid to-atlas-bloom"
-                          style={{ '--bar-width': heroBar } as CSSProperties}
+                          className="atlas-bar-fill h-full rounded-full"
+                          style={
+                            {
+                              '--bar-width': heroBar,
+                              ...getCompositeBarFillStyle(current.composite_score),
+                            } as CSSProperties & { '--bar-width': string }
+                          }
                         />
                       </div>
                     </div>

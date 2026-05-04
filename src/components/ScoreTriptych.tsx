@@ -4,8 +4,13 @@ import type { AtlasEvaluation } from '../types/evaluation';
 import { cn } from '../lib/cn';
 import {
   formatSigned,
-  getETSPillClass,
-  getSecondaryPillClass,
+  getEtsAccentColor,
+  getSesEisAccentColor,
+  getSubscalePillStyle,
+  getTriptychPanelChromeStyle,
+  triptychAcronymStyle,
+  triptychScoreNumberStyle,
+  triptychSubtitleStyle,
 } from '../utils/scoreColor';
 
 interface PanelProps {
@@ -14,7 +19,14 @@ interface PanelProps {
   score: number;
   label: string;
   justification: string;
-  pillClass: string;
+}
+
+function triptychScaleKey(
+  acronym: PanelProps['acronym']
+): 'ets' | 'ses' | 'eis' {
+  if (acronym === 'ETS') return 'ets';
+  if (acronym === 'SES') return 'ses';
+  return 'eis';
 }
 
 function TriptychPanel({
@@ -23,12 +35,14 @@ function TriptychPanel({
   score,
   label,
   justification,
-  pillClass,
 }: PanelProps) {
-  const isTruth = acronym === 'ETS'
+  const accent =
+    acronym === 'ETS' ? getEtsAccentColor(score) : getSesEisAccentColor(score);
+  const panelStyle = getTriptychPanelChromeStyle(acronym, score);
+  const pillStyle = getSubscalePillStyle(triptychScaleKey(acronym), score);
   const aria = `${acronym}, ${fullName}, score ${formatSigned(
     score
-  )}, ${label}`
+  )}, ${label}`;
 
   return (
     <Tooltip.Root delayDuration={200}>
@@ -38,53 +52,33 @@ function TriptychPanel({
           aria-label={aria}
           className={cn(
             'flex min-w-0 flex-1 flex-col items-center rounded-atlas-card p-4 transition-all duration-300 sm:p-6',
-            isTruth
-              ? cn(
-                  'relative z-[1] border-2 border-atlas-bloom bg-gradient-to-br from-atlas-brand/50 via-atlas-rich/80 to-atlas-deep',
-                  'shadow-atlas-glow-lg ring-1 ring-inset ring-atlas-bloom/25',
-                  'hover:border-atlas-glow hover:shadow-atlas-bloom hover:ring-atlas-bloom/40'
-                )
-              : cn(
-                  'border border-atlas-border bg-atlas-deep shadow-atlas-card',
-                  'hover:border-atlas-border-glow hover:shadow-atlas-glow-md'
-                )
+            'hover:brightness-[1.03]'
           )}
+          style={panelStyle}
         >
           <span
-            className={cn(
-              'font-mono text-xl font-bold tracking-widest sm:text-2xl',
-              isTruth
-                ? 'text-atlas-bloom drop-shadow-[0_0_16px_rgba(168,85,247,0.55)]'
-                : 'text-atlas-vivid'
-            )}
+            className="font-mono text-xl font-bold tracking-widest sm:text-2xl"
+            style={triptychAcronymStyle(accent)}
           >
             {acronym}
           </span>
           <span
-            className={cn(
-              'mt-1 text-center text-xs uppercase tracking-wider',
-              isTruth ? 'text-atlas-bright-text' : 'text-atlas-label'
-            )}
+            className="mt-1 text-center text-xs uppercase tracking-wider"
+            style={triptychSubtitleStyle(accent)}
           >
             {fullName}
           </span>
           <div className="my-3 sm:my-4">
             <span
-              className={cn(
-                'font-mono text-5xl font-black sm:text-6xl',
-                isTruth
-                  ? 'text-atlas-bright-text drop-shadow-[0_0_22px_rgba(139,92,246,0.35)]'
-                  : 'text-atlas-white'
-              )}
+              className="font-mono text-5xl font-black sm:text-6xl"
+              style={triptychScoreNumberStyle(accent)}
             >
               {formatSigned(score)}
             </span>
           </div>
           <span
-            className={cn(
-              'max-w-full rounded-atlas-pill px-3 py-1.5 text-center text-xs font-semibold sm:px-4 sm:text-sm',
-              pillClass
-            )}
+            className="max-w-full rounded-atlas-pill px-3 py-1.5 text-center text-xs font-semibold sm:px-4 sm:text-sm"
+            style={pillStyle}
           >
             {label}
           </span>
@@ -120,7 +114,6 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={ets.score}
           label={ets.label}
           justification={ets.justification}
-          pillClass={getETSPillClass(ets.score)}
         />
         <Separator.Root
           orientation="vertical"
@@ -138,7 +131,6 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={ses.score}
           label={ses.label}
           justification={ses.justification}
-          pillClass={getSecondaryPillClass(ses.score)}
         />
         <Separator.Root
           orientation="vertical"
@@ -156,7 +148,6 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={eis.score}
           label={eis.label}
           justification={eis.justification}
-          pillClass={getSecondaryPillClass(eis.score)}
         />
       </div>
     </div>
