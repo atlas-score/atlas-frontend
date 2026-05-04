@@ -1,0 +1,1075 @@
+{
+  "schema_version": "0.951-extracted-2026-05-03",
+  "description": "ATLAS evaluation examples extracted and normalized from the ATLAS System v0.951 document. Records are structured to match the proposed frontend-ready evaluation schema.",
+  "examples": [
+    {
+      "id": "atlas-eval-dna-double-helix",
+      "framework_name": "DNA Double Helix Theory",
+      "specific_claim": "DNA has a double-helix structure that explains genetic replication",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "The DNA double-helix theory proposes that genetic material is structured as two complementary nucleotide strands arranged in an antiparallel helical configuration. The geometry of this structure, together with specific base pairing rules, provides a causal account of how genetic information is stored, copied, and transmitted. Within molecular biology and genetics, the theory is presented as the foundational structural model of heredity. It is not merely a description of molecular arrangement but an explanation of how replication fidelity, mutation, and inheritance arise from the physical properties of the molecule itself.",
+      "context_of_validity": "Biochemical and cellular systems in which heredity is carried by DNA molecules composed of complementary nucleotide strands in an antiparallel double-helix, operating under terrestrial-like chemical conditions, aqueous environment, appropriate temperature, pH, and ionic composition, and using known biochemical machinery for replication, repair, and expression. It does not claim to describe all conceivable hereditary substrates or extreme physical regimes where DNA cannot maintain its double-stranded helical structure.",
+      "domains_of_inquiry": [
+        "Molecular Biology",
+        "Genetics",
+        "Biochemistry"
+      ],
+      "ontological_scales": [
+        "Micro",
+        "Intermediate"
+      ],
+      "ets": {
+        "score": 4,
+        "label": "Complete Mechanistic Theory",
+        "closure_status": "Mechanistic Closure",
+        "justification": "The double-helix model of DNA structure satisfies the criteria for mechanistic closure through convergence across multiple independent domains of investigation. Evidence from X-ray diffraction imaging, molecular chemistry, structural biology, and genetic replication studies all point to the same underlying structure: two complementary nucleotide strands arranged in an antiparallel helical configuration stabilized by specific base-pair interactions. This structure is not merely descriptive but causally explanatory. It accounts for the encoding of genetic information through ordered nucleotide sequences, the replication of DNA via complementary base pairing, the emergence of mutation through replication error or structural alteration, and the transmission of genetic inheritance across generations. These explanatory functions are supported by reproducible experimental findings across molecular biology, biochemistry, and genetics. Independent investigative methods, including crystallography, biochemical analysis, molecular modeling, and direct observation of replication, converge on the same structural and functional account. The model also satisfies falsifiability criteria. Numerous potential observations could have contradicted it, including incompatible bonding geometry, failure of replication fidelity, or inconsistency of molecular structure across organisms. Instead, continued empirical investigation has repeatedly reinforced its predictive accuracy and explanatory reliability."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "The DNA double-helix model does not function as a static conclusion but as an ongoing research framework embedded across multiple scientific disciplines. It generates testable predictions regarding replication, mutation, and molecular interaction, and these predictions are continuously subjected to experimental verification. Research grounded in this framework spans molecular genetics, genomics, biotechnology, medicine, and forensic science. It guides experimental design, informs hypothesis generation, and supports technological development such as DNA sequencing, gene editing, and molecular diagnostics. The theory remains fully accountable to evidentiary testing, and its continued success is demonstrated through sustained predictive reliability and methodological openness. Its role is not merely historical but actively generative, satisfying the criteria for a core scientific program.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 1,
+        "label": "Domain Integrator",
+        "justification": "The DNA double-helix structure integrates knowledge across the biological sciences, providing a coherent link between molecular structure, genetic function, and cellular processes. It explains how genetic information is stored, replicated, and expressed, supporting unified understanding across molecular biology, genetics, biochemistry, and biotechnology. At the same time, its integrative scope remains domain-specific. While its implications extend into applied fields such as medicine, agriculture, and forensic science, it does not function as an architectonic framework unifying independent scientific domains. Its explanatory role is therefore best understood as domain-level integration rather than cross-domain synthesis.",
+        "counted_in_composite": true
+      },
+      "composite_score": 10,
+      "score_calculation": {
+        "raw_ets": 4,
+        "raw_ses": 3,
+        "raw_eis": 1,
+        "rule_applied": "Closure Override Rule (ETS = 4; composite anchored at 10)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 10
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": true
+      },
+      "interpretation": "The DNA double-helix theory represents a case of full explanatory completion within a clearly bounded domain. Its epistemic status is determined by ETS: the structure and causal mechanisms of DNA are not merely supported but resolved, with predictive reliability and convergent evidentiary confirmation. The high SES score reflects the theory's continued role as an active scientific framework rather than a closed or static conclusion. The EIS score clarifies that this strength operates within the biological sciences and does not extend to broader cross-domain integration. This case illustrates a central principle of ATLAS: once mechanistic closure is achieved, variation in scope or integration does not diminish epistemic certainty. The theory is fully established, even though its domain of integration remains specific rather than universal.",
+      "additional_analysis": {
+        "scientific_significance": "The DNA double-helix model provides the mechanistic foundation for modern biology. It enables a unified understanding of heredity, genetic replication, and molecular processes across all known living organisms. Its explanatory scope extends from basic cellular function to applied domains such as medicine, biotechnology, and genetic engineering. Its predictive success is demonstrated through its operational role in technologies including genome sequencing, gene editing, and molecular diagnostics, where the theory is not only confirmed but actively utilized.",
+        "mechanistic_closure_analysis": "The structure of DNA and the mechanisms governing its replication, particularly complementary base pairing and strand duplication, are fully understood and consistently confirmed across experimental contexts. The model provides a stable and complete account of how genetic information is stored and transmitted. Ongoing research refines understanding of regulatory processes such as gene expression and epigenetic modification, but these refinements operate within the established framework and do not alter the underlying structural or mechanistic model.",
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "biology",
+          "mechanistic-closure",
+          "closure-override"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-evolution",
+      "framework_name": "Theory of Evolution — Natural Selection",
+      "specific_claim": "Evolution by natural selection explains the diversity of life",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "The theory of evolution by natural selection proposes that populations of organisms change over time through differential survival and reproduction of heritable traits. Variations that confer adaptive advantages become more common across generations, leading to diversification, speciation, and the emergence of complex biological forms. Within biology, the theory functions as the central explanatory framework for the diversity of life, linking genetic variation, environmental pressures, and reproductive success into a unified account of biological change over time. In this context, evolution refers specifically to biological evolution by natural selection, a process grounded in heritable variation and differential reproduction. While analogous patterns of cumulative change are observed in cultural and systemic domains, these do not constitute the same mechanistic framework.",
+      "context_of_validity": "Applies to biological populations with heritable variation, differential reproduction, and environmental selective pressures. Operates across organismal, population, and ecosystem contexts within terrestrial life and comparable biological systems. Does not claim that all evolutionary change is explained solely by one mechanism in every context, nor that analogous cultural or social change is identical to biological evolution.",
+      "domains_of_inquiry": [
+        "Biology",
+        "Genetics",
+        "Ecology",
+        "Paleontology"
+      ],
+      "ontological_scales": [
+        "Micro",
+        "Intermediate"
+      ],
+      "ets": {
+        "score": 3,
+        "label": "Proven Phenomenon",
+        "closure_status": "Phenomenon Closure",
+        "justification": "The theory of evolution by natural selection satisfies the criteria for a proven phenomenon through convergence across multiple independent lines of evidence. Observations from fossil records, comparative anatomy, genetics, and direct experimental studies all support the conclusion that species change over time and share common ancestry. The explanatory framework accounts for the emergence of biological diversity through variation and selection, the adaptation of organisms to environmental pressures, the branching patterns of speciation and common descent, and the persistence and modification of heritable traits across generations. These processes are supported by reproducible findings across disciplines including paleontology, molecular genetics, population biology, and ecology. Independent lines of evidence, such as genetic homology, transitional fossils, observed selection in laboratory and natural environments, and phylogenetic modeling, converge on the same conclusion. The theory also satisfies falsifiability criteria. Potential observations such as incompatible genetic inheritance patterns, absence of transitional forms, or failure of variation to produce adaptive change would have contradicted the model. Instead, continued empirical investigation has consistently reinforced both its predictive reliability and explanatory coherence."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "The theory of evolution by natural selection functions as a central research framework across the life sciences. It generates testable predictions about genetic variation, population dynamics, and ecological interaction, and these predictions are continuously evaluated through experimental and observational research. Work grounded in evolutionary theory spans genetics, ecology, developmental biology, and epidemiology, guiding experimental design and hypothesis generation. It supports ongoing investigation into processes such as genetic drift, selection pressures, speciation mechanisms, and evolutionary constraints. The framework remains fully accountable to evidentiary testing and continues to drive scientific discovery. Its sustained predictive success and methodological integration across disciplines satisfy the criteria for a core scientific program.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 3,
+        "label": "Architectonic Integrator",
+        "justification": "The theory of evolution by natural selection provides the unifying framework for modern biology. It explains the origin, diversification, and adaptation of life across all known organisms, connecting genetic variation to large-scale patterns of biodiversity. Its explanatory scope spans molecular genetics, organismal biology, ecology, and paleontology, enabling coherent understanding across scales of biological organization. Its predictive success is demonstrated through its ability to anticipate evolutionary change, guide research in areas such as antibiotic resistance and viral evolution, and inform applied fields including medicine, agriculture, and conservation biology.",
+        "counted_in_composite": true
+      },
+      "composite_score": 9,
+      "score_calculation": {
+        "raw_ets": 3,
+        "raw_ses": 3,
+        "raw_eis": 3,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 9
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The theory of evolution by natural selection represents a fully established scientific framework at the level of observable phenomena. Its epistemic status is determined by ETS: the existence of evolutionary processes and common descent is supported by convergent evidence across multiple independent domains. The high SES score reflects the theory's continued role as an active and generative research framework, while the EIS score reflects its capacity to integrate knowledge across biological disciplines and explanatory scales. This case illustrates the distinction between phenomenon closure and mechanistic closure within ATLAS. While evolutionary processes are firmly established, the relative contribution and interaction of specific mechanisms — such as genetic drift, epigenetics, and developmental constraints — remain areas of ongoing refinement. The theory is therefore fully established at the level of observable phenomena while continuing to develop at the level of detailed causal modeling.",
+      "additional_analysis": {
+        "scientific_significance": "The theory of evolution by natural selection provides the unifying framework for modern biology. It explains the origin, diversification, and adaptation of life across all known organisms, connecting genetic variation to large-scale patterns of biodiversity. Its predictive success is demonstrated through its ability to anticipate evolutionary change, guide research in areas such as antibiotic resistance and viral evolution, and inform applied fields including medicine, agriculture, and conservation biology.",
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": "While the phenomenon of evolution is fully established, the detailed mechanisms driving evolutionary change remain an active area of investigation. Ongoing research continues to refine understanding of the relative roles of natural selection, genetic drift, epigenetic processes, developmental constraints, and environmental interaction. These refinements do not challenge the existence of evolutionary processes but expand and deepen the explanatory model. The theory therefore represents a case of established phenomenon with ongoing mechanistic development rather than full mechanistic closure.",
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "biology",
+          "proven-phenomenon",
+          "architectonic"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-expansion-universe",
+      "framework_name": "Expansion of the Universe",
+      "specific_claim": "The universe is expanding over time",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Ontological",
+      "framework_description": "The expansion of the universe refers to the observed increase in distance between large-scale cosmic structures over time. Galaxies are not moving through space away from a central point. Space itself is expanding, resulting in increasing separation between distant objects. This framework describes a large-scale physical process governing the structure and evolution of the universe. It is central to modern cosmology and provides the basis for understanding cosmic history, large-scale structure, and the distribution of matter and energy.",
+      "context_of_validity": "The expansion of the universe is established as a large-scale spacetime phenomenon inferred from observations made roughly 13.787 ± 0.020 billion years after the inferred Big Bang, using redshift-distance relations, supernovae, large-scale structure surveys, and cosmic microwave background measurements within the currently observable universe. It applies to cosmological timescales where general relativistic models of an expanding spacetime fit the data, while leaving open whether expansion will continue indefinitely, change rate, or eventually slow and reverse over future billions of years, and without yet resolving how that large-scale expansion behavior extrapolates beyond the observable horizon or down into nano-scale regimes.",
+      "domains_of_inquiry": [
+        "Cosmology",
+        "Astrophysics"
+      ],
+      "ontological_scales": [
+        "Macro"
+      ],
+      "ets": {
+        "score": 3,
+        "label": "Proven Phenomenon",
+        "closure_status": "Phenomenon Closure",
+        "justification": "The expansion of the universe is established through multiple independent lines of convergent evidence. Observations demonstrate that distant galaxies exhibit redshift proportional to their distance, indicating systematic expansion over time. This relationship is not isolated to a single dataset or method. It is confirmed through spectroscopic measurements of galaxy light, large-scale surveys of cosmic structure, and independent observational programs across different regions of the observable universe. The consistency of the redshift-distance relationship across these observations establishes a stable and repeatable pattern. The expansion is also uniform at large scales. Observations show that galaxies recede from one another in all directions, indicating that the expansion is not centered on a particular point but reflects a global property of space itself. This pattern is consistent with models of a homogeneous and isotropic universe. These findings form a coherent and mutually reinforcing body of evidence. Independent methods converge on the same conclusion. The expansion of the universe is directly observed and consistently measured. The theory satisfies falsifiability criteria. If distant objects did not exhibit systematic redshift, if redshift did not scale with distance, or if large-scale observations contradicted uniform expansion, the framework would be invalidated. No such contradictory evidence has been established."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "The expansion of the universe is the subject of extensive and ongoing scientific investigation within cosmology and astrophysics. It is studied through multiple independent observational and measurement programs, including spectroscopic analysis of redshift, supernova observations, galaxy surveys, and measurements of cosmic background radiation. These research programs generate large volumes of empirical data and are used to test, refine, and constrain models of cosmic behavior. Measurements of redshift, luminosity distance, and large-scale structure are continuously evaluated against theoretical predictions, and discrepancies drive further investigation and model refinement. The study of expansion involves diverse methodologies, including observational astronomy, statistical modeling, and theoretical physics. Findings are replicated and cross-validated across independent research programs and instruments. This sustained level of empirical investigation, methodological diversity, and ongoing refinement establishes the expansion of the universe as a highly engaged and actively studied phenomenon within modern science.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 1,
+        "label": "Domain Integrator",
+        "justification": "The expansion of the universe integrates observations across cosmology and astrophysics by providing a unified framework for understanding large-scale structure, cosmic evolution, and the distribution of matter and energy over time. It connects redshift observations, galaxy distributions, and cosmic background measurements into a coherent account of how the universe changes at large scales. This framework allows scientists to relate present-day observations to earlier states of the universe. By linking distance, redshift, and time, it enables the reconstruction of cosmic history and supports models of structure formation, galaxy evolution, and large-scale dynamics. These connections provide internal coherence within the domain and allow multiple lines of observation to be interpreted within a single framework. At the same time, the scope of this integration remains bounded. While the expansion framework is consistent with general relativity and informs related areas of physics, it does not unify independent scientific domains or function as a global explanatory system. Its role is to organize and connect knowledge within cosmology and closely related fields rather than to restructure science as a whole.",
+        "counted_in_composite": true
+      },
+      "composite_score": 7,
+      "score_calculation": {
+        "raw_ets": 3,
+        "raw_ses": 3,
+        "raw_eis": 1,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 7
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The expansion of the universe is an established scientific fact at the level of phenomenon. Observations consistently demonstrate that large-scale cosmic structures are increasing in separation over time. This is not an open question. It is established through convergent evidence across cosmology and astrophysics. The framework provides the foundation for understanding the large-scale behavior of the universe. It defines how cosmic structures evolve, how distances between objects change over time, and how observations of distant objects relate to earlier states of the universe. Modern cosmology is built on this understanding. The role of ongoing research is not to determine whether expansion occurs, but to refine measurements and explain its dynamics. Scientific investigation focuses on the rate of expansion, its variation over time, and the factors that influence it. This includes the study of cosmic acceleration, large-scale structure formation, and the behavior of energy and matter at cosmological scales. The existence of expansion is established, while the detailed dynamics that govern it remain under investigation.",
+      "additional_analysis": {
+        "scientific_significance": "The expansion of the universe provides the foundation for modern cosmology. It defines the large-scale behavior of the universe and establishes the framework within which cosmic history is understood. Without this framework, there would be no coherent account of the evolution of galaxies, the distribution of matter, or the development of large-scale structure. It also constrains theoretical models, since any viable account of the universe must be consistent with observed expansion.",
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": "The expansion of the universe is established as a large-scale physical process. What remains under investigation is the set of factors that determine its rate, variation, and long-term behavior. Current research focuses on understanding the drivers of expansion, including cosmic acceleration and dark energy. This does not challenge the existence of expansion; it identifies an area where further explanation is required.",
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "cosmology",
+          "proven-phenomenon"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-emergentism-consciousness",
+      "framework_name": "Emergentism — Consciousness",
+      "specific_claim": "Consciousness is an emergent property of biological processes",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "Emergentism, as applied to consciousness, proposes that conscious capacities arise from biological organization rather than existing independently of it. It treats consciousness as a structured set of capacities that emerge in relation to neural complexity, developmental organization, and system-level integration. The framework is presented as a biologically grounded alternative to dualist or idealist accounts of mind.",
+      "context_of_validity": "Applies to biological systems with the neural organization necessary to support conscious capacities, from simpler nervous systems to highly integrated brains. It is concerned with mind as it arises in living systems and does not claim that all forms of information processing are conscious. The unresolved issue is not whether biological systems generate consciousness, but how biological organization maps onto qualitative experience.",
+      "domains_of_inquiry": [
+        "Neuroscience",
+        "Cognitive Science",
+        "Psychology",
+        "Biology"
+      ],
+      "ontological_scales": [
+        "Micro",
+        "Intermediate"
+      ],
+      "ets": {
+        "score": 3,
+        "label": "Proven Phenomenon",
+        "closure_status": "Phenomenon Closure",
+        "justification": "The claim that consciousness arises from biological processes is established through convergent evidence across neuroscience, medicine, cognitive science, and biology. This evidence demonstrates both direct dependency and graded developmental emergence of conscious capacities. At the level of dependency, changes in brain structure and function reliably produce corresponding changes in perception, cognition, and awareness. Damage, stimulation, and pharmacological intervention alter conscious experience in consistent and predictable ways. Across species and across development, more complex nervous systems support richer conscious capacities. What remains unresolved is the precise mechanism by which neural processes produce subjective experience, particularly at higher levels of organization. The conclusion is not partial: consciousness arises from biological systems, and its structure reflects their organization and development."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "The scientific study of consciousness is grounded in the established fact that conscious experience arises from biological systems. This fact structures experimental design, directs hypothesis formation, and constrains the space of viable explanations. Research across neuroscience, cognitive science, psychology, and biology investigates how neural activity produces perception, cognition, and awareness. These programs generate testable predictions, produce reproducible findings, and refine models of brain function. The framework is actively used to guide scientific inquiry and remains fully accountable to evidence.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 2,
+        "label": "Cross-Domain Integrator",
+        "justification": "Emergentism integrates findings across neuroscience, cognitive science, psychology, and biology by linking biological processes with conscious capacities. It provides a coherent framework for understanding how different levels of organization relate within systems that produce consciousness. Its integrative scope is limited to a cluster of related domains concerned with mind and biological systems. It does not unify independent scientific domains or function as a global explanatory framework.",
+        "counted_in_composite": true
+      },
+      "composite_score": 8,
+      "score_calculation": {
+        "raw_ets": 3,
+        "raw_ses": 3,
+        "raw_eis": 2,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 8
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "Emergentism, as applied to consciousness, is an established scientific framework at the level of phenomenon. Conscious capacities arise from biological systems, and their structure reflects the organization and development of those systems. This is not an open question. The framework is foundational to scientific research, defines what is being studied, guides investigation, and constrains valid explanations. At the same time, the mechanism by which biological processes produce conscious experience is not fully resolved. The framework is complete at the level of phenomenon and incomplete at the level of mechanism.",
+      "additional_analysis": {
+        "scientific_significance": "Emergentism establishes the correct boundary conditions for the scientific study of consciousness. By grounding conscious capacities in biological systems, it defines the domain of legitimate investigation and excludes explanations that are not supported by evidence. It enables integration across neuroscience, psychology, and biology, and stabilizes scientific discourse by preventing unsupported alternatives from being treated as equally viable.",
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": "The mechanism responsible for consciousness is identified at the level of biological systems, particularly neural organization and activity. What remains under investigation is not what produces consciousness, but how biological processes correspond to specific forms of experience. Current research addresses this through neural correlates of consciousness, functional network analysis, and computational models. Progress will involve refining the mapping between biological processes and experiential structures across levels.",
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": true,
+        "tags": [
+          "consciousness",
+          "cross-domain",
+          "extended-analysis"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-attachment-theory",
+      "framework_name": "Attachment Theory",
+      "specific_claim": "Early attachment relationships influence psychological development",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "Attachment Theory proposes that early relationships between caregivers and infants shape patterns of emotional regulation, interpersonal behavior, and psychological development. These early interactions influence how individuals form relationships, respond to stress, and interpret social environments across the lifespan. The framework identifies patterns of attachment, such as secure and insecure forms, and links these patterns to developmental outcomes. It is used to explain differences in emotional stability, relational behavior, and vulnerability to psychological difficulties.",
+      "context_of_validity": "Human and similar social organisms embedded in caregiver-infant relational environments, where early, sustained patterns of caregiver responsiveness, availability, and interaction can be systematically observed and tracked over time, and where later emotional regulation and interpersonal functioning are meaningfully measurable. It applies to psychologically and socially structured contexts in which multiple environmental and individual factors co-determine outcomes, so early attachment exerts a significant but non-deterministic influence that can be moderated or reshaped by later experiences, interventions, and broader socio-cultural conditions.",
+      "domains_of_inquiry": [
+        "Developmental Psychology",
+        "Clinical Psychology"
+      ],
+      "ontological_scales": [
+        "Intermediate"
+      ],
+      "ets": {
+        "score": 2,
+        "label": "Developing / Partially Established",
+        "closure_status": "None",
+        "justification": "Attachment Theory is supported by a substantial body of evidence demonstrating that early caregiver relationships influence aspects of psychological development. Observational studies, longitudinal research, and clinical findings consistently show that early relational environments are associated with later patterns of emotional regulation, social behavior, and interpersonal functioning. These findings are consistent across multiple research programs and populations. However, the strength and specificity of these relationships vary. Outcomes are influenced by additional factors such as later experiences, environmental conditions, and individual differences. The framework does not establish deterministic outcomes. Early attachment influences development, but does not fully determine it. The variability of outcomes and the role of interacting factors indicate that the theory has not achieved full explanatory closure."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "Attachment Theory functions as a core scientific program within developmental and clinical psychology. It structures research on early development, informs observational methods, and guides the study of emotional and relational processes. Research programs investigate caregiver-infant interaction, attachment classification, and developmental outcomes across the lifespan. These studies use structured observation, longitudinal tracking, and clinical assessment to examine how early relationships relate to later behavior and psychological functioning. The framework generates testable hypotheses and is continuously refined through ongoing research and methodological development.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 1,
+        "label": "Domain Integrator",
+        "justification": "Attachment Theory integrates findings within developmental and clinical psychology by linking early relational experiences with later emotional and interpersonal outcomes. It provides a coherent framework for understanding how early environments relate to patterns of behavior and psychological functioning. This integration connects multiple areas within the domain, including emotional regulation, social development, and mental health. At the same time, its scope remains bounded within psychology.",
+        "counted_in_composite": true
+      },
+      "composite_score": 6,
+      "score_calculation": {
+        "raw_ets": 2,
+        "raw_ses": 3,
+        "raw_eis": 1,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 6
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "Attachment Theory represents a well-supported and actively researched framework that explains how early relational environments influence psychological development. The evidence establishes that early attachment relationships play a significant role in shaping emotional regulation, interpersonal behavior, and developmental outcomes. At the same time, the framework has not achieved full explanatory closure. Early attachment influences development, but outcomes are not fixed or uniform. Later experiences, environmental factors, and individual differences interact with early attachment patterns, limiting the theory's predictive precision.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": "The theory identifies real and consistent developmental influences while continuing to refine its understanding of how those influences operate within complex systems. The unresolved issues concern causal pathways, moderating factors, and the extent to which early attachment predicts later outcomes under varying developmental conditions.",
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "psychology",
+          "developing-theory"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-g-factor",
+      "framework_name": "General Intelligence g factor",
+      "specific_claim": "General intelligence explains performance across cognitive tasks",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "The g factor refers to a proposed general cognitive ability that underlies performance across a wide range of cognitive tasks. It is identified through statistical patterns showing that individuals who perform well on one type of cognitive test tend to perform well on others. This framework interprets these correlations as evidence of a common underlying factor influencing cognitive performance. It is widely used in psychometrics to model intelligence and to explain variation in cognitive abilities across individuals.",
+      "context_of_validity": "Populations of human and similar agents performing diverse, structured cognitive tasks in psychologically and culturally comparable testing conditions, where reliable, standardized measurements allow correlations among task performances to be estimated. Within these contexts, a latent factor model capturing a prominent general dimension of covariance across tasks provides a useful explanatory summary, while remaining agnostic about and not yet grounded in specific neural, biological, or cross-cultural mechanisms, and without claiming that a single factor exhaustively explains all aspects of intelligence or applies unchanged across radically different environments, species, or socio-cultural regimes.",
+      "domains_of_inquiry": [
+        "Cognitive Psychology",
+        "Psychometrics"
+      ],
+      "ontological_scales": [
+        "Micro"
+      ],
+      "ets": {
+        "score": 2,
+        "label": "Developing / Partially Established",
+        "closure_status": "None",
+        "justification": "The existence of positive correlations across diverse cognitive tasks is well established. Individuals who perform well in one cognitive domain tend to perform well across others, and this pattern is consistently observed across populations and testing methods. The g factor is a model that explains this pattern by positing a general underlying cognitive ability. These findings are robust and reproducible. However, the interpretation of these correlations as a single underlying general intelligence remains debated. Alternative explanations exist, including models that emphasize multiple independent cognitive abilities or hierarchical structures rather than a single general factor. Additionally, the biological and cognitive basis of g is not fully understood."
+      },
+      "ses": {
+        "score": 3,
+        "label": "Core Scientific Program",
+        "justification": "The study of general intelligence functions as a core scientific program within cognitive psychology and psychometrics. It structures research on cognitive ability, informs testing methods, and guides the analysis of individual differences. Research programs investigate the structure of intelligence, the validity of measurement models, and the relationship between cognitive performance and outcomes such as education and job performance. These studies generate testable hypotheses, rely on large datasets, and are continuously refined through statistical and experimental methods.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 0,
+        "label": "Limited Integration",
+        "justification": "The g factor integrates findings within cognitive psychology and psychometrics by providing a framework for understanding consistent patterns across diverse cognitive tasks. It connects performance across domains such as memory, reasoning, and processing speed into a unified model of cognitive ability. At the same time, its scope remains limited. The g factor does not strongly integrate across independent scientific domains such as neuroscience, biology, or social systems. Its explanatory role is largely confined to organizing patterns within cognitive performance data.",
+        "counted_in_composite": true
+      },
+      "composite_score": 5,
+      "score_calculation": {
+        "raw_ets": 2,
+        "raw_ses": 3,
+        "raw_eis": 0,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 5
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The g factor represents a well-supported statistical pattern and an active area of scientific research, but its interpretation as a single underlying general intelligence remains unresolved. The existence of correlations across cognitive tasks is established, but the explanation of those correlations is still under development. The framework plays a central role in research and application, while its explanatory claims remain not fully settled.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": "The robust statistical pattern is established, but the unresolved issues concern whether the best explanation is a single latent factor, a hierarchical set of abilities, or some other structure, and how any such model maps onto underlying neural and biological mechanisms.",
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "psychometrics",
+          "developing-theory"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-bilingual-advantage",
+      "framework_name": "Bilingual Advantage Hypothesis",
+      "specific_claim": "Bilingualism significantly improves executive function",
+      "framework_status": "Scientific Hypothesis",
+      "claim_type": "Explanatory",
+      "framework_description": "The Bilingual Advantage Hypothesis proposes that individuals who speak more than one language develop enhanced executive function compared to monolingual individuals. Executive functions include cognitive processes such as attention control, task switching, inhibition, and working memory. The hypothesis suggests that managing multiple language systems requires ongoing cognitive control, which may influence executive processes over time. This framework is used to explain potential differences in cognitive performance between bilingual and monolingual populations.",
+      "context_of_validity": "Human populations where bilingualism and executive function can be operationalized via structured behavioral tasks and standardized definitions, typically in contemporary educational and cultural settings, and under research designs that attempt, often imperfectly, to control for socioeconomic status, education, immigration status, and other confounds. Within these bounded contexts, some task-level advantages for certain bilingual groups have been observed, but they are small, inconsistent, and not reliably generalizable across tasks, populations, or lifespans.",
+      "domains_of_inquiry": [
+        "Cognitive Psychology",
+        "Neuroscience",
+        "Linguistics"
+      ],
+      "ontological_scales": [
+        "Micro"
+      ],
+      "ets": {
+        "score": 1,
+        "label": "Weak / Inconsistent Evidence",
+        "closure_status": "None",
+        "justification": "The claim that bilingualism significantly improves executive function is supported by mixed and inconsistent evidence. Some studies report performance advantages for bilingual individuals on tasks involving attention, inhibition, and cognitive flexibility. However, these effects are not consistently observed across studies. Many large-scale and well-controlled investigations fail to find reliable differences between bilingual and monolingual individuals. Reported advantages vary depending on task design, participant characteristics, and methodological choices. Differences in socioeconomic status, education, immigration background, and cultural factors can influence cognitive performance and may confound results attributed to bilingualism."
+      },
+      "ses": {
+        "score": 2,
+        "label": "Active Research Program",
+        "justification": "The Bilingual Advantage Hypothesis is actively investigated within cognitive psychology, neuroscience, and linguistics. It has generated a substantial body of research examining the relationship between language experience and cognitive function. The hypothesis generates clear and testable predictions and has prompted extensive empirical investigation. It has also been the subject of significant methodological scrutiny, particularly regarding replication reliability, effect size, and control of confounding variables. Despite this activity, the research does not function as a foundational or organizing program within the field.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 1,
+        "label": "Domain Integrator",
+        "justification": "The Bilingual Advantage Hypothesis integrates findings within cognitive psychology, neuroscience, and linguistics by linking language experience with executive function performance. It provides a framework for examining how bilingual language use relates to cognitive processes and neural activity. This integration is coherent within its domain cluster but does not extend to broad integration across independent scientific domains.",
+        "counted_in_composite": true
+      },
+      "composite_score": 4,
+      "score_calculation": {
+        "raw_ets": 1,
+        "raw_ses": 2,
+        "raw_eis": 1,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 4
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The Bilingual Advantage Hypothesis represents an actively researched but weakly supported explanatory framework. Evidence for cognitive advantages associated with bilingualism is inconsistent and varies across studies, populations, and methodologies. The hypothesis identifies a plausible relationship between language experience and executive function, but this relationship has not been established as stable or generalizable.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "cognition",
+          "active-research",
+          "weak-evidence"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-standing-desks",
+      "framework_name": "Standing Desks Improve Health Hypothesis",
+      "specific_claim": "Using standing desks improves health outcomes compared to prolonged sitting",
+      "framework_status": "Scientific Hypothesis",
+      "claim_type": "Explanatory",
+      "framework_description": "The Standing Desks Improve Health Hypothesis proposes that reducing sedentary behavior through the use of standing desks can improve health outcomes such as metabolic function, posture, energy expenditure, and overall well-being. The claim is often framed as an intervention to counteract the negative effects of prolonged sitting. The framework is used to explain how changes in workplace behavior and physical posture may influence physiological and health-related outcomes. It includes mechanisms such as increased energy expenditure, reduced sedentary time, improved circulation, and changes in musculoskeletal load.",
+      "context_of_validity": "Applies to workplace or similar sedentary settings in which prolonged sitting can be reduced through standing desk use. The theory is relevant where ergonomic design, actual usage patterns, and surrounding behavior are measurable. Its effects appear modest and context-dependent rather than universal or strongly transformative.",
+      "domains_of_inquiry": [
+        "Public Health",
+        "Ergonomics",
+        "Exercise Science"
+      ],
+      "ontological_scales": [
+        "Micro"
+      ],
+      "ets": {
+        "score": 1,
+        "label": "Emerging Supported Theory",
+        "closure_status": "None",
+        "justification": "The Standing Desks Improve Health Hypothesis represents a plausible and actively studied framework with emerging but inconsistent evidence. There is support for modest physiological and behavioral effects, particularly in reducing sedentary time, but these effects do not translate into strong or consistent health outcomes across contexts. The hypothesis identifies a meaningful area of intervention, but its impact is limited and highly dependent on usage patterns and implementation. Current evidence does not support strong claims about significant or long-term health improvements resulting from standing desk use alone."
+      },
+      "ses": {
+        "score": 1,
+        "label": "Partial Scientific Engagement",
+        "justification": "The framework is engaged with empirical investigation and generates testable claims, but does not function as a central or deeply developed research program. It is investigated in applied health and ergonomics contexts with modest methodological engagement.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 1,
+        "label": "Domain Integrator",
+        "justification": "The hypothesis moderately integrates findings across related applied domains such as public health, ergonomics, and exercise science, but the integration remains local and intervention-specific rather than structurally broad.",
+        "counted_in_composite": true
+      },
+      "composite_score": 3,
+      "score_calculation": {
+        "raw_ets": 1,
+        "raw_ses": 1,
+        "raw_eis": 1,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 3
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The Standing Desks Improve Health Hypothesis is a plausible but only modestly supported framework. It sits in an emerging evidence zone: worth investigating and partially grounded, but not established at the level needed to support strong, broad, or long-term health claims.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "public-health",
+          "emerging-evidence"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-ai-tutoring",
+      "framework_name": "AI Tutoring Improves Learning",
+      "specific_claim": "AI tutoring systems improve learning efficiency and outcomes",
+      "framework_status": "Scientific Hypothesis",
+      "claim_type": "Explanatory",
+      "framework_description": "The AI Tutoring Hypothesis proposes that AI-based tutoring systems can improve learning efficiency and outcomes by delivering adaptive, personalized instruction. It is presented as an educational intervention linking instructional technology with measurable student performance.",
+      "context_of_validity": "Applies in educational settings where AI tutoring systems are implemented in a structured way and where learning outcomes can be measured. Reported effects depend heavily on the design of the system, the subject matter, and the implementation context, so the claim is not yet generalizable across education as a whole.",
+      "domains_of_inquiry": [
+        "Educational Technology",
+        "Cognitive Science",
+        "Computer Science"
+      ],
+      "ontological_scales": [
+        "Micro",
+        "Intermediate"
+      ],
+      "ets": {
+        "score": 1,
+        "label": "Emerging Supported Theory",
+        "closure_status": "None",
+        "justification": "The AI Tutoring Hypothesis represents a legitimate but unresolved area of inquiry. There is evidence that AI-based systems can improve learning outcomes in specific contexts, but these effects are not consistent, generalizable, or fully understood. The hypothesis identifies a plausible application of adaptive technology, but its effectiveness is not established at the level of generalization. Results are inconsistent and dependent on specific implementations, preventing the formation of stable conclusions."
+      },
+      "ses": {
+        "score": 1,
+        "label": "Partial Scientific Engagement",
+        "justification": "The framework produces testable claims and is being studied empirically, but it does not yet function as a major scientific program. It is methodologically engaged in a partial, applied, context-dependent way.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 0,
+        "label": "Standalone Theory — No Integration",
+        "justification": "The framework remains relatively standalone. It has not yet developed strong explanatory integration across independent knowledge domains, and its role is primarily local to specific educational intervention studies.",
+        "counted_in_composite": true
+      },
+      "composite_score": 2,
+      "score_calculation": {
+        "raw_ets": 1,
+        "raw_ses": 1,
+        "raw_eis": 0,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 2
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "AI tutoring remains an unresolved and context-dependent intervention, not a reliably validated improvement in learning outcomes. The hypothesis is plausible, testable, and partly supported, but not yet established as a broad or stable educational effect.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "education",
+          "ai",
+          "emerging-evidence"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-multiverse",
+      "framework_name": "Multiverse Theory",
+      "specific_claim": "Multiple universes exist beyond our observable universe",
+      "framework_status": "Theoretical Hypothesis",
+      "claim_type": "Ontological",
+      "framework_description": "The Multiverse Theory proposes that our observable universe is not the only universe that exists, but rather one of many universes within a larger structure. These universes may differ in physical constants, initial conditions, or fundamental laws, depending on the specific version of the theory. The framework emerges from extensions of existing models in cosmology and theoretical physics, including inflationary models and interpretations of quantum mechanics. It is often used to explain features of the observable universe such as fine-tuning and the distribution of physical constants.",
+      "context_of_validity": "Purely theoretical extensions of cosmology and fundamental physics in which multiple universes are posited as a conceptual or mathematical consequence of certain models. Within this speculative context, the idea can be discussed as an interpretive add-on, but it currently lies outside evidence-based science because it yields no testable predictions or observational access beyond our observable universe.",
+      "domains_of_inquiry": [
+        "Theoretical Physics",
+        "Cosmology"
+      ],
+      "ontological_scales": [
+        "Meta"
+      ],
+      "ets": {
+        "score": 0,
+        "label": "Indeterminate",
+        "closure_status": "None",
+        "justification": "There is no direct evidence that multiple universes exist beyond the observable universe. The theory does not produce testable predictions that would allow for confirmation or disconfirmation, as any proposed additional universes lie outside the observable domain. While the idea is derived from extensions of existing physical theories, these extensions do not provide independently verifiable evidence for the existence of other universes. The central issue is not whether the concept is mathematically or theoretically consistent, but whether it can be supported or evaluated through evidence. At present, it cannot. As a result, the claim remains indeterminate."
+      },
+      "ses": {
+        "score": 0,
+        "label": "No Scientific Engagement",
+        "justification": "The Multiverse Theory does not qualify as a scientific research program because it does not produce falsifiable or empirically testable claims. Proposed universes lie outside observational access, and no testable predictions can distinguish the theory from alternatives. While the theory is discussed within theoretical physics and expressed through mathematical models, this activity does not constitute scientific engagement in the ATLAS sense.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": 0,
+        "label": "Standalone Theory — No Integration",
+        "justification": "The Multiverse Theory does not demonstrate evidence-based integration across domains. While it is conceptually related to existing theories in cosmology and physics, these relationships are speculative and not supported by empirical evidence. Because the theory does not produce observable evidence or testable predictions, it cannot establish stable explanatory integration.",
+        "counted_in_composite": true
+      },
+      "composite_score": 0,
+      "score_calculation": {
+        "raw_ets": 0,
+        "raw_ses": 0,
+        "raw_eis": 0,
+        "rule_applied": "Standard Composite (ETS + SES + EIS)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": 0
+      },
+      "override_status": {
+        "negative_override_applied": false,
+        "closure_override_applied": false
+      },
+      "interpretation": "The Multiverse Theory is a speculative hypothesis that lies outside the domain of scientific evaluation. Without the ability to generate observable evidence or falsifiable claims, the theory cannot be evaluated using scientific methods. It is neither supported nor debunked within ATLAS; it is indeterminate.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": "The primary limitation of the Multiverse Theory is epistemic in nature. The proposed entities exist beyond the observable universe, making direct observation or measurement inaccessible under current physical constraints. Unlike hypotheses that are currently untested but potentially testable with improved methods, the Multiverse Theory does not provide a clear pathway for future access to evidence. There is no established mechanism by which other universes could be detected, measured, or observed.",
+        "debunking_evidence_summary": null,
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": null,
+        "boundary_between_theory_and_speculation": "The Multiverse Theory illustrates the boundary between theoretical extension and scientific hypothesis. While it originates from mathematical and conceptual developments within physics, it exceeds the limits of testable science when it makes claims about unobservable entities. Scientific theories require not only internal consistency but also accountability to evidence."
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "cosmology",
+          "indeterminate",
+          "speculation"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-luminiferous-aether",
+      "framework_name": "Luminiferous Aether Theory",
+      "specific_claim": "Light propagates through a luminiferous aether",
+      "framework_status": "Scientific Theory",
+      "claim_type": "Explanatory",
+      "framework_description": "The Luminiferous Aether Theory proposed that light, as a wave, must propagate through a physical medium filling space. It was treated historically as a scientific explanation for how light travels and what kind of medium could support electromagnetic propagation.",
+      "context_of_validity": "Historically relevant within classical physics and optics prior to decisive experimental testing. It no longer has a valid empirical domain because its core predictions failed and its explanatory role was replaced by relativity.",
+      "domains_of_inquiry": [
+        "Physics",
+        "Optics"
+      ],
+      "ontological_scales": [
+        "Macro"
+      ],
+      "ets": {
+        "score": -1,
+        "label": "Debunked",
+        "closure_status": "None",
+        "justification": "The claim that light propagates through a luminiferous aether is false. The theory made specific, testable predictions about how motion through the aether should affect the measured behavior of light. Those predicted effects were not observed. Experiments designed to detect Earth's motion through the aether did not produce the expected results. The Michelson-Morley experiment directly tested for these effects and found none. Later developments in physics, especially special relativity, provided a complete explanation of light propagation without requiring any medium. The aether was not refined into a better model. It was eliminated because its core prediction failed and no empirical role remained."
+      },
+      "ses": {
+        "score": 2,
+        "label": "Strong Scientific Engagement",
+        "justification": "The Luminiferous Aether Theory was the subject of substantial scientific investigation. It generated clear, testable predictions and motivated experimental work aimed at detecting the properties of the proposed medium. It functioned as a strong scientific program within physics during its time. This level of engagement reflects the seriousness with which the theory was treated and the extent to which it was tested.",
+        "counted_in_composite": false
+      },
+      "eis": {
+        "score": 0,
+        "label": "Standalone Theory — No Integration",
+        "justification": "The theory does not receive a negative integration score because its failure does not require rejecting multiple independent domains of scientific knowledge. It was a specific hypothesis about the propagation of light, not a framework that conflicts with science at a systemic level. At the same time, it does not receive positive integration credit once shown to be false. It no longer contributes to coherent understanding of physical phenomena.",
+        "counted_in_composite": true
+      },
+      "composite_score": -1,
+      "score_calculation": {
+        "raw_ets": -1,
+        "raw_ses": 2,
+        "raw_eis": 0,
+        "rule_applied": "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+        "ses_counted": false,
+        "eis_counted": true,
+        "final_score": -1
+      },
+      "override_status": {
+        "negative_override_applied": true,
+        "closure_override_applied": false
+      },
+      "interpretation": "The Luminiferous Aether Theory is a debunked scientific theory that remains historically important as an example of how science corrects itself. It was rigorously investigated and methodologically serious, but false. ATLAS distinguishes this kind of case from anti-scientific or systemically incompatible doctrines: the theory failed on evidence, not on the basis of rejecting science itself.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": "The defining failure of the Luminiferous Aether Theory is that it predicted observable effects that do not exist. If Earth were moving through a real medium that carries light, then precise measurements should detect differences in the speed or behavior of light depending on direction and motion. Experiments designed to detect these differences consistently failed. The Michelson-Morley experiment directly tested this prediction and found no evidence of the expected effect. This result undermined the central premise of the theory.",
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": "The framework is of limited present-day cultural impact and mainly of historical importance. Its main value is educational: it shows that rigorous scientific engagement does not guarantee truth, and that failed theories can still contribute to scientific progress by being decisively tested and replaced.",
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "physics",
+          "debunked",
+          "historical"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-left-brain-right-brain",
+      "framework_name": "Left Brain Right Brain Personality Theory",
+      "specific_claim": "Individuals are predominantly left-brained or right-brained, determining their cognitive style and personality",
+      "framework_status": "Popular Misconception",
+      "claim_type": "Ontological",
+      "framework_description": "The Left Brain Right Brain Personality Theory is the claim that individuals can be categorized as predominantly left-brained or right-brained, with each hemisphere determining distinct cognitive styles and personality traits. The left hemisphere is typically associated with logic, analysis, and language, while the right hemisphere is associated with creativity, intuition, and emotion. The theory is often used to explain differences in thinking, learning, and behavior, suggesting that individuals rely more heavily on one hemisphere than the other in a global and defining way.",
+      "context_of_validity": "None as a personality-level or global cognitive style explanation. It survives only as an oversimplified popularization of genuine, task-specific hemispheric specialization and is incompatible with modern evidence showing highly integrated, cross-hemispheric brain function in normal cognition and personality.",
+      "domains_of_inquiry": [
+        "Neuroscience",
+        "Cognitive Psychology"
+      ],
+      "ontological_scales": [
+        "Micro"
+      ],
+      "ets": {
+        "score": -1,
+        "label": "Debunked",
+        "closure_status": "None",
+        "justification": "The claim that individuals are predominantly left-brained or right-brained in a way that determines personality or overall cognitive style is false. While certain cognitive functions are associated more strongly with one hemisphere than the other, this specialization is limited, task-specific, and highly integrated across both hemispheres. Most cognitive processes involve coordinated activity across both hemispheres. There is no evidence that individuals rely primarily on one hemisphere in a way that defines their personality, intelligence, or overall cognitive style. The idea of global hemispheric dominance as a defining trait is not supported by evidence."
+      },
+      "ses": {
+        "score": 2,
+        "label": "Strong Scientific Engagement",
+        "justification": "Brain lateralization and hemispheric function have been extensively studied within neuroscience and cognitive psychology. Research using neuroimaging, lesion studies, and cognitive testing has established a detailed understanding of how different brain regions contribute to specific functions. This level of investigation reflects strong scientific engagement. The functions attributed to each hemisphere have been rigorously examined and clarified through multiple lines of evidence.",
+        "counted_in_composite": false
+      },
+      "eis": {
+        "score": -1,
+        "label": "Fragmenting Theory",
+        "justification": "The Left Brain Right Brain Personality Theory conflicts with established knowledge within neuroscience and cognitive psychology. It presents a simplified and incorrect model of brain function that distorts how cognitive processes are understood. The claim fragments understanding within its domain by promoting a false dichotomy between analytical and creative thinking and attributing these to separate, dominant hemispheres. At the same time, the conflict is contained within a specific domain. The theory does not require rejecting multiple independent scientific fields or dismantling broader scientific frameworks.",
+        "counted_in_composite": true
+      },
+      "composite_score": -2,
+      "score_calculation": {
+        "raw_ets": -1,
+        "raw_ses": 2,
+        "raw_eis": -1,
+        "rule_applied": "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+        "ses_counted": false,
+        "eis_counted": true,
+        "final_score": -2
+      },
+      "override_status": {
+        "negative_override_applied": true,
+        "closure_override_applied": false
+      },
+      "interpretation": "The Left Brain Right Brain Personality Theory is a debunked claim that distorts the scientific understanding of brain function. While it originates from a simplified interpretation of real hemispheric specialization, it extends this idea into a false model of personality and cognition. It is not merely incorrect in isolation; it actively misrepresents foundational concepts within its domain and interferes with accurate understanding.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": "The theory is contradicted by multiple independent lines of evidence in neuroscience. Brain imaging studies show that most cognitive tasks involve coordinated activity across both hemispheres rather than dominance by one side. Lesion studies demonstrate that while certain functions may be localized, overall cognitive ability depends on distributed networks. Damage to one hemisphere does not produce a complete loss of logical or creative ability.",
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": "The theory persists as a popular misconception because it is intuitive, simple, and easy to apply to everyday differences in personality and learning style. Its broader effect is epistemically distorting rather than system-wide: it encourages false beliefs about cognition and oversimplifies neuroscience for public audiences.",
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "neuroscience",
+          "debunked",
+          "popular-misconception"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-flat-earth",
+      "framework_name": "Flat Earth Theory",
+      "specific_claim": "The Earth is flat",
+      "framework_status": "Debunked Doctrine",
+      "claim_type": "Ontological",
+      "framework_description": "Flat Earth Theory is the claim that the Earth is flat rather than spherical. It asserts that the observable world is best explained by a planar model, often rejecting or reinterpreting established scientific accounts of planetary shape, gravity, and motion. The claim directly contradicts the modern scientific understanding of Earth as an oblate spheroid. It is not derived from a valid scientific framework and is maintained through reinterpretation or rejection of well-established evidence.",
+      "context_of_validity": "None. As a description of planetary shape this is only historically relevant as a pre-scientific or pseudoscientific model, but decisively falsified by convergent modern evidence including orbital mechanics, satellite imagery, navigation, and geodesy, so it no longer has any valid empirical domain.",
+      "domains_of_inquiry": [
+        "Physics",
+        "Astronomy",
+        "Geophysics",
+        "Navigation"
+      ],
+      "ontological_scales": [
+        "Macro"
+      ],
+      "ets": {
+        "score": -1,
+        "label": "Debunked",
+        "closure_status": "None",
+        "justification": "The claim that the Earth is flat is false. The shape of the Earth has been established through multiple independent lines of evidence that converge on the same conclusion. Satellite imagery, global navigation systems, circumnavigation, gravitational modeling, and astronomical observation all confirm that the Earth is spherical. Measurements of curvature, time zones, seasonal variation, and planetary motion are all consistent with a spherical Earth and cannot be coherently explained by a flat model. This is not a matter of interpretation or incomplete data. The flat Earth claim is directly contradicted at every relevant level."
+      },
+      "ses": {
+        "score": 2,
+        "label": "Strong Scientific Engagement",
+        "justification": "Flat Earth claims have been extensively evaluated through scientific investigation across multiple domains, including physics, astronomy, geophysics, and navigation. The shape of the Earth is supported by a large body of converging evidence developed through sustained scientific work. This level of investigation reflects strong scientific engagement. The shape of the Earth has not only been examined — it has been decisively resolved.",
+        "counted_in_composite": false
+      },
+      "eis": {
+        "score": -2,
+        "label": "Systemically Incompatible Doctrine",
+        "justification": "Flat Earth Theory is systemically incompatible with established knowledge across multiple independent scientific domains. It does not merely conflict with a single field. It contradicts a wide range of interconnected frameworks, including gravity and orbital mechanics in physics, planetary observation and motion in astronomy, Earth structure and measurement in geophysics, and GPS and global travel in navigation. Maintaining the claim requires rejecting or distorting evidence across all of these domains simultaneously. This is not a localized error. It is a system-wide contradiction.",
+        "counted_in_composite": true
+      },
+      "composite_score": -3,
+      "score_calculation": {
+        "raw_ets": -1,
+        "raw_ses": 2,
+        "raw_eis": -2,
+        "rule_applied": "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+        "ses_counted": false,
+        "eis_counted": true,
+        "final_score": -3
+      },
+      "override_status": {
+        "negative_override_applied": true,
+        "closure_override_applied": false
+      },
+      "interpretation": "Flat Earth Theory is a systemically incompatible doctrine that has been decisively debunked. It is not a competing scientific model. It is a claim that contradicts established knowledge across multiple domains. The theory does not survive evidence at any level and cannot account for observed phenomena without rejecting the foundational principles of physics, astronomy, and geophysics.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": "The theory fails against satellite imagery, circumnavigation, curvature measurements, astronomical observation, time zones, seasonal variation, and modern navigation systems. These are not isolated objections; they form a convergent body of evidence that independently confirms the Earth is spherical.",
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": "Flat Earth claims are clearly contradicted by evidence but still circulate in small communities and media ecosystems. Their direct practical impact is usually limited, but they contribute to epistemic confusion by encouraging distrust of basic scientific reasoning and validated observation.",
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "debunked",
+          "systemically-incompatible",
+          "pseudoscience"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-intelligent-design",
+      "framework_name": "Intelligent Design as scientific explanation",
+      "specific_claim": "Intelligent design is a valid scientific explanation for the origin and complexity of life",
+      "framework_status": "Non-Scientific Doctrine",
+      "claim_type": "Explanatory",
+      "framework_description": "Intelligent Design, when presented as a scientific explanation, claims that biological complexity is best explained by purposive design rather than natural evolutionary mechanisms. It is presented as an alternative explanation of the origin and organization of life.",
+      "context_of_validity": "None as a scientific account. In practice it functions only as a non-scientific or theological doctrine that attempts to replace established evolutionary mechanisms with unspecified design while conflicting with convergent biological evidence.",
+      "domains_of_inquiry": [
+        "Biology",
+        "Evolutionary Theory",
+        "Philosophy of Science"
+      ],
+      "ontological_scales": [
+        "Micro",
+        "Intermediate"
+      ],
+      "ets": {
+        "score": -1,
+        "label": "Debunked",
+        "closure_status": "None",
+        "justification": "The claim that Intelligent Design provides a valid scientific explanation for biological complexity is false. Biological complexity is already explained through well-supported mechanisms in evolutionary biology, including natural selection, genetic variation, and common descent. Observed features such as vestigial structures, suboptimal design, genetic inheritance patterns, and transitional forms are directly explained by evolutionary processes and contradict the premise of independent or direct design. When presented as a scientific explanation of biological complexity, Intelligent Design makes claims about reality that conflict with established evidence."
+      },
+      "ses": {
+        "score": -1,
+        "label": "Non-Scientific Framework",
+        "justification": "Intelligent Design does not qualify as a scientific framework. It does not produce testable predictions, does not define mechanisms, and does not operate within the structure of the scientific method. Unlike theories that are scientifically engaged and later disproven, Intelligent Design does not enter into scientific evaluation. It cannot be tested, cannot be falsified, and does not generate evidence-based investigation.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": -2,
+        "label": "Systemically Incompatible Doctrine",
+        "justification": "Intelligent Design is systemically incompatible with established knowledge across multiple domains. It conflicts directly with evolutionary biology, genetics, paleontology, and related fields that provide converging explanations for the development of life. The claim cannot be integrated into these domains because it replaces evidence-based explanation with non-testable assertion. Maintaining Intelligent Design as a scientific explanation requires rejecting or undermining the principles and findings that support modern biology.",
+        "counted_in_composite": true
+      },
+      "composite_score": -4,
+      "score_calculation": {
+        "raw_ets": -1,
+        "raw_ses": -1,
+        "raw_eis": -2,
+        "rule_applied": "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": -4
+      },
+      "override_status": {
+        "negative_override_applied": true,
+        "closure_override_applied": false
+      },
+      "interpretation": "Intelligent Design, when presented as a scientific explanation, is not a scientific theory. It does not meet the criteria required to function within science and does not provide testable or evidence-based explanations. It represents a failure not only of explanatory accuracy but of adherence to the standards that define science.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": "The framework is contradicted by convergent evidence from evolutionary biology, genetics, fossil records, and observed processes of selection and variation. The relevant phenomena are already explained, and the core implications of Intelligent Design are contradicted by multiple lines of evidence.",
+        "scientific_scope_clarification": null,
+        "contextual_impact_analysis": "Intelligent Design can create public confusion about the nature of science by presenting a theological or ideological position as if it were an empirical alternative. Its main impact is educational and epistemic, especially where it is used to challenge well-established biological knowledge.",
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": false,
+        "tags": [
+          "biology",
+          "debunked",
+          "non-scientific"
+        ]
+      }
+    },
+    {
+      "id": "atlas-eval-cosmological-idealism",
+      "framework_name": "Cosmological Idealism",
+      "specific_claim": "Reality is fundamentally mental",
+      "framework_status": "Anti-Scientific Doctrine",
+      "claim_type": "Ontological",
+      "framework_description": "Cosmological Idealism is the claim that consciousness is ontologically primary and that physical reality is derivative of, or generated by, mental processes. It is presented as a direct alternative to naturalistic explanations, asserting that mind is the fundamental substance of reality rather than an emergent property of physical systems. As a claim about consciousness, it proposes that mental phenomena do not arise from biological or physical structures, but instead ground or give rise to those structures. When presented as an explanation of consciousness and its relation to reality, Cosmological Idealism functions as a competing explanatory claim rather than a neutral philosophical interpretation.",
+      "context_of_validity": "None as an account of the structure of reality within empirical science. It operates only as a metaphysical or ideological position that asserts mind as ontologically primary, in direct conflict with extensive evidence that mental states depend on physical systems and without providing testable mechanisms or predictions.",
+      "domains_of_inquiry": [
+        "Physics",
+        "Neuroscience",
+        "Biology",
+        "Philosophy"
+      ],
+      "ontological_scales": [
+        "Nano",
+        "Micro",
+        "Intermediate",
+        "Macro",
+        "Meta"
+      ],
+      "ets": {
+        "score": -1,
+        "label": "Debunked",
+        "closure_status": "None",
+        "justification": "The claim that reality is fundamentally mental is false. All available evidence supports the conclusion that mental phenomena arise from physical systems rather than the reverse. Across neuroscience, mental states are consistently dependent on brain states. Alterations to brain structure and activity reliably produce changes in perception, cognition, and identity. Brain damage results in predictable deficits. Chemical intervention modifies conscious experience in consistent ways. There is no evidence that mental processes exist independently of physical systems or that they generate physical structures. All evidence points in the opposite direction: mental phenomena depend on physical processes."
+      },
+      "ses": {
+        "score": -2,
+        "label": "Anti-Scientific",
+        "justification": "Cosmological Idealism does not operate within the scientific method. It does not generate testable predictions, define mechanisms, or allow for evaluation through evidence. More critically, it actively misrepresents and undermines science itself. Rather than engaging with scientific findings, it reframes or dismisses them in ways that prevent evaluation. This includes treating established facts as if they are merely subjective observations, arguing that science does not know anything because it does not know everything, and framing science as a belief system or dogma rather than a method. These are not neutral philosophical moves; they distort how science works and undermine the role of evidence.",
+        "counted_in_composite": true
+      },
+      "eis": {
+        "score": -2,
+        "label": "Systemically Incompatible Doctrine",
+        "justification": "Cosmological Idealism is incompatible with established knowledge across multiple domains. It conflicts with physics, neuroscience, biology, and related fields that describe reality as structured by physical processes. The claim reverses the direction of explanation, asserting that mental phenomena give rise to physical processes. This is not supported by evidence and cannot be reconciled with existing models. Maintaining the claim requires rejecting or redefining findings across multiple domains simultaneously.",
+        "counted_in_composite": true
+      },
+      "composite_score": -5,
+      "score_calculation": {
+        "raw_ets": -1,
+        "raw_ses": -2,
+        "raw_eis": -2,
+        "rule_applied": "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+        "ses_counted": true,
+        "eis_counted": true,
+        "final_score": -5
+      },
+      "override_status": {
+        "negative_override_applied": true,
+        "closure_override_applied": false
+      },
+      "interpretation": "Cosmological Idealism is a maximally invalid framework under scientific and rational evaluation. It is not supported by evidence, does not meet the criteria of scientific explanation, and conflicts with established knowledge across domains. It is not a competing hypothesis. It is a rejected claim.",
+      "additional_analysis": {
+        "scientific_significance": null,
+        "mechanistic_closure_analysis": null,
+        "mechanistic_development_status": null,
+        "evidentiary_accessibility": null,
+        "debunking_evidence_summary": "The framework is contradicted by converging evidence showing that mental states depend on physical systems. Neuroscience, biology, and medicine all support the direction of dependence from physical systems to mental phenomena rather than the reverse.",
+        "scientific_scope_clarification": "Cosmological Idealism does not function as a scientific theory within ATLAS because it is insulated from falsification, lacks measurable mechanisms, and actively removes the criteria by which it could otherwise be tested. It is therefore not merely weakly scientific; it is anti-scientific in structure.",
+        "contextual_impact_analysis": "Cosmological Idealism contributes to epistemic confusion by blurring the distinction between evidence and interpretation. By presenting unsupported claims as equivalent to evidence-based knowledge, it creates false equivalence between valid explanations and invalid ones. It can also undermine grounded engagement with physical reality and weaken trust in scientific methods for understanding the world.",
+        "boundary_between_theory_and_speculation": null
+      },
+      "metadata": {
+        "atlas_version": "0.951",
+        "evaluation_date": "2026-05-03",
+        "evaluator": "AI-assisted extraction from ATLAS source document",
+        "is_extended_analysis": true,
+        "tags": [
+          "idealism",
+          "anti-scientific",
+          "max-negative",
+          "extended-analysis"
+        ]
+      }
+    }
+  ]
+}

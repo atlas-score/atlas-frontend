@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body antialiased text-atlas-white bg-atlas-void;
+  }
+}
+
+@keyframes atlas-pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px 2px rgba(124, 58, 237, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px 6px rgba(168, 85, 247, 0.6);
+  }
+}
+
+@keyframes atlas-bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--bar-width, 0%);
+  }
+}
+
+@keyframes atlas-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.atlas-glow-pulse {
+  animation: atlas-pulse-glow 3s ease-in-out infinite;
+}
+
+.atlas-bar-fill {
+  animation: atlas-bar-fill 0.8s ease-out forwards;
+}
+
+.atlas-hero-shimmer {
+  background-size: 200% 200%;
+  animation: atlas-shimmer 8s ease infinite;
+}

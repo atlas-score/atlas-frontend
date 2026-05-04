@@ -1,0 +1,385 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://atlas-framework.org/schemas/atlas-evaluation.schema.json",
+  "title": "ATLAS Evaluation",
+  "description": "Schema for an ATLAS (Analytical Theory Legitimacy Assessment System) evaluation record. ATLAS assesses theoretical frameworks across three independent scales — Established Truth (ETS), Scientific Engagement (SES), and Explanatory Integration (EIS) — to produce a composite epistemic legitimacy score ranging from -5 to +10.",
+  "type": "object",
+  "required": [
+    "id",
+    "framework_name",
+    "specific_claim",
+    "framework_status",
+    "claim_type",
+    "framework_description",
+    "context_of_validity",
+    "domains_of_inquiry",
+    "ontological_scales",
+    "ets",
+    "ses",
+    "eis",
+    "composite_score",
+    "score_calculation",
+    "override_status",
+    "interpretation",
+    "additional_analysis"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this evaluation record (e.g., 'atlas-eval-001'). Used for database keying and frontend routing."
+    },
+    "framework_name": {
+      "type": "string",
+      "description": "The name of the theory or framework being evaluated (e.g., 'Theory of Evolution — Natural Selection'). This is the contextual label, not the evaluated proposition."
+    },
+    "specific_claim": {
+      "type": "string",
+      "description": "The exact proposition being evaluated. ATLAS requires specificity: a framework name alone is not sufficient. This should be a single, clearly bounded claim (e.g., 'Evolution by natural selection explains the diversity of life')."
+    },
+    "framework_status": {
+      "type": "string",
+      "description": "Categorical type of the framework being evaluated. Determines which evaluative rules apply.",
+      "enum": [
+        "Scientific Theory",
+        "Scientific Hypothesis",
+        "Speculative Claim",
+        "Philosophical Claim",
+        "Religious Doctrine",
+        "Non-Scientific Doctrine",
+        "Anti-Scientific Doctrine",
+        "Debunked Doctrine",
+        "Popular Misconception",
+        "Theoretical Hypothesis"
+      ]
+    },
+    "claim_type": {
+      "type": "string",
+      "description": "Whether the claim asserts the existence of something (Ontological) or proposes how something works (Explanatory). This distinction governs how ETS is applied: ontological claims are evaluated for existence/reality status; explanatory claims are evaluated for model accuracy.",
+      "enum": [
+        "Ontological",
+        "Explanatory",
+        "Ontological and Explanatory"
+      ]
+    },
+    "framework_description": {
+      "type": "string",
+      "description": "A neutral, non-evaluative description of the framework. Must include: the core claims being made, the phenomenon or domain addressed, how the framework is typically presented, and the claim type. No scoring occurs here."
+    },
+    "context_of_validity": {
+      "type": "string",
+      "description": "The conditions, populations, or constraints under which the theory's claims apply. Clarifies scope limitations — what the theory does and does not claim. Example: 'Applies to biological populations with heritable variation under selective pressure; does not apply to non-biological systems.'"
+    },
+    "domains_of_inquiry": {
+      "type": "array",
+      "description": "List of scientific or academic disciplines the framework operates within (e.g., ['Biology', 'Genetics', 'Paleontology']). Used to contextualize EIS cross-domain integration assessment.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "ontological_scales": {
+      "type": "array",
+      "description": "The ontological scale(s) at which the claim operates. ATLAS uses a five-band stratification of reality: Nano (subatomic/quantum), Micro (molecular/cellular/organismic), Intermediate (ecological/social/civilizational), Macro (astrophysical/galactic), Meta (cosmological/universe-level). ETS closure is scale-relative.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Nano",
+          "Micro",
+          "Intermediate",
+          "Macro",
+          "Meta"
+        ]
+      },
+      "minItems": 1
+    },
+    "ets": {
+      "type": "object",
+      "description": "Established Truth Scale (ETS) — the primary evaluative dimension. Measures the degree to which a theory's central claims have been confirmed through convergent evidence and rational justification. ETS determines categorical truth status: proven, unresolved, or debunked. Range: -1 to 4.",
+      "required": [
+        "score",
+        "label",
+        "closure_status",
+        "justification"
+      ],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "description": "ETS numeric score. Determines truth status and triggers override rules.\n  -1 = Debunked (triggers Negative Override Rule)\n   0 = Indeterminate / Evidentiary Inaccessible\n   1 = Weak/Inconsistent Evidence or Emerging Supported Theory\n   2 = Strongly Supported / Developing Partially Established\n   3 = Proven Phenomenon (phenomenon closure achieved)\n   4 = Complete Mechanistic Theory (triggers Closure Override Rule)",
+          "minimum": -1,
+          "maximum": 4
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable classification label for the ETS score.",
+          "enum": [
+            "Debunked",
+            "Indeterminate",
+            "Emerging Supported Theory",
+            "Weak / Inconsistent Evidence",
+            "Strongly Supported Theory",
+            "Developing / Partially Established",
+            "Proven Phenomenon",
+            "Complete Mechanistic Theory"
+          ]
+        },
+        "closure_status": {
+          "type": "string",
+          "description": "The level of epistemic closure achieved. 'None' for developing or debunked theories. 'Phenomenon Closure' means the existence of the phenomenon is no longer in reasonable dispute. 'Mechanistic Closure' means the causal processes are sufficiently mapped, predictively reliable, and evidentially stable — the highest level.",
+          "enum": [
+            "None",
+            "Phenomenon Closure",
+            "Mechanistic Closure"
+          ]
+        },
+        "justification": {
+          "type": "string",
+          "description": "The primary evaluative reasoning for the ETS classification. Must document: what evidence supports or contradicts the claim, whether falsifiability criteria are met, whether independent lines of evidence converge, and what alternative explanations exist."
+        }
+      }
+    },
+    "ses": {
+      "type": "object",
+      "description": "Scientific Engagement Scale (SES) — secondary scale. Evaluates how the framework participates in (or resists) scientific accountability. Measures methodological posture, not truth. Range: -2 to 3.",
+      "required": [
+        "score",
+        "label",
+        "justification"
+      ],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "description": "SES numeric score. Describes methodological engagement posture.\n  -2 = Anti-Scientific (actively undermines scientific standards; reframes evidence as subjective)\n  -1 = Non-Scientific Framework (does not produce testable claims; no pathway to evidentiary evaluation)\n   0 = No Scientific Engagement (no testable predictions; outside science entirely)\n   1 = Partial Scientific Engagement (limited testing, some engagement with evidence)\n   2 = Active Research Program / Strong Scientific Engagement (substantial investigation; generates testable predictions)\n   3 = Core Scientific Program (central to a field; structures research programs; deeply falsification-accountable)",
+          "minimum": -2,
+          "maximum": 3
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable classification label for the SES score.",
+          "enum": [
+            "Anti-Scientific",
+            "Non-Scientific Framework",
+            "No Scientific Engagement",
+            "Partial Scientific Engagement",
+            "Active Research Program",
+            "Strong Scientific Engagement",
+            "Core Scientific Program"
+          ]
+        },
+        "justification": {
+          "type": "string",
+          "description": "Evaluative reasoning for the SES classification. Must address: whether the framework generates testable/falsifiable predictions, whether it engages with evidence and revises in response, and whether it functions as an active research program within a field."
+        },
+        "counted_in_composite": {
+          "type": "boolean",
+          "description": "Whether this SES score contributes to the composite ATLAS score. Set to false when ETS = -1 (Negative Override Rule applies) and SES value is positive, as positive SES cannot rehabilitate a debunked claim."
+        }
+      }
+    },
+    "eis": {
+      "type": "object",
+      "description": "Explanatory Integration Scale (EIS) — secondary scale. Evaluates how the framework fits within the broader architecture of established knowledge. Measures systemic coherence and cross-domain compatibility, not truth. Range: -2 to 3.",
+      "required": [
+        "score",
+        "label",
+        "justification"
+      ],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "description": "EIS numeric score. Describes systemic compatibility and integrative reach.\n  -2 = Systemically Incompatible Doctrine (requires rejecting multiple independent scientific domains)\n  -1 = Fragmenting Theory (conflicts with and distorts knowledge within its own domain)\n   0 = Standalone Theory — No Integration (does not connect to or support broader knowledge; neutral)\n   1 = Domain Integrator (connects findings within a specific domain or related cluster)\n   2 = Cross-Domain Integrator (integrates across multiple independent scientific domains)\n   3 = Architectonic Integrator (provides unifying explanatory framework across major disciplines)",
+          "minimum": -2,
+          "maximum": 3
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable classification label for the EIS score.",
+          "enum": [
+            "Systemically Incompatible Doctrine",
+            "Fragmenting Theory",
+            "Standalone Theory — No Integration",
+            "Limited Integration",
+            "Domain Integrator",
+            "Cross-Domain Integrator",
+            "Architectonic Integrator"
+          ]
+        },
+        "justification": {
+          "type": "string",
+          "description": "Evaluative reasoning for the EIS classification. Must address: whether the framework connects to other established knowledge domains, whether it conflicts with or disrupts established frameworks, and the breadth and depth of its integrative reach."
+        },
+        "counted_in_composite": {
+          "type": "boolean",
+          "description": "Whether this EIS score contributes to the composite ATLAS score. Set to false when ETS = -1 (Negative Override Rule applies) and EIS value is positive."
+        }
+      }
+    },
+    "composite_score": {
+      "type": "integer",
+      "description": "The final ATLAS composite score ranging from -5 to 10. Calculated by summing ETS + SES + EIS under standard conditions. Modified by two override rules: (1) Negative Override Rule — when ETS = -1, only negative SES/EIS values are included; (2) Closure Override Rule — when ETS = 4 (mechanistic closure), the composite is anchored at 10 regardless of SES/EIS values. The composite score is diagnostic, not determinative of truth status.",
+      "minimum": -5,
+      "maximum": 10
+    },
+    "score_calculation": {
+      "type": "object",
+      "description": "Transparent breakdown of how the composite score was calculated, including raw values, any adjustments, and the rule applied.",
+      "required": [
+        "raw_ets",
+        "raw_ses",
+        "raw_eis",
+        "rule_applied",
+        "final_score"
+      ],
+      "properties": {
+        "raw_ets": {
+          "type": "integer",
+          "description": "The raw ETS score before any override rule application."
+        },
+        "raw_ses": {
+          "type": "integer",
+          "description": "The raw SES score before any override rule application."
+        },
+        "raw_eis": {
+          "type": "integer",
+          "description": "The raw EIS score before any override rule application."
+        },
+        "rule_applied": {
+          "type": "string",
+          "description": "Which scoring rule governs the final calculation.",
+          "enum": [
+            "Standard Composite (ETS + SES + EIS)",
+            "Negative Override Rule (ETS = -1; only negative SES/EIS values counted)",
+            "Closure Override Rule (ETS = 4; composite anchored at 10)"
+          ]
+        },
+        "ses_counted": {
+          "type": "boolean",
+          "description": "Whether SES was included in the final composite."
+        },
+        "eis_counted": {
+          "type": "boolean",
+          "description": "Whether EIS was included in the final composite."
+        },
+        "final_score": {
+          "type": "integer",
+          "description": "The resulting composite ATLAS score after all rules applied.",
+          "minimum": -5,
+          "maximum": 10
+        }
+      }
+    },
+    "override_status": {
+      "type": "object",
+      "description": "Documents which, if any, structural override rules were triggered.",
+      "required": [
+        "negative_override_applied",
+        "closure_override_applied"
+      ],
+      "properties": {
+        "negative_override_applied": {
+          "type": "boolean",
+          "description": "True when ETS = -1. Prevents positive SES/EIS scores from contributing to the composite, ensuring debunked theories cannot gain artificial credibility through methodological participation or integrative appearance."
+        },
+        "closure_override_applied": {
+          "type": "boolean",
+          "description": "True when ETS = 4 (mechanistic closure achieved). Anchors the composite score at 10 regardless of SES/EIS values, preventing domain scope limitations from undermining fully established mechanistic knowledge."
+        }
+      }
+    },
+    "interpretation": {
+      "type": "string",
+      "description": "A written explanation of what the composite score means in context. Must clarify: the epistemic status of the framework, its level of credibility, and its role within the broader knowledge system. Interpretation must follow from scoring results and must not introduce new evaluative criteria."
+    },
+    "additional_analysis": {
+      "type": "object",
+      "description": "Conditional sections automatically triggered by specific scoring outcomes (Deterministic Variation Rules). Each section is either null (not triggered) or a string containing the relevant analysis. Sections are non-discretionary: they must be included when triggered and must not be included when not triggered.",
+      "properties": {
+        "scientific_significance": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: ETS >= 3. Explains the framework's role in advancing scientific knowledge. Covers explanatory scope, predictive success, role in scientific progress, and influence across disciplines. Only applicable to established or proven frameworks."
+        },
+        "mechanistic_closure_analysis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: ETS = 4. Explains why the mechanism is considered fully understood and stable within its domain, and clarifies that future work refines details rather than overturning the core structure."
+        },
+        "mechanistic_development_status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: ETS = 2 or ETS = 3. Identifies which aspects of the explanatory mechanism remain unresolved and describes how the framework is progressing toward closure. Distinguishes partially established theories from fully mechanistically closed ones."
+        },
+        "evidentiary_accessibility": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: ETS = 0. Clarifies what forms of evidence would be required to confirm or falsify the framework. Addresses why the framework is currently indeterminate and what methodological developments would move it out of that status."
+        },
+        "debunking_evidence_summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: ETS = -1. Documents the convergent evidence that contradicts the framework's core claims. Specifies what evidence was gathered, how it contradicted predictions, and why the framework cannot be rehabilitated."
+        },
+        "scientific_scope_clarification": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: SES = -2. Explains that the framework does not qualify as a scientific theory within ATLAS due to structural absence of scientific engagement. Distinguishes SES -2 (no scientific engagement; non-scientific) from SES -1 (distorted engagement)."
+        },
+        "contextual_impact_analysis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "TRIGGER: Composite ATLAS Score < 0. Non-epistemic analysis describing broader cultural or practical implications of the debunked framework. Must include: popularity, potential harm, and conflict with established knowledge. This section is explicitly non-epistemic and does NOT affect the ATLAS score."
+        },
+        "boundary_between_theory_and_speculation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional contextual note (typically triggered alongside ETS = 0) explaining the distinction between theoretical reasoning and scientific hypothesis, and why the framework falls on the speculative side of that boundary."
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata for frontend display and database management.",
+      "properties": {
+        "atlas_version": {
+          "type": "string",
+          "description": "Version of the ATLAS system used to generate this evaluation (e.g., '0.951')."
+        },
+        "evaluation_date": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO 8601 date when this evaluation was produced."
+        },
+        "evaluator": {
+          "type": "string",
+          "description": "Identifier for who or what produced this evaluation (e.g., 'human-expert', 'AI-assisted', 'automated')."
+        },
+        "is_extended_analysis": {
+          "type": "boolean",
+          "description": "True if this evaluation includes extended analysis sections (modular expansions within ETS, SES, EIS, or Interpretation sections that add depth without altering scores)."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Optional free-form tags for search and filtering in the frontend (e.g., ['biology', 'debunked', 'high-impact']).",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
