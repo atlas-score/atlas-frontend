@@ -3,7 +3,7 @@
   "description": "ATLAS evaluation examples extracted and normalized from the ATLAS System v0.951 document. Records are structured to match the proposed frontend-ready evaluation schema.",
   "examples": [
     {
-      "id": "atlas-eval-dna-double-helix",
+      "id": "DNA-double-helix",
       "framework_name": "DNA Double Helix Theory",
       "specific_claim": "DNA has a double-helix structure that explains genetic replication",
       "framework_status": "Scientific Theory",
@@ -75,7 +75,7 @@
       }
     },
     {
-      "id": "atlas-eval-evolution",
+      "id": "Evolution",
       "framework_name": "Theory of Evolution — Natural Selection",
       "specific_claim": "Evolution by natural selection explains the diversity of life",
       "framework_status": "Scientific Theory",
@@ -148,7 +148,7 @@
       }
     },
     {
-      "id": "atlas-eval-expansion-universe",
+      "id": "Universe-Expansion",
       "framework_name": "Expansion of the Universe",
       "specific_claim": "The universe is expanding over time",
       "framework_status": "Scientific Theory",
@@ -217,7 +217,7 @@
       }
     },
     {
-      "id": "atlas-eval-emergentism-consciousness",
+      "id": "emergentism-consciousness",
       "framework_name": "Emergentism — Consciousness",
       "specific_claim": "Consciousness is an emergent property of biological processes",
       "framework_status": "Scientific Theory",
@@ -290,7 +290,7 @@
       }
     },
     {
-      "id": "atlas-eval-attachment-theory",
+      "id": "Attachment-Theory",
       "framework_name": "Attachment Theory",
       "specific_claim": "Early attachment relationships influence psychological development",
       "framework_status": "Scientific Theory",
@@ -359,7 +359,7 @@
       }
     },
     {
-      "id": "atlas-eval-g-factor",
+      "id": "g-factor",
       "framework_name": "General Intelligence g factor",
       "specific_claim": "General intelligence explains performance across cognitive tasks",
       "framework_status": "Scientific Theory",
@@ -428,7 +428,7 @@
       }
     },
     {
-      "id": "atlas-eval-bilingual-advantage",
+      "id": "bilingual-advantage",
       "framework_name": "Bilingual Advantage Hypothesis",
       "specific_claim": "Bilingualism significantly improves executive function",
       "framework_status": "Scientific Hypothesis",
@@ -499,7 +499,7 @@
       }
     },
     {
-      "id": "atlas-eval-standing-desks",
+      "id": "standing-desks",
       "framework_name": "Standing Desks Improve Health Hypothesis",
       "specific_claim": "Using standing desks improves health outcomes compared to prolonged sitting",
       "framework_status": "Scientific Hypothesis",
@@ -569,7 +569,7 @@
       }
     },
     {
-      "id": "atlas-eval-ai-tutoring",
+      "id": "ai-tutoring",
       "framework_name": "AI Tutoring Improves Learning",
       "specific_claim": "AI tutoring systems improve learning efficiency and outcomes",
       "framework_status": "Scientific Hypothesis",
@@ -641,7 +641,7 @@
       }
     },
     {
-      "id": "atlas-eval-multiverse",
+      "id": "multiverse",
       "framework_name": "Multiverse Theory",
       "specific_claim": "Multiple universes exist beyond our observable universe",
       "framework_status": "Theoretical Hypothesis",
@@ -711,7 +711,7 @@
       }
     },
     {
-      "id": "atlas-eval-luminiferous-aether",
+      "id": "luminiferous-aether",
       "framework_name": "Luminiferous Aether Theory",
       "specific_claim": "Light propagates through a luminiferous aether",
       "framework_status": "Scientific Theory",
@@ -781,7 +781,7 @@
       }
     },
     {
-      "id": "atlas-eval-left-brain-right-brain",
+      "id": "left-brain-right-brain",
       "framework_name": "Left Brain Right Brain Personality Theory",
       "specific_claim": "Individuals are predominantly left-brained or right-brained, determining their cognitive style and personality",
       "framework_status": "Popular Misconception",
@@ -851,7 +851,7 @@
       }
     },
     {
-      "id": "atlas-eval-flat-earth",
+      "id": "flat-earth",
       "framework_name": "Flat Earth Theory",
       "specific_claim": "The Earth is flat",
       "framework_status": "Debunked Doctrine",
@@ -923,7 +923,7 @@
       }
     },
     {
-      "id": "atlas-eval-intelligent-design",
+      "id": "intelligent-design",
       "framework_name": "Intelligent Design as scientific explanation",
       "specific_claim": "Intelligent design is a valid scientific explanation for the origin and complexity of life",
       "framework_status": "Non-Scientific Doctrine",
@@ -995,7 +995,7 @@
       }
     },
     {
-      "id": "atlas-eval-cosmological-idealism",
+      "id": "Cosmological-Idealism",
       "framework_name": "Cosmological Idealism",
       "specific_claim": "Reality is fundamentally mental",
       "framework_status": "Anti-Scientific Doctrine",

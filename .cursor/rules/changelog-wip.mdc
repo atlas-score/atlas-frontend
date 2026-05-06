@@ -1,0 +1,17 @@
+---
+description: Keep CHANGELOG WIP updated after changes
+alwaysApply: true
+---
+
+# Update the changelog (WIP)
+
+When you make **any real code or config change**, also update `CHANGELOG.md`.
+
+- Add an entry under the `# WIP` section (create the section if missing)
+- Use a single bullet in this format:
+
+`* YYYY-MM-DDth - <short past-tense summary>`
+
+Example:
+
+`* 2026-05-06th - Emphasized the Truth/Engagement/Integration labels and added ETS/SES/EIS hints in sub-scores and raw score calculation UI`

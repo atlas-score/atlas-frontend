@@ -1,5 +1,8 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/cn';
+import feed from '../../atlas-score-examples.json';
+import type { ExamplesFeed } from '../types/evaluation';
+import { FuzzySearchBox } from './FuzzySearchBox';
 
 const tabClass = ({ isActive }: { isActive: boolean }) =>
   cn(
@@ -10,7 +13,10 @@ const tabClass = ({ isActive }: { isActive: boolean }) =>
       : 'border-atlas-border/60 border-b-atlas-void bg-atlas-void/80 text-atlas-label hover:border-atlas-border hover:bg-atlas-deep/80 hover:text-atlas-white'
   );
 
+const data = feed as ExamplesFeed;
+
 export function Header() {
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 border-b border-atlas-border bg-atlas-void/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 pb-0 pt-4 sm:px-6">
@@ -31,17 +37,27 @@ export function Header() {
           </span>
         </Link>
 
-        <nav
-          className="flex gap-0 rounded-t-atlas-card bg-atlas-deep/40 p-1 pb-0 ring-1 ring-atlas-border/50 sm:gap-1"
-          aria-label="Primary"
-        >
-          <NavLink to="/" end className={tabClass}>
-            Explorer
-          </NavLink>
-          <NavLink to="/about" className={tabClass}>
-            About
-          </NavLink>
-        </nav>
+        <div className="flex flex-1 flex-wrap items-end justify-end gap-3">
+          <div className="w-full max-w-[520px] sm:w-auto sm:min-w-[320px]">
+            <FuzzySearchBox
+              evaluations={data.examples}
+              placeholder="Search ATLAS (try “cos”, “intellligent”)…"
+              onPick={(ev) => navigate(`/${ev.id}`)}
+            />
+          </div>
+
+          <nav
+            className="flex gap-0 rounded-t-atlas-card bg-atlas-deep/40 p-1 pb-0 ring-1 ring-atlas-border/50 sm:gap-1"
+            aria-label="Primary"
+          >
+            <NavLink to="/" end className={tabClass}>
+              Explorer
+            </NavLink>
+            <NavLink to="/about" className={tabClass}>
+              About
+            </NavLink>
+          </nav>
+        </div>
       </div>
     </header>
   );
