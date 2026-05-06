@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import type { AtlasEvaluation } from '../types/evaluation';
 import {
@@ -29,16 +30,21 @@ interface EvaluationDetailProps {
 
 function InfoBlock({
   title,
+  right,
   children,
 }: {
   title: string;
+  right?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <section className="rounded-atlas-card border border-atlas-border bg-atlas-deep/80 p-4 shadow-atlas-card sm:p-5">
-      <h3 className="text-xs font-bold uppercase tracking-widest text-atlas-label">
-        {title}
-      </h3>
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-atlas-label">
+          {title}
+        </h3>
+        {right ? <div className="-mt-0.5 shrink-0">{right}</div> : null}
+      </div>
       <div className="mt-2 text-sm leading-relaxed text-atlas-muted">
         {children}
       </div>
@@ -48,6 +54,9 @@ function InfoBlock({
 
 export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
   const { theme: mode } = useTheme();
+  const [scoreView, setScoreView] = useState<'calculation' | 'scales'>(
+    'calculation'
+  );
   const aa = evaluation.additional_analysis;
   const filled = Object.entries(aa).filter(
     ([, v]) => v != null && String(v).trim() !== ''
@@ -88,80 +97,166 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
         </p>
       </InfoBlock>
 
-      <InfoBlock title="Score calculation">
-        <dl className="grid grid-cols-1 gap-2 font-mono text-xs sm:grid-cols-2">
-          <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">
-              Raw{' '}
-              <abbr
-                title="Established Truth Scale (ETS)"
-                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-              >
-                Truth
-              </abbr>{' '}
-              score
-            </dt>
-            <dd>{evaluation.score_calculation.raw_ets}</dd>
-          </div>
-          <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">
-              Raw{' '}
-              <abbr
-                title="Scientific Engagement Scale (SES)"
-                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-              >
-                Engagement
-              </abbr>{' '}
-              score
-            </dt>
-            <dd>{evaluation.score_calculation.raw_ses}</dd>
-          </div>
-          <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">
-              Raw{' '}
-              <abbr
-                title="Explanatory Integration Scale (EIS)"
-                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-              >
-                Integration
-              </abbr>{' '}
-              score
-            </dt>
-            <dd>{evaluation.score_calculation.raw_eis}</dd>
-          </div>
-          <div className="col-span-full border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">Rule applied</dt>
-            <dd className="mt-1 font-sans text-sm font-medium text-atlas-bright-text">
-              {evaluation.score_calculation.rule_applied}
-            </dd>
-          </div>
-          <div className="flex justify-between gap-2 py-1">
-            <dt className="text-atlas-label">SES counted</dt>
-            <dd>
-              {evaluation.score_calculation.ses_counted === undefined
-                ? '—'
-                : evaluation.score_calculation.ses_counted
-                  ? 'Yes'
-                  : 'No'}
-            </dd>
-          </div>
-          <div className="flex justify-between gap-2 py-1">
-            <dt className="text-atlas-label">EIS counted</dt>
-            <dd>
-              {evaluation.score_calculation.eis_counted === undefined
-                ? '—'
-                : evaluation.score_calculation.eis_counted
-                  ? 'Yes'
-                  : 'No'}
-            </dd>
-          </div>
-          <div className="col-span-full flex justify-between border-t border-atlas-border pt-2">
-            <dt className="text-atlas-label">Final score</dt>
-            <dd className="font-bold text-atlas-bloom">
-              {formatSigned(evaluation.score_calculation.final_score)}
-            </dd>
-          </div>
-        </dl>
+      <InfoBlock
+        title="Score calculation"
+        right={
+          <button
+            type="button"
+            onClick={() =>
+              setScoreView((v) => (v === 'calculation' ? 'scales' : 'calculation'))
+            }
+            className="inline-flex items-center gap-2 rounded-full border border-atlas-border bg-atlas-deep/60 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-atlas-label transition-colors hover:border-atlas-border-glow hover:text-atlas-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
+            aria-label={
+              scoreView === 'calculation'
+                ? 'Show simplified scale scores'
+                : 'Show score calculation breakdown'
+            }
+          >
+            <span>{scoreView === 'calculation' ? 'Scale scores' : 'Calculation'}</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden
+              className="opacity-90"
+            >
+              <path
+                d="M12 6V4m0 16v-2m6-6h2M4 12h2m10.95-6.95 1.41-1.41M5.64 18.36l1.41-1.41m0-10.9-1.41-1.41m12.72 12.72-1.41-1.41"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </button>
+        }
+      >
+        {scoreView === 'calculation' ? (
+          <dl className="grid grid-cols-1 gap-2 font-mono text-xs sm:grid-cols-2">
+            <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
+              <dt className="text-atlas-label">
+                Raw{' '}
+                <abbr
+                  title="Established Truth Scale (ETS)"
+                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+                >
+                  Truth
+                </abbr>{' '}
+                score
+              </dt>
+              <dd>{evaluation.score_calculation.raw_ets}</dd>
+            </div>
+            <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
+              <dt className="text-atlas-label">
+                Raw{' '}
+                <abbr
+                  title="Scientific Engagement Scale (SES)"
+                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+                >
+                  Engagement
+                </abbr>{' '}
+                score
+              </dt>
+              <dd>{evaluation.score_calculation.raw_ses}</dd>
+            </div>
+            <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
+              <dt className="text-atlas-label">
+                Raw{' '}
+                <abbr
+                  title="Explanatory Integration Scale (EIS)"
+                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+                >
+                  Integration
+                </abbr>{' '}
+                score
+              </dt>
+              <dd>{evaluation.score_calculation.raw_eis}</dd>
+            </div>
+            <div className="col-span-full border-b border-atlas-border-dim py-1">
+              <dt className="text-atlas-label">Rule applied</dt>
+              <dd className="mt-1 font-sans text-sm font-medium text-atlas-bright-text">
+                {evaluation.score_calculation.rule_applied}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-2 py-1">
+              <dt className="text-atlas-label">SES counted</dt>
+              <dd>
+                {evaluation.score_calculation.ses_counted === undefined
+                  ? '—'
+                  : evaluation.score_calculation.ses_counted
+                    ? 'Yes'
+                    : 'No'}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-2 py-1">
+              <dt className="text-atlas-label">EIS counted</dt>
+              <dd>
+                {evaluation.score_calculation.eis_counted === undefined
+                  ? '—'
+                  : evaluation.score_calculation.eis_counted
+                    ? 'Yes'
+                    : 'No'}
+              </dd>
+            </div>
+            <div className="col-span-full flex justify-between border-t border-atlas-border pt-2">
+              <dt className="text-atlas-label">Final score</dt>
+              <dd className="font-bold text-atlas-bloom">
+                {formatSigned(evaluation.score_calculation.final_score)}
+              </dd>
+            </div>
+          </dl>
+        ) : (
+          <dl className="space-y-4 text-sm">
+            <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
+              <dt className="text-atlas-label">Truth (ETS)</dt>
+              <dd className="mt-1 text-atlas-bright-text">
+                <span className="font-mono font-bold">
+                  {formatSigned(evaluation.ets.score)}
+                </span>
+                <span className="text-atlas-muted"> — {evaluation.ets.label}</span>
+              </dd>
+              {evaluation.ets.closure_status ? (
+                <dd className="mt-1 text-xs text-atlas-dim">
+                  Closure: {evaluation.ets.closure_status}
+                </dd>
+              ) : null}
+            </div>
+            <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
+              <dt className="text-atlas-label">Engagement (SES)</dt>
+              <dd className="mt-1 text-atlas-bright-text">
+                <span className="font-mono font-bold">
+                  {formatSigned(evaluation.ses.score)}
+                </span>
+                <span className="text-atlas-muted"> — {evaluation.ses.label}</span>
+              </dd>
+              {evaluation.ses.counted_in_composite === false ? (
+                <dd className="mt-1 text-xs text-atlas-dim">
+                  Not counted in composite (negative override)
+                </dd>
+              ) : null}
+            </div>
+            <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
+              <dt className="text-atlas-label">Integration (EIS)</dt>
+              <dd className="mt-1 text-atlas-bright-text">
+                <span className="font-mono font-bold">
+                  {formatSigned(evaluation.eis.score)}
+                </span>
+                <span className="text-atlas-muted"> — {evaluation.eis.label}</span>
+              </dd>
+              {evaluation.eis.counted_in_composite === false ? (
+                <dd className="mt-1 text-xs text-atlas-dim">
+                  Not counted in composite (negative override)
+                </dd>
+              ) : null}
+            </div>
+          </dl>
+        )}
       </InfoBlock>
 
       <InfoBlock title="Highlights">
@@ -237,53 +332,6 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
               : 'not applied'}
           </li>
         </ul>
-      </InfoBlock>
-
-      <InfoBlock title="Scale scores">
-        <dl className="space-y-4 text-sm">
-          <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-            <dt className="text-atlas-label">ETS</dt>
-            <dd className="mt-1 text-atlas-bright-text">
-              <span className="font-mono font-bold">
-                {formatSigned(evaluation.ets.score)}
-              </span>
-              <span className="text-atlas-muted"> — {evaluation.ets.label}</span>
-            </dd>
-            {evaluation.ets.closure_status ? (
-              <dd className="mt-1 text-xs text-atlas-dim">
-                Closure: {evaluation.ets.closure_status}
-              </dd>
-            ) : null}
-          </div>
-          <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-            <dt className="text-atlas-label">SES</dt>
-            <dd className="mt-1 text-atlas-bright-text">
-              <span className="font-mono font-bold">
-                {formatSigned(evaluation.ses.score)}
-              </span>
-              <span className="text-atlas-muted"> — {evaluation.ses.label}</span>
-            </dd>
-            {evaluation.ses.counted_in_composite === false ? (
-              <dd className="mt-1 text-xs text-atlas-dim">
-                Not counted in composite (negative override)
-              </dd>
-            ) : null}
-          </div>
-          <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-            <dt className="text-atlas-label">EIS</dt>
-            <dd className="mt-1 text-atlas-bright-text">
-              <span className="font-mono font-bold">
-                {formatSigned(evaluation.eis.score)}
-              </span>
-              <span className="text-atlas-muted"> — {evaluation.eis.label}</span>
-            </dd>
-            {evaluation.eis.counted_in_composite === false ? (
-              <dd className="mt-1 text-xs text-atlas-dim">
-                Not counted in composite (negative override)
-              </dd>
-            ) : null}
-          </div>
-        </dl>
       </InfoBlock>
 
       <InfoBlock title="ETS justification">
