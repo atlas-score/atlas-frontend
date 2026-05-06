@@ -1,4 +1,5 @@
 import * as Popover from '@radix-ui/react-popover';
+import { useTheme } from '../context/ThemeContext';
 import { cn } from '../lib/cn';
 import { formatSigned, getSubscalePillStyle } from '../utils/scoreColor';
 
@@ -26,6 +27,7 @@ interface ScoreBadgeProps {
 }
 
 export function ScoreBadge({ scale, score, className }: ScoreBadgeProps) {
+  const { theme: mode } = useTheme();
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -35,10 +37,17 @@ export function ScoreBadge({ scale, score, className }: ScoreBadgeProps) {
             'inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
             className
           )}
-          style={getSubscalePillStyle(SCALE_KEY[scale], score)}
+          style={getSubscalePillStyle(SCALE_KEY[scale], score, mode)}
           aria-label={`${scale} score ${formatSigned(score)}, open scale definition`}
         >
-          <span className="text-white/80">{scale}</span>
+          <span
+            className={cn(
+              mode === 'night' && 'opacity-90',
+              mode === 'day' && 'opacity-80'
+            )}
+          >
+            {scale}
+          </span>
           <span>{formatSigned(score)}</span>
         </button>
       </Popover.Trigger>

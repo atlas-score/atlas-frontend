@@ -1,10 +1,23 @@
-import * as Dialog from '@radix-ui/react-dialog';
+import { Link, NavLink } from 'react-router-dom';
+import { cn } from '../lib/cn';
+
+const tabClass = ({ isActive }: { isActive: boolean }) =>
+  cn(
+    'inline-flex min-h-[2.5rem] items-center rounded-t-atlas-card border border-b-0 px-4 py-2 text-sm font-bold tracking-wide transition-colors',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
+    isActive
+      ? 'border-atlas-bloom bg-atlas-mid text-atlas-white shadow-atlas-glow-sm'
+      : 'border-atlas-border/60 border-b-atlas-void bg-atlas-void/80 text-atlas-label hover:border-atlas-border hover:bg-atlas-deep/80 hover:text-atlas-white'
+  );
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-atlas-border bg-atlas-void/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        <div className="flex items-center gap-3">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 pb-0 pt-4 sm:px-6">
+        <Link
+          to="/"
+          className="group mb-3 flex items-center gap-3 rounded-atlas-card px-1 py-1 transition-colors hover:bg-atlas-deep/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
+        >
           <img
             src={`${import.meta.env.BASE_URL}atlas-logo.svg`}
             alt="ATLAS"
@@ -13,101 +26,21 @@ export function Header() {
           <span className="font-display text-xl font-black uppercase tracking-widest text-atlas-white">
             ATLAS
           </span>
-          <span className="hidden text-xs text-atlas-muted sm:inline">
+          <span className="hidden text-xs text-atlas-muted group-hover:text-atlas-label sm:inline">
             Assessing Theoretical Legitimacy Across Scales
           </span>
-        </div>
-        <nav className="flex items-center gap-4 sm:gap-6" aria-label="Primary">
-          <a
-            href="#explorer"
-            className="text-sm text-atlas-label transition-colors hover:text-atlas-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
-          >
+        </Link>
+
+        <nav
+          className="flex gap-0 rounded-t-atlas-card bg-atlas-deep/40 p-1 pb-0 ring-1 ring-atlas-border/50 sm:gap-1"
+          aria-label="Primary"
+        >
+          <NavLink to="/" end className={tabClass}>
             Explorer
-          </a>
-          <Dialog.Root>
-            <Dialog.Trigger asChild>
-              <button
-                type="button"
-                className="text-sm text-atlas-label transition-colors hover:text-atlas-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
-              >
-                About
-              </button>
-            </Dialog.Trigger>
-            <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 z-[300] bg-black/70" />
-              <Dialog.Content className="fixed left-1/2 top-1/2 z-[301] max-h-[85vh] w-[min(100%,32rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-atlas-card border border-atlas-border-glow bg-atlas-deep p-6 shadow-atlas-bloom">
-                <Dialog.Title className="font-display text-xl font-black uppercase tracking-wide text-atlas-white">
-                  About this site
-                </Dialog.Title>
-                <Dialog.Description asChild>
-                  <div className="mt-3 space-y-3 text-sm leading-relaxed text-atlas-muted">
-                    <p>
-                      This is a read-only <strong className="text-atlas-bright-text">static</strong>{' '}
-                      explorer: React reads evaluation objects bundled from{' '}
-                      <code className="rounded bg-atlas-mid px-1 font-mono text-xs text-atlas-label">
-                        atlas-score-examples.json
-                      </code>
-                      . There is no write API and no server requirement beyond
-                      serving HTML/JS/CSS.
-                    </p>
-                    <p>
-                      Each record shows three sub-scales—{' '}
-                      <strong className="text-atlas-bright-text">ETS</strong>{' '}
-                      (truth relative to evidence),{' '}
-                      <strong className="text-atlas-bright-text">SES</strong>{' '}
-                      (scientific engagement), and{' '}
-                      <strong className="text-atlas-bright-text">EIS</strong>{' '}
-                      (integration with established knowledge)—plus a composite,
-                      ontological scale tags, and long-form interpretation.
-                    </p>
-                    <ul className="list-disc space-y-1 pl-4 text-atlas-muted">
-                      <li>
-                        <strong className="text-atlas-bright-text">Select</strong>{' '}
-                        jumps to any framework; the card list can be narrowed by
-                        filters without losing that global jump.
-                      </li>
-                      <li>
-                        <strong className="text-atlas-bright-text">Slider</strong>{' '}
-                        filters by composite band;{' '}
-                        <strong className="text-atlas-bright-text">scale tabs</strong>{' '}
-                        filter by ontological level.
-                      </li>
-                      <li>
-                        <strong className="text-atlas-bright-text">Hover / focus</strong>{' '}
-                        triptych panels for full justifications;{' '}
-                        <strong className="text-atlas-bright-text">badges</strong>{' '}
-                        open popovers with short scale definitions.
-                      </li>
-                    </ul>
-                    <p className="text-xs text-atlas-dim">
-                      For install instructions and a maintainer build narrative,
-                      open <code className="font-mono">README.md</code> and{' '}
-                      <code className="font-mono">generalInfo.md</code> in the
-                      repository root.
-                    </p>
-                  </div>
-                </Dialog.Description>
-                <div className="mt-6 flex flex-wrap justify-end gap-2">
-                  <Dialog.Close asChild>
-                    <a
-                      href="#about"
-                      className="rounded-atlas-pill border border-atlas-border px-4 py-2 text-sm text-atlas-label transition-colors hover:border-atlas-border-glow hover:text-atlas-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-deep"
-                    >
-                      Footer details
-                    </a>
-                  </Dialog.Close>
-                  <Dialog.Close asChild>
-                    <button
-                      type="button"
-                      className="rounded-atlas-pill border border-atlas-vivid bg-atlas-bright px-4 py-2 text-sm font-semibold text-white shadow-atlas-glow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-deep"
-                    >
-                      Close
-                    </button>
-                  </Dialog.Close>
-                </div>
-              </Dialog.Content>
-            </Dialog.Portal>
-          </Dialog.Root>
+          </NavLink>
+          <NavLink to="/about" className={tabClass}>
+            About
+          </NavLink>
         </nav>
       </div>
     </header>

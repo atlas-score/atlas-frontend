@@ -1,19 +1,30 @@
 import type { CSSProperties } from 'react';
 import type { OntologicalScale } from '../types/evaluation';
+import type { ThemeMode } from '../types/theme';
 
 export type ETSScore = -1 | 0 | 1 | 2 | 3 | 4;
 
-// -- Anchor colours: high composite / strong legitimacy → purple; mid → neutral; low → orange → red
-
-const PURPLE = '#c084fc';
 const NEUTRAL = '#c8c4dc';
 const ORANGE = '#fb923c';
 const RED = '#dc2626';
-// -- SES/EIS worst tier blends toward warm warning before full red
 const WARM_NEG = '#ea580c';
 
 const COMPOSITE_MIN = -5;
 const COMPOSITE_MAX = 10;
+
+const COMPOSITE_POSITIVE_STOPS: readonly string[] = [
+  '#c8c4dc',
+  '#beb5d6',
+  '#ae9edc',
+  '#9d84e6',
+  '#8d6cef',
+  '#7d52f5',
+  '#8f57f7',
+  '#a855f7',
+  '#bf7dff',
+  '#d8a3ff',
+  '#f0abfc',
+];
 const ETS_MAX = 4;
 const SECONDARY_MIN = -2;
 const SECONDARY_MAX = 3;
@@ -57,56 +68,143 @@ export function hexAlpha(hex: string, alpha: number): string {
   return `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${clamp(alpha, 0, 1)})`;
 }
 
-function blendOntoVoid(accentHex: string, accentStrength: number): string {
-  return lerpHex('#1a0a2e', accentHex, clamp(accentStrength, 0, 1));
+function relativeLuminance(hex: string): number {
+  const { r, g, b } = hexToRgb(hex);
+  const lin = (c: number) => {
+    const x = c / 255;
+    return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  };
+  const R = lin(r);
+  const G = lin(g);
+  const B = lin(b);
+  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 }
 
-/** Composite −5…+10 — purple at +10, neutral near 0, orange/red toward −5 */
-export function getCompositeAccentColor(composite: number): string {
+/** Deepen light pastel accents so score colours stay readable on cream paper */
+function adjustAccentForLightSurface(hex: string): string {
+  const L = relativeLuminance(hex);
+  if (L > 0.72) {
+    return lerpHex(hex, '#5b21b6', 0.5);
+  }
+  if (L > 0.55) {
+    return lerpHex(hex, '#4c1d95', 0.32);
+  }
+  if (L > 0.42) {
+    return lerpHex(hex, '#3d1a6e', 0.18);
+  }
+  return hex;
+}
+
+function cardBase(mode: ThemeMode): string {
+  return mode === 'day' ? '#ffffff' : '#1a0a2e';
+}
+
+function cardBaseMid(mode: ThemeMode): string {
+  return mode === 'day' ? '#faf7f2' : '#2d1155';
+}
+
+function blendOntoCard(
+  accentHex: string,
+  accentStrength: number,
+  mode: ThemeMode
+): string {
+  return lerpHex(cardBase(mode), accentHex, clamp(accentStrength, 0, 1));
+}
+
+function sampleStops(
+  stops: readonly string[],
+  minScore: number,
+  maxScore: number,
+  value: number
+): string {
+  if (stops.length < 2) return stops[0] ?? NEUTRAL;
+  const v = clamp(value, minScore, maxScore);
+  const span = maxScore - minScore;
+  const t = span <= 0 ? 0 : (v - minScore) / span;
+  const maxIdx = stops.length - 1;
+  const idx = t * maxIdx;
+  const lo = Math.floor(idx);
+  const hi = Math.ceil(idx);
+  const frac = idx - lo;
+  return lerpHex(stops[lo], stops[hi], frac);
+}
+
+export function getCompositePositiveRampT(composite: number): number {
+  if (composite <= 0) return 0;
+  return clamp(composite / COMPOSITE_MAX, 0, 1);
+}
+
+export function getCompositeAccentColor(
+  composite: number,
+  mode: ThemeMode = 'night'
+): string {
   const c = clamp(composite, COMPOSITE_MIN, COMPOSITE_MAX);
+  let base: string;
   if (c >= 0) {
-    return lerpHex(NEUTRAL, PURPLE, c / COMPOSITE_MAX);
+    base = sampleStops(COMPOSITE_POSITIVE_STOPS, 0, COMPOSITE_MAX, c);
+  } else if (c >= -1) {
+    base = lerpHex(NEUTRAL, ORANGE, -c);
+  } else {
+    base = lerpHex(ORANGE, RED, (-c - 1) / (-COMPOSITE_MIN - 1));
   }
-  if (c >= -1) {
-    return lerpHex(NEUTRAL, ORANGE, -c);
-  }
-  return lerpHex(ORANGE, RED, (-c - 1) / (-COMPOSITE_MIN - 1));
+  return mode === 'day' ? adjustAccentForLightSurface(base) : base;
 }
 
-/** ETS −1…+4 — debunked (−1) red; neutral at 0; strong toward purple at +4 */
-export function getEtsAccentColor(score: number): string {
+export function getEtsAccentColor(
+  score: number,
+  mode: ThemeMode = 'night'
+): string {
   const s = clamp(score, -1, ETS_MAX);
-  if (s <= -1) return RED;
-  if (s === 0) return NEUTRAL;
-  return lerpHex(NEUTRAL, PURPLE, s / ETS_MAX);
+  let base: string;
+  if (s <= -1) base = RED;
+  else if (s === 0) base = NEUTRAL;
+  else base = sampleStops(COMPOSITE_POSITIVE_STOPS, 0, ETS_MAX, s);
+  return mode === 'day' ? adjustAccentForLightSurface(base) : base;
 }
 
-/** SES / EIS −2…+3 */
-export function getSesEisAccentColor(score: number): string {
+export function getSesEisAccentColor(
+  score: number,
+  mode: ThemeMode = 'night'
+): string {
   const s = clamp(score, SECONDARY_MIN, SECONDARY_MAX);
+  let base: string;
   if (s <= 0) {
     const u = (0 - s) / (0 - SECONDARY_MIN);
-    return lerpHex(NEUTRAL, WARM_NEG, u);
+    base = lerpHex(NEUTRAL, WARM_NEG, u);
+  } else {
+    base = sampleStops(COMPOSITE_POSITIVE_STOPS, 0, SECONDARY_MAX, s);
   }
-  return lerpHex(NEUTRAL, PURPLE, s / SECONDARY_MAX);
+  return mode === 'day' ? adjustAccentForLightSurface(base) : base;
 }
 
 export function getSubscaleAccentColor(
   scale: 'ets' | 'ses' | 'eis',
-  score: number
+  score: number,
+  mode: ThemeMode = 'night'
 ): string {
   return scale === 'ets'
-    ? getEtsAccentColor(score)
-    : getSesEisAccentColor(score);
+    ? getEtsAccentColor(score, mode)
+    : getSesEisAccentColor(score, mode);
 }
 
 export function getSubscalePillStyle(
   scale: 'ets' | 'ses' | 'eis',
-  score: number
+  score: number,
+  mode: ThemeMode = 'night'
 ): CSSProperties {
-  const accent = getSubscaleAccentColor(scale, score);
+  const accent = getSubscaleAccentColor(scale, score, mode);
+  if (mode === 'day') {
+    return {
+      backgroundColor: blendOntoCard(accent, 0.14, mode),
+      borderColor: accent,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      color: '#2d1f45',
+      boxShadow: 'none',
+    };
+  }
   return {
-    backgroundColor: blendOntoVoid(accent, 0.38),
+    backgroundColor: blendOntoCard(accent, 0.38, mode),
     borderColor: accent,
     borderWidth: 1,
     borderStyle: 'solid',
@@ -115,41 +213,81 @@ export function getSubscalePillStyle(
   };
 }
 
-export function getCompositeBarFillStyle(composite: number): CSSProperties {
-  const c = getCompositeAccentColor(composite);
-  const hi = lerpHex(c, '#fdf4ff', 0.22);
+export function getCompositeBarFillStyle(
+  composite: number,
+  mode: ThemeMode = 'night'
+): CSSProperties {
+  const c = getCompositeAccentColor(composite, mode);
+  const hi = lerpHex(c, mode === 'day' ? '#f5f0ff' : '#fdf4ff', 0.22);
+  const t = getCompositePositiveRampT(composite);
+  if (mode === 'day') {
+    return {
+      background: `linear-gradient(90deg, ${c}, ${hi})`,
+      boxShadow: `0 1px 3px ${hexAlpha(c, 0.2)}`,
+    };
+  }
+  const glowA = composite >= 0 ? 0.28 + t * 0.38 : 0.38;
   return {
     background: `linear-gradient(90deg, ${c}, ${hi})`,
-    boxShadow: `0 0 16px ${hexAlpha(c, 0.45)}`,
+    boxShadow: `0 0 ${14 + t * 14}px ${hexAlpha(c, glowA)}`,
   };
 }
 
 export function getTheoryCardChromeStyle(
   composite: number,
-  selected: boolean
+  selected: boolean,
+  mode: ThemeMode = 'night'
 ): CSSProperties {
-  const accent = getCompositeAccentColor(composite);
-  const edge = hexAlpha(accent, selected ? 0.78 : 0.48);
-  const glow = hexAlpha(accent, selected ? 0.36 : 0.16);
+  const accent = getCompositeAccentColor(composite, mode);
+  const t = getCompositePositiveRampT(composite);
+  if (mode === 'day') {
+    const edge = hexAlpha(accent, selected ? 0.55 : 0.38);
+    return {
+      borderColor: edge,
+      borderWidth: composite >= 5 ? 2 : 1,
+      boxShadow: selected
+        ? `0 2px 10px ${hexAlpha(accent, 0.14)}, 0 0 0 1px ${hexAlpha(accent, 0.12)}`
+        : `0 1px 3px rgba(30, 27, 46, 0.07)`,
+      backgroundImage: `linear-gradient(135deg, ${blendOntoCard(accent, selected ? 0.1 : 0.05, mode)} 0%, #faf8ff 55%, ${cardBase(mode)} 100%)`,
+    };
+  }
+  const edgeBase = composite >= 0 ? 0.32 + t * 0.46 : selected ? 0.72 : 0.44;
+  const edgeSel = composite >= 0 ? 0.55 + t * 0.28 : 0.85;
+  const edge = hexAlpha(accent, selected ? edgeSel : edgeBase);
+  const glowLo = composite >= 0 ? 0.1 + t * 0.34 : 0.14;
+  const glowHi = composite >= 0 ? 0.28 + t * 0.28 : 0.38;
+  const glow = hexAlpha(accent, selected ? glowHi : glowLo);
+  const bgTint = selected ? 0.14 + t * 0.12 : 0.08 + t * 0.1;
   return {
     borderColor: edge,
+    borderWidth: composite >= 5 ? 2 : 1,
     boxShadow: selected
-      ? `0 4px 28px rgba(15, 5, 32, 0.85), 0 0 22px ${glow}`
-      : `0 4px 24px rgba(15, 5, 32, 0.75), 0 0 12px ${glow}`,
-    backgroundImage: `linear-gradient(135deg, ${blendOntoVoid(accent, selected ? 0.2 : 0.11)} 0%, #2d1155 55%, #1a0a2e 100%)`,
+      ? `0 4px 28px rgba(15, 5, 32, 0.85), 0 0 ${18 + t * 22}px ${glow}`
+      : `0 4px 24px rgba(15, 5, 32, 0.75), 0 0 ${10 + t * 20}px ${glow}`,
+    backgroundImage: `linear-gradient(135deg, ${blendOntoCard(accent, bgTint + (selected ? 0.06 : 0), mode)} 0%, ${cardBaseMid(mode)} 55%, ${cardBase(mode)} 100%)`,
   };
 }
 
 export function getTriptychPanelChromeStyle(
   acronym: 'ETS' | 'SES' | 'EIS',
-  score: number
+  score: number,
+  mode: ThemeMode = 'night'
 ): CSSProperties {
   const accent =
     acronym === 'ETS'
-      ? getEtsAccentColor(score)
-      : getSesEisAccentColor(score);
+      ? getEtsAccentColor(score, mode)
+      : getSesEisAccentColor(score, mode);
   const isTruth = acronym === 'ETS';
   const depth = isTruth ? 0.32 : 0.14;
+  if (mode === 'day') {
+    return {
+      borderColor: accent,
+      borderWidth: isTruth ? 2 : 1,
+      borderStyle: 'solid',
+      boxShadow: `0 1px 3px ${hexAlpha(accent, 0.12)}`,
+      backgroundImage: `linear-gradient(to bottom right, ${blendOntoCard(accent, depth * 0.6, mode)} 0%, ${cardBase(mode)} 70%)`,
+    };
+  }
   return {
     borderColor: accent,
     borderWidth: isTruth ? 2 : 1,
@@ -157,24 +295,45 @@ export function getTriptychPanelChromeStyle(
     boxShadow: isTruth
       ? `0 0 36px ${hexAlpha(accent, 0.42)}, inset 0 0 0 1px ${hexAlpha(accent, 0.2)}`
       : `0 0 18px ${hexAlpha(accent, 0.22)}`,
-    backgroundImage: `linear-gradient(to bottom right, ${blendOntoVoid(accent, depth)} 0%, #2d1155 55%, #2d1155 100%)`,
+    backgroundImage: `linear-gradient(to bottom right, ${blendOntoCard(accent, depth, mode)} 0%, ${cardBaseMid(mode)} 55%, ${cardBaseMid(mode)} 100%)`,
   };
 }
 
-export function triptychAcronymStyle(accentHex: string): CSSProperties {
+export function triptychAcronymStyle(
+  accentHex: string,
+  mode: ThemeMode = 'night'
+): CSSProperties {
+  if (mode === 'day') {
+    return { color: accentHex };
+  }
   return {
     color: accentHex,
     textShadow: `0 0 18px ${hexAlpha(accentHex, 0.55)}`,
   };
 }
 
-export function triptychSubtitleStyle(accentHex: string): CSSProperties {
+export function triptychSubtitleStyle(
+  accentHex: string,
+  mode: ThemeMode = 'night'
+): CSSProperties {
+  if (mode === 'day') {
+    return { color: lerpHex('#6d28d9', accentHex, 0.35) };
+  }
   return {
     color: lerpHex('#a78bfa', accentHex, 0.38),
   };
 }
 
-export function triptychScoreNumberStyle(accentHex: string): CSSProperties {
+export function triptychScoreNumberStyle(
+  accentHex: string,
+  mode: ThemeMode = 'night'
+): CSSProperties {
+  if (mode === 'day') {
+    return {
+      color: '#2d1f45',
+      textShadow: `0 1px 0 ${hexAlpha(accentHex, 0.15)}`,
+    };
+  }
   return {
     color: '#f5f3ff',
     textShadow: `0 0 26px ${hexAlpha(accentHex, 0.42)}`,

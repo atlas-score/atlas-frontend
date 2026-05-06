@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import type { AtlasEvaluation } from '../types/evaluation';
 import { cn } from '../lib/cn';
 import { ScoreBadge } from './ScoreBadge';
@@ -6,6 +7,7 @@ import {
   getCompositeAccentColor,
   getCompositeBarFillStyle,
   getCompositeBarWidth,
+  getCompositePositiveRampT,
   formatSigned,
   getTheoryCardChromeStyle,
   hexAlpha,
@@ -22,6 +24,7 @@ export function TheoryCard({
   selected,
   onSelect,
 }: TheoryCardProps) {
+  const { theme: mode } = useTheme();
   const { framework_name, composite_score, ets, ses, eis, metadata } =
     evaluation;
   const displayTags = [
@@ -31,7 +34,8 @@ export function TheoryCard({
   ].slice(0, 5);
 
   const barWidth = getCompositeBarWidth(composite_score);
-  const cardAccent = getCompositeAccentColor(composite_score);
+  const cardAccent = getCompositeAccentColor(composite_score, mode);
+  const cardRamp = getCompositePositiveRampT(composite_score);
 
   return (
     <button
@@ -41,7 +45,7 @@ export function TheoryCard({
         'group relative w-full cursor-pointer rounded-atlas-card border p-5 text-left transition-all duration-300',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void'
       )}
-      style={getTheoryCardChromeStyle(composite_score, selected)}
+      style={getTheoryCardChromeStyle(composite_score, selected, mode)}
     >
       <div
         className="absolute left-0 right-0 top-0 h-0.5 rounded-t-atlas-card"
@@ -68,7 +72,14 @@ export function TheoryCard({
           className="ml-auto font-mono text-2xl font-black"
           style={{
             color: cardAccent,
-            textShadow: `0 0 16px ${hexAlpha(cardAccent, 0.4)}`,
+            ...(mode === 'day'
+              ? { textShadow: 'none' }
+              : {
+                  textShadow: `0 0 ${8 + cardRamp * 22}px ${hexAlpha(
+                    cardAccent,
+                    0.22 + cardRamp * 0.42
+                  )}`,
+                }),
           }}
         >
           {formatSigned(composite_score)}
@@ -80,7 +91,7 @@ export function TheoryCard({
           style={
             {
               '--bar-width': barWidth,
-              ...getCompositeBarFillStyle(composite_score),
+              ...getCompositeBarFillStyle(composite_score, mode),
             } as CSSProperties
           }
         />

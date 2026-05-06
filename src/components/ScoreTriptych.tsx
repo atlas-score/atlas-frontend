@@ -1,5 +1,6 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import * as Separator from '@radix-ui/react-separator';
+import { useTheme } from '../context/ThemeContext';
 import type { AtlasEvaluation } from '../types/evaluation';
 import { cn } from '../lib/cn';
 import {
@@ -19,6 +20,7 @@ interface PanelProps {
   score: number;
   label: string;
   justification: string;
+  mode: 'day' | 'night';
 }
 
 function triptychScaleKey(
@@ -35,11 +37,14 @@ function TriptychPanel({
   score,
   label,
   justification,
+  mode,
 }: PanelProps) {
   const accent =
-    acronym === 'ETS' ? getEtsAccentColor(score) : getSesEisAccentColor(score);
-  const panelStyle = getTriptychPanelChromeStyle(acronym, score);
-  const pillStyle = getSubscalePillStyle(triptychScaleKey(acronym), score);
+    acronym === 'ETS'
+      ? getEtsAccentColor(score, mode)
+      : getSesEisAccentColor(score, mode);
+  const panelStyle = getTriptychPanelChromeStyle(acronym, score, mode);
+  const pillStyle = getSubscalePillStyle(triptychScaleKey(acronym), score, mode);
   const aria = `${acronym}, ${fullName}, score ${formatSigned(
     score
   )}, ${label}`;
@@ -52,26 +57,27 @@ function TriptychPanel({
           aria-label={aria}
           className={cn(
             'flex min-w-0 flex-1 flex-col items-center rounded-atlas-card p-4 transition-all duration-300 sm:p-6',
-            'hover:brightness-[1.03]'
+            mode === 'night' && 'hover:brightness-[1.03]',
+            mode === 'day' && 'hover:bg-atlas-mid/30'
           )}
           style={panelStyle}
         >
           <span
             className="font-mono text-xl font-bold tracking-widest sm:text-2xl"
-            style={triptychAcronymStyle(accent)}
+            style={triptychAcronymStyle(accent, mode)}
           >
             {acronym}
           </span>
           <span
             className="mt-1 text-center text-xs uppercase tracking-wider"
-            style={triptychSubtitleStyle(accent)}
+            style={triptychSubtitleStyle(accent, mode)}
           >
             {fullName}
           </span>
           <div className="my-3 sm:my-4">
             <span
               className="font-mono text-5xl font-black sm:text-6xl"
-              style={triptychScoreNumberStyle(accent)}
+              style={triptychScoreNumberStyle(accent, mode)}
             >
               {formatSigned(score)}
             </span>
@@ -103,6 +109,7 @@ interface ScoreTriptychProps {
 }
 
 export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
+  const { theme: mode } = useTheme();
   const { ets, ses, eis } = evaluation;
 
   return (
@@ -114,6 +121,7 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={ets.score}
           label={ets.label}
           justification={ets.justification}
+          mode={mode}
         />
         <Separator.Root
           orientation="vertical"
@@ -131,6 +139,7 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={ses.score}
           label={ses.label}
           justification={ses.justification}
+          mode={mode}
         />
         <Separator.Root
           orientation="vertical"
@@ -148,6 +157,7 @@ export function ScoreTriptych({ evaluation }: ScoreTriptychProps) {
           score={eis.score}
           label={eis.label}
           justification={eis.justification}
+          mode={mode}
         />
       </div>
     </div>

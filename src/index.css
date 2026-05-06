@@ -2,9 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -- Night (default) theme tokens */
+html[data-theme='night'] {
+  --color-atlas-space: #0f0520;
+  --color-atlas-void: #1a0a2e;
+  --color-atlas-deep: #2d1155;
+  --color-atlas-mid: #3d1a6e;
+  --color-atlas-rich: #4a1a8a;
+  --color-atlas-brand: #5e1fa0;
+  --color-atlas-bright: #6b21a8;
+  --color-atlas-vivid: #7c3aed;
+  --color-atlas-glow: #8b5cf6;
+  --color-atlas-bloom: #a855f7;
+  --color-atlas-white: #ffffff;
+  --color-atlas-bright-text: #f5f3ff;
+  --color-atlas-muted: #c4b5fd;
+  --color-atlas-label: #a78bfa;
+  --color-atlas-dim: #7c6db0;
+  --color-atlas-border: #6d28d9;
+  --color-atlas-border-glow: #8b5cf6;
+  --color-atlas-border-dim: #3d1a6e;
+  --color-atlas-score-4: #7c3aed;
+  --color-atlas-score-3: #6d28d9;
+  --color-atlas-score-2: #5b21b6;
+  --color-atlas-score-1: #4c1d95;
+  --color-atlas-score-0: #2d1155;
+  --color-atlas-score-neg1: #1a0a2e;
+  --color-atlas-debunked: #000000;
+  --color-atlas-proven-pill: #d1d5db;
+  --color-atlas-grad-start: #0f0520;
+  --color-atlas-grad-mid: #2e0f5e;
+  --color-atlas-grad-end: #1a0a2e;
+  --img-atlas-space: radial-gradient(
+    ellipse at top,
+    #2e0f5e 0%,
+    #1a0a2e 50%,
+    #0f0520 100%
+  );
+  --img-atlas-card: linear-gradient(135deg, #3d1a6e 0%, #2d1155 100%);
+  --img-atlas-panel: linear-gradient(180deg, #4a1a8a 0%, #2d1155 100%);
+  --img-atlas-glow: radial-gradient(
+    ellipse at center,
+    #6b21a8 0%,
+    transparent 70%
+  );
+  --shadow-atlas-glow-sm: 0 0 8px 2px rgba(124, 58, 237, 0.4);
+  --shadow-atlas-glow-md: 0 0 16px 4px rgba(124, 58, 237, 0.5);
+  --shadow-atlas-glow-lg: 0 0 32px 8px rgba(124, 58, 237, 0.4);
+  --shadow-atlas-bloom: 0 0 48px 12px rgba(168, 85, 247, 0.3);
+  --shadow-atlas-inset: inset 0 1px 0 rgba(139, 92, 246, 0.3);
+  --shadow-atlas-card: 0 4px 24px rgba(15, 5, 32, 0.8),
+    0 0 0 1px rgba(109, 40, 217, 0.4);
+  --ring-offset-atlas: #1a0a2e;
+}
+
+/* -- Day / paper theme: plain surfaces, subtle purple ink, minimal glow */
+html[data-theme='day'] {
+  --color-atlas-space: #f2efe8;
+  --color-atlas-void: #faf7f2;
+  --color-atlas-deep: #ffffff;
+  --color-atlas-mid: #f3eee6;
+  --color-atlas-rich: #ebe4f7;
+  --color-atlas-brand: #7c3aed;
+  --color-atlas-bright: #6d28d9;
+  --color-atlas-vivid: #6d28d9;
+  --color-atlas-glow: #7c3aed;
+  --color-atlas-bloom: #7c3aed;
+  --color-atlas-white: #1c1528;
+  --color-atlas-bright-text: #2d1f45;
+  --color-atlas-muted: #5c4d6e;
+  --color-atlas-label: #6d28d9;
+  --color-atlas-dim: #6b5f7a;
+  --color-atlas-border: #d4c8e8;
+  --color-atlas-border-glow: #c4b5fd;
+  --color-atlas-border-dim: #e5dff0;
+  --color-atlas-score-4: #6d28d9;
+  --color-atlas-score-3: #5b21b6;
+  --color-atlas-score-2: #5b21b6;
+  --color-atlas-score-1: #4c1d95;
+  --color-atlas-score-0: #ede8f5;
+  --color-atlas-score-neg1: #fef3e8;
+  --color-atlas-debunked: #991b1b;
+  --color-atlas-proven-pill: #4b5563;
+  --color-atlas-grad-start: #faf7f2;
+  --color-atlas-grad-mid: #f3eef8;
+  --color-atlas-grad-end: #faf7f2;
+  --img-atlas-space: linear-gradient(180deg, #ffffff 0%, #f5f0e8 100%);
+  --img-atlas-card: linear-gradient(180deg, #ffffff 0%, #faf6ff 100%);
+  --img-atlas-panel: linear-gradient(180deg, #ffffff 0%, #f7f3fc 100%);
+  --img-atlas-glow: none;
+  --shadow-atlas-glow-sm: 0 1px 2px rgba(30, 27, 46, 0.06);
+  --shadow-atlas-glow-md: 0 2px 8px rgba(30, 27, 46, 0.08);
+  --shadow-atlas-glow-lg: 0 4px 14px rgba(30, 27, 46, 0.1);
+  --shadow-atlas-bloom: 0 2px 12px rgba(109, 40, 217, 0.12);
+  --shadow-atlas-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-atlas-card: 0 1px 3px rgba(30, 27, 46, 0.08),
+    0 0 0 1px rgba(212, 200, 232, 0.9);
+  --ring-offset-atlas: #faf7f2;
+}
+
 @layer base {
   body {
-    @apply font-body antialiased text-atlas-white bg-atlas-void;
+    @apply font-body antialiased;
+    background-color: var(--color-atlas-void);
+    color: var(--color-atlas-white);
   }
 }
 
@@ -43,6 +144,11 @@
   animation: atlas-pulse-glow 3s ease-in-out infinite;
 }
 
+html[data-theme='day'] .atlas-glow-pulse {
+  animation: none;
+  box-shadow: var(--shadow-atlas-card);
+}
+
 .atlas-bar-fill {
   animation: atlas-bar-fill 0.8s ease-out forwards;
 }
@@ -50,4 +156,9 @@
 .atlas-hero-shimmer {
   background-size: 200% 200%;
   animation: atlas-shimmer 8s ease infinite;
+}
+
+html[data-theme='day'] .atlas-hero-shimmer {
+  animation: none;
+  background-size: auto;
 }
