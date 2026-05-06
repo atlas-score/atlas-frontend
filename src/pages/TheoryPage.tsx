@@ -14,6 +14,7 @@ import {
   getCompositePositiveRampT,
   hexAlpha,
 } from '../utils/scoreColor';
+import { evaluationToMarkdown } from '../utils/evaluationToMarkdown';
 
 const data = feed as ExamplesFeed;
 
@@ -70,6 +71,25 @@ export function TheoryPage() {
     );
   }
 
+  const copyAsMarkdown = async () => {
+    const md = evaluationToMarkdown(evaluation);
+    try {
+      await navigator.clipboard.writeText(md);
+      return;
+    } catch {
+      // -- Fallback for older browsers / permission issues
+      const el = document.createElement('textarea');
+      el.value = md;
+      el.setAttribute('readonly', 'true');
+      el.style.position = 'fixed';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+  };
+
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -80,12 +100,21 @@ export function TheoryPage() {
             onPick={(ev) => navigate(`/${ev.id}`)}
           />
         </div>
-        <Link
-          to="/#explorer"
-          className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-4 py-2 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
-        >
-          Back to Explorer
-        </Link>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={copyAsMarkdown}
+            className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-4 py-2 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
+          >
+            Copy as Markdown
+          </button>
+          <Link
+            to="/#explorer"
+            className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-4 py-2 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
+          >
+            Back to Explorer
+          </Link>
+        </div>
       </div>
 
       <div className="mt-6">
