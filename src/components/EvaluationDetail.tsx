@@ -33,7 +33,7 @@ function InfoBlock({
   right,
   children,
 }: {
-  title: string;
+  title: ReactNode;
   right?: ReactNode;
   children: ReactNode;
 }) {
@@ -334,13 +334,34 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
         </ul>
       </InfoBlock>
 
-      <InfoBlock title="ETS justification">
+      <InfoBlock
+        title={
+          <>
+            Established <span className="text-atlas-bright-text">Truth</span>{' '}
+            Scale (ETS) justification
+          </>
+        }
+      >
         <p>{evaluation.ets.justification}</p>
       </InfoBlock>
-      <InfoBlock title="SES justification">
+      <InfoBlock
+        title={
+          <>
+            Scientific <span className="text-atlas-bright-text">Engagement</span>{' '}
+            Scale (SES) justification
+          </>
+        }
+      >
         <p>{evaluation.ses.justification}</p>
       </InfoBlock>
-      <InfoBlock title="EIS justification">
+      <InfoBlock
+        title={
+          <>
+            Explanatory <span className="text-atlas-bright-text">Integration</span>{' '}
+            Scale (EIS) justification
+          </>
+        }
+      >
         <p>{evaluation.eis.justification}</p>
       </InfoBlock>
 

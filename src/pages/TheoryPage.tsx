@@ -7,6 +7,13 @@ import { ScoreTriptych } from '../components/ScoreTriptych';
 import { EvaluationDetail } from '../components/EvaluationDetail';
 import { FuzzySearchBox } from '../components/FuzzySearchBox';
 import { recordTheoryView } from '../utils/recentTheoryHistory';
+import { useTheme } from '../context/ThemeContext';
+import {
+  formatSigned,
+  getCompositeAccentColor,
+  getCompositePositiveRampT,
+  hexAlpha,
+} from '../utils/scoreColor';
 
 const data = feed as ExamplesFeed;
 
@@ -22,6 +29,7 @@ function resolveEvaluationByIdSlug(
 export function TheoryPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { theme: mode } = useTheme();
   const examples = data.examples;
 
   const evaluation = useMemo(
@@ -84,13 +92,60 @@ export function TheoryPage() {
         <p className="text-xs uppercase tracking-widest text-atlas-label">
           {evaluation.framework_status} · {evaluation.claim_type}
         </p>
-        <h1 className="mt-2 font-display text-3xl font-black tracking-tight text-atlas-white sm:text-4xl">
-          {evaluation.framework_name}
-        </h1>
+        <div className="mt-2 flex flex-wrap items-center gap-3">
+          <h1 className="font-display text-3xl font-black tracking-tight text-atlas-white sm:text-4xl">
+            {evaluation.framework_name}
+          </h1>
+          <span
+            className="inline-flex items-center rounded-full border border-atlas-border bg-atlas-deep/60 px-3 py-1.5 font-mono text-sm font-black shadow-atlas-card"
+            style={{
+              color: getCompositeAccentColor(evaluation.composite_score, mode),
+              borderColor: hexAlpha(
+                getCompositeAccentColor(evaluation.composite_score, mode),
+                0.65
+              ),
+              ...(mode === 'night'
+                ? {
+                    boxShadow: `0 0 ${10 + getCompositePositiveRampT(evaluation.composite_score) * 16}px ${hexAlpha(
+                      getCompositeAccentColor(evaluation.composite_score, mode),
+                      0.28
+                    )}`,
+                  }
+                : {}),
+            }}
+            aria-label={`Composite score ${formatSigned(evaluation.composite_score)}`}
+          >
+            {formatSigned(evaluation.composite_score)}
+          </span>
+        </div>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-atlas-muted">
           {evaluation.specific_claim}
         </p>
       </div>
+
+      <section className="mt-8" aria-label="Composite score">
+        <div className="rounded-atlas-card border border-atlas-border bg-atlas-deep/60 p-6 shadow-atlas-card sm:p-8">
+          <p className="text-xs font-bold uppercase tracking-widest text-atlas-label">
+            Composite score
+          </p>
+          <p
+            className="mt-2 font-mono text-5xl font-black sm:text-6xl"
+            style={{
+              color: getCompositeAccentColor(evaluation.composite_score, mode),
+              ...(mode === 'day'
+                ? { textShadow: 'none' }
+                : {
+                    textShadow: `0 0 ${16 + getCompositePositiveRampT(evaluation.composite_score) * 26}px ${hexAlpha(
+                      getCompositeAccentColor(evaluation.composite_score, mode),
+                      0.26 + getCompositePositiveRampT(evaluation.composite_score) * 0.36
+                    )}`,
+                  }),
+            }}
+          >
+            {formatSigned(evaluation.composite_score)}
+          </p>
+        </div>
+      </section>
 
       <section className="mt-8 space-y-3" aria-label="Base scores">
         <h2 className="text-xl font-bold uppercase tracking-widest text-atlas-white">

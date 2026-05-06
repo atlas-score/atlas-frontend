@@ -1,5 +1,5 @@
 import * as Popover from '@radix-ui/react-popover';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { AtlasEvaluation } from '../types/evaluation';
 import { fuzzySearchEvaluations } from '../utils/fuzzySearch';
 import { cn } from '../lib/cn';
@@ -21,6 +21,7 @@ export function FuzzySearchBox({
 }) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<number | null>(null);
 
   const results = useMemo(() => {
     const q = query.trim();
@@ -40,10 +41,22 @@ export function FuzzySearchBox({
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              if (closeTimer.current != null) {
+                window.clearTimeout(closeTimer.current);
+                closeTimer.current = null;
+              }
+              setOpen(true);
+            }}
             onBlur={() => {
               // -- Let clicks on results register.
-              window.setTimeout(() => setOpen(false), 120);
+              if (closeTimer.current != null) {
+                window.clearTimeout(closeTimer.current);
+              }
+              closeTimer.current = window.setTimeout(() => {
+                setOpen(false);
+                closeTimer.current = null;
+              }, 140);
             }}
             placeholder={placeholder}
             autoFocus={autoFocus}
@@ -73,6 +86,10 @@ export function FuzzySearchBox({
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => {
+                  if (closeTimer.current != null) {
+                    window.clearTimeout(closeTimer.current);
+                    closeTimer.current = null;
+                  }
                   setQuery('');
                   setOpen(false);
                   onPick(ev);
