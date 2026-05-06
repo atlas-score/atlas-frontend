@@ -205,7 +205,7 @@ On termination, You must immediately cease all Use and Distribution of the Softw
 To obtain a commercial license, submit a Section 4 self-certification, or send any formal notice under this License, contact:
 
 **ATLAS Foundation (pending formation)**
-**Email**: michael+atlas[TRADEMARK.md](TRADEMARK.md)@greyphoenix.biz or nonreductionistphilosophy@gmail.com
+**Email**: michael+atlas@greyphoenix.biz or nonreductionistphilosophy@gmail.com
 
 X / Twitter: [@kublermdk](https://x.com/kublermdk), [Bluesky](https://bsky.app/profile/abundantmars.com)
 
