@@ -10,4 +10,5 @@
 * 2026-05-06th - Expanded ETS/SES/EIS justification headings to full scale names with highlighted Truth/Engagement/Integration and fixed theory page search reuse
 * 2026-05-06th - Made composite score prominent on theory pages and added composite pill next to the theory title
 * 2026-05-06th - Added source-available license with commercial revenue/cost-savings cap and trademark policy to prevent misleading forks
+* 2026-05-07th - Documented LICENSE.md and LICENSE-AI-Summary.md in README and maintainer docs
 

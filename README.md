@@ -4,6 +4,13 @@ Static **React** site for browsing **ATLAS** (Analytical Theory Legitimacy Asses
 
 Visual design follows `**design.md`** (dark cosmic palette, typography, triptych layout). Styling uses **Tailwind CSS**; accessible controls use **Radix UI**.
 
+## License and naming
+
+- **License (legal text)**: see [`LICENSE.md`](LICENSE.md) (GitHub: `https://github.com/atlas-score/atlas-frontend/blob/master/LICENSE.md`).
+- **License (plain English, not legally binding)**: see [`LICENSE-AI-Summary.md`](LICENSE-AI-Summary.md).
+
+Note: this project is **source-available** (not OSI open source). The license includes commercial-use limits (revenue/cost-savings cap) and restrictions on presenting modified forks as official “ATLAS” scoring.
+
 ## Prerequisites
 
 - **Node.js** 18+ (20+ recommended)
@@ -46,6 +53,8 @@ Open the URL Vite prints (usually [http://localhost:5173/](http://localhost:5173
 | `src/types/evaluation.ts`      | TypeScript shapes aligned with the schema               |
 | `src/utils/scoreColor.ts`      | ETS pill classes, composite bar width helper            |
 | `public/atlas-logo.svg`        | Header mark                                             |
+| `LICENSE.md`                   | License terms (legal text)                              |
+| `LICENSE-AI-Summary.md`        | Plain-English license summary (not legally binding)     |
 | `generalInfo.md`               | Long-form notes on how this frontend was built          |
 | `docs/deploy.md`               | S3 deploy process and cache-control policy              |
 | `.env.sample`                  | Deploy environment variable template                    |

@@ -104,6 +104,7 @@ Focus rings follow **design.md §10** (`ring-atlas-bloom`, `ring-offset-atlas-vo
 ## 5. Content and documentation files
 
 - **`README.md`** — Operator-focused: install, scripts, layout table, data notes, pointer to **`generalInfo.md`**.
+- **`LICENSE.md`** — License terms (legal text). Also see **`LICENSE-AI-Summary.md`** for a plain-English overview (not legally binding).
 - **`generalInfo.md`** (this file) — Maintainer-focused build narrative.
 - **In-app copy** — The collapsible **Guide** block (`ExplorerGuide` in `src/components/ExplorerGuide.tsx`) uses native `<details>` / `<summary>` so no extra Radix dependency is required; it summarises usage, score semantics, and where README / generalInfo / design files live. The **About** dialog in the header and the page **footer** add narrative on static hosting, override rules, and the same documentation pointers (the production `dist/` bundle does not include `.md` files unless you copy them in your deploy pipeline).
 
