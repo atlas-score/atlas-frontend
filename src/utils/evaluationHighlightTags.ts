@@ -159,10 +159,10 @@ export function getHighlightTagStyle(
   switch (tone) {
     case 'closure_override':
       return chip(
-        day ? '#d97706' : '#fbbf24',
-        day ? 0.14 : 0.2,
-        day ? '#92400e' : '#fffbeb',
-        hexAlpha('#fbbf24', 0.35)
+        day ? '#0ea5e9' : '#22d3ee',
+        day ? 0.14 : 0.22,
+        day ? '#0c4a6e' : '#ecfeff',
+        hexAlpha('#22d3ee', 0.35)
       );
     case 'negative_override':
       return chip(

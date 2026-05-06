@@ -213,7 +213,7 @@ export function ExplorerPage() {
 
           <section className="space-y-3" aria-label="Score triptych">
             <h3 className="text-xl font-bold uppercase tracking-widest text-atlas-white">
-              Sub-scores
+              Base scores
             </h3>
             <ScoreTriptych evaluation={current} />
           </section>

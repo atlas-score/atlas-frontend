@@ -91,15 +91,42 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
       <InfoBlock title="Score calculation">
         <dl className="grid grid-cols-1 gap-2 font-mono text-xs sm:grid-cols-2">
           <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">Raw ETS</dt>
+            <dt className="text-atlas-label">
+              Raw{' '}
+              <abbr
+                title="Established Truth Scale (ETS)"
+                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+              >
+                Truth
+              </abbr>{' '}
+              score
+            </dt>
             <dd>{evaluation.score_calculation.raw_ets}</dd>
           </div>
           <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">Raw SES</dt>
+            <dt className="text-atlas-label">
+              Raw{' '}
+              <abbr
+                title="Scientific Engagement Scale (SES)"
+                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+              >
+                Engagement
+              </abbr>{' '}
+              score
+            </dt>
             <dd>{evaluation.score_calculation.raw_ses}</dd>
           </div>
           <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
-            <dt className="text-atlas-label">Raw EIS</dt>
+            <dt className="text-atlas-label">
+              Raw{' '}
+              <abbr
+                title="Explanatory Integration Scale (EIS)"
+                className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
+              >
+                Integration
+              </abbr>{' '}
+              score
+            </dt>
             <dd>{evaluation.score_calculation.raw_eis}</dd>
           </div>
           <div className="col-span-full border-b border-atlas-border-dim py-1">
