@@ -12,4 +12,7 @@
 * 2026-05-06th - Added source-available license with commercial revenue/cost-savings cap and trademark policy to prevent misleading forks
 * 2026-05-07th - Documented LICENSE.md and LICENSE-AI-Summary.md in README and maintainer docs
 * 2026-05-07th - Added “Copy as Markdown” export on theory pages
+* 2026-05-07th - Moved “Copy as Markdown” next to “Back to Explorer” at the bottom of theory pages
+* 2026-05-07th - Fixed fuzzy search reopening after a pick by syncing open state with typing; Enter opens results or a no-match row that links to the Explorer
+* 2026-05-07th - Markdown export: blank line before the closing rule, footer links the theory URL and records export time (optional `VITE_ATLAS_SITE_ORIGIN`)
 

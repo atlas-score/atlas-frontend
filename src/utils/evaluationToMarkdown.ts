@@ -18,6 +18,66 @@ function formatList(items: string[]): string {
   return items.map((x) => `- ${mdEscapeInline(x)}`).join('\n');
 }
 
+function getAtlasSiteOrigin(): string {
+  const fromEnv = import.meta.env.VITE_ATLAS_SITE_ORIGIN as string | undefined;
+  if (fromEnv && /^https?:\/\//i.test(fromEnv)) {
+    return fromEnv.replace(/\/$/, '');
+  }
+  return 'https://www.atlasscore.org';
+}
+
+function atlasTheoryAbsoluteUrl(id: string): string {
+  const origin = getAtlasSiteOrigin();
+  const path = id
+    .split('/')
+    .filter(Boolean)
+    .map(encodeURIComponent)
+    .join('/');
+  return `${origin}/${path}`;
+}
+
+/** -- e.g. `5:02am on the 7th May 2026` (local time). */
+function formatExportTimestamp(d: Date): string {
+  const hours = d.getHours();
+  const minutes = d.getMinutes();
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  const h12 = hours % 12 || 12;
+  const mm = minutes.toString().padStart(2, '0');
+
+  const day = d.getDate();
+  const ord =
+    day % 10 === 1 && day !== 11
+      ? 'st'
+      : day % 10 === 2 && day !== 12
+        ? 'nd'
+        : day % 10 === 3 && day !== 13
+          ? 'rd'
+          : 'th';
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const month = monthNames[d.getMonth()] ?? '';
+  const year = d.getFullYear();
+
+  return `${h12}:${mm}${ampm} on the ${day}${ord} ${month} ${year}`;
+}
+
+function mdLinkLabel(s: string): string {
+  return mdEscapeInline(s).replace(/\]/g, '\\]');
+}
+
 export function evaluationToMarkdown(e: AtlasEvaluation): string {
   const title = `${e.framework_name} [${formatSigned(e.composite_score)}]`;
 
@@ -39,7 +99,7 @@ export function evaluationToMarkdown(e: AtlasEvaluation): string {
           ),
         ]);
 
-  const md = joinLines([
+  const main = joinLines([
     `# ${mdEscapeInline(title)}`,
     '',
     '## Summary',
@@ -97,11 +157,13 @@ export function evaluationToMarkdown(e: AtlasEvaluation): string {
     mdBlock(e.eis.justification),
     '',
     additionalAnalysis,
-    '',
-    '---',
-    `Exported from ATLAS: ${mdEscapeInline(e.id)}`,
   ]);
 
-  return md.trim() + '\n';
+  const exportedAt = new Date();
+  const theoryUrl = atlasTheoryAbsoluteUrl(e.id);
+  const footer = `Exported from ATLAS: [${mdLinkLabel(e.id)}](${theoryUrl}) at ${formatExportTimestamp(exportedAt)}`;
+
+  // -- Blank line before `---` so parsers do not treat the prior block as a Setext heading.
+  return `${main.trimEnd()}\n\n---\n\n${footer}\n`;
 }
 

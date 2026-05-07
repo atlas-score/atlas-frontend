@@ -92,29 +92,12 @@ export function TheoryPage() {
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="w-full sm:w-auto sm:min-w-[420px] sm:flex-1">
-          <FuzzySearchBox
-            evaluations={examples}
-            placeholder="Search another theory…"
-            onPick={(ev) => navigate(`/${ev.id}`)}
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={copyAsMarkdown}
-            className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-4 py-2 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
-          >
-            Copy as Markdown
-          </button>
-          <Link
-            to="/#explorer"
-            className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-4 py-2 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
-          >
-            Back to Explorer
-          </Link>
-        </div>
+      <div className="w-full sm:min-w-[420px]">
+        <FuzzySearchBox
+          evaluations={examples}
+          placeholder="Search another theory…"
+          onPick={(ev) => navigate(`/${ev.id}`)}
+        />
       </div>
 
       <div className="mt-6">
@@ -187,10 +170,17 @@ export function TheoryPage() {
         <EvaluationDetail evaluation={evaluation} />
       </section>
 
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+        <button
+          type="button"
+          onClick={copyAsMarkdown}
+          className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-5 py-2.5 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
+        >
+          Copy as Markdown
+        </button>
         <Link
           to="/#explorer"
-          className="inline-flex items-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-5 py-2.5 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
+          className="inline-flex items-center justify-center rounded-atlas-pill border border-atlas-border bg-atlas-deep/60 px-5 py-2.5 text-sm font-bold text-atlas-white shadow-atlas-card transition-colors hover:border-atlas-border-glow hover:bg-atlas-deep"
         >
           Back to Explorer
         </Link>
