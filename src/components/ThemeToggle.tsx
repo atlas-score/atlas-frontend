@@ -11,7 +11,7 @@ export function ThemeToggle() {
         theme === 'night' &&
           'border-atlas-border bg-atlas-deep/90 shadow-atlas-card',
         theme === 'day' &&
-          'border-stone-300/90 bg-white/95 shadow-md ring-1 ring-stone-200/80'
+          'border-atlas-border bg-atlas-deep shadow-md ring-1 ring-atlas-border-dim'
       )}
       role="group"
       aria-label="Colour theme"
@@ -20,7 +20,7 @@ export function ThemeToggle() {
         className={cn(
           'pl-3 pr-1 text-xs font-bold uppercase tracking-wider',
           theme === 'night' && 'text-atlas-label',
-          theme === 'day' && 'text-violet-800/90'
+          theme === 'day' && 'text-atlas-label'
         )}
       >
         Theme
@@ -29,7 +29,7 @@ export function ThemeToggle() {
         className={cn(
           'flex rounded-atlas-pill p-0.5',
           theme === 'night' && 'bg-atlas-mid/50',
-          theme === 'day' && 'bg-stone-200/90'
+          theme === 'day' && 'bg-atlas-mid'
         )}
       >
         <button
@@ -41,7 +41,7 @@ export function ThemeToggle() {
               ? 'bg-atlas-vivid text-white shadow-sm'
               : cn(
                   theme === 'day'
-                    ? 'text-stone-600 hover:text-violet-950'
+                    ? 'text-atlas-muted hover:text-atlas-bright-text'
                     : 'text-atlas-muted hover:text-atlas-bright-text'
                 )
           )}
@@ -59,7 +59,7 @@ export function ThemeToggle() {
               : cn(
                   theme === 'night'
                     ? 'text-atlas-muted hover:text-atlas-white'
-                    : 'text-stone-600 hover:text-violet-950'
+                    : 'text-atlas-muted hover:text-atlas-bright-text'
                 )
           )}
           aria-pressed={theme === 'day'}

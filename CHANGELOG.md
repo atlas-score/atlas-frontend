@@ -1,6 +1,7 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-15th - Adopted NRP brand colour palette and Arial typography as the primary theme; updated design.md and theme tokens
 * 2026-05-06th - Emphasized the Truth/Engagement/Integration labels and added ETS/SES/EIS hints in sub-scores and raw score calculation UI
 * 2026-05-06th - Added theory pages with case-insensitive IDs plus fuzzy search (header + explorer) and a mobile explorer drawer with URL-persisted filters
 * 2026-05-06th - Fixed search box focus so typing continues and made the desktop explorer sidebar visible by default

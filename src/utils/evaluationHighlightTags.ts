@@ -173,10 +173,10 @@ export function getHighlightTagStyle(
       );
     case 'closure_layer':
       return chip(
-        day ? '#7c3aed' : '#a78bfa',
+        day ? '#7a6bab' : '#9a8fc4',
         day ? 0.12 : 0.22,
         day ? textDark : textLight,
-        hexAlpha('#a78bfa', 0.28)
+        hexAlpha('#9a8fc4', 0.28)
       );
     case 'truth_debunked':
       return chip(
@@ -215,10 +215,10 @@ export function getHighlightTagStyle(
       );
     case 'truth_mechanistic':
       return chip(
-        day ? '#6d28d9' : '#a855f7',
+        day ? '#40216d' : '#7a6bab',
         day ? 0.14 : 0.26,
         day ? textDark : textLight,
-        hexAlpha('#a855f7', 0.38)
+        hexAlpha('#7a6bab', 0.38)
       );
     case 'engagement_negative':
       return chip(
@@ -278,22 +278,22 @@ export function getHighlightTagStyle(
       );
     case 'integration_cross':
       return chip(
-        day ? '#7c3aed' : '#c084fc',
+        day ? '#7a6bab' : '#b8aed0',
         day ? 0.12 : 0.2,
         day ? textDark : textLight,
-        hexAlpha('#c084fc', 0.24)
+        hexAlpha('#b8aed0', 0.24)
       );
     case 'integration_architectonic':
       return chip(
-        day ? '#5b21b6' : '#d946ef',
+        day ? '#40216d' : '#7a6bab',
         day ? 0.14 : 0.26,
         day ? textDark : textLight,
-        hexAlpha('#d946ef', 0.32)
+        hexAlpha('#7a6bab', 0.32)
       );
     case 'meta':
     default:
       return chip(
-        day ? '#8b7bb0' : '#c8c4dc',
+        day ? '#646365' : '#bfbfbf',
         day ? 0.08 : 0.14,
         day ? textDark : '#e9e4f5',
         undefined

@@ -7,12 +7,12 @@
 
 ## 1. Brand Identity & Visual Language
 
-ATLAS communicates **cosmic authority, rigorous depth, and intellectual weight**. The aesthetic is dark deep-space with rich violet glows — inspired directly by the brand imagery of Atlas holding the world against an infinite purple cosmos.
+ATLAS communicates **cosmic authority, rigorous depth, and intellectual weight**. The colour system follows the **NRP brand palette**: muted purple as the primary brand colour, deep accent purple for depth, teal and sky blue as secondary accents, and a neutral grey scale for surfaces and typography.
 
 **Design principles:**
-- Dark-first: All surfaces are deep purple/near-black. Light is used sparingly as emphasis.
-- Glow > Shadow: Use glowing borders and auras instead of drop shadows.
-- Precision type: Bold, uppercase headers. Clean sans-serif body. Numbers are always prominent.
+- Dark-first (Night theme): Surfaces build from near-black neutrals through accent purple into NRP purple highlights.
+- Glow > Shadow: Use soft purple and sky-blue glows on interactive elements instead of heavy drop shadows.
+- Precision type: **Arial Black**, all caps, for headings; **Arial** regular for body. Score numbers stay prominent (monospace stack).
 - Structured hierarchy: Scores are the star. Everything else supports context around them.
 - Scale awareness: The three sub-scores (SES, ETS, EIS) always appear together as a unit.
 
@@ -20,128 +20,110 @@ ATLAS communicates **cosmic authority, rigorous depth, and intellectual weight**
 
 ## 2. Colour Palette
 
-### 2.1 Tailwind CSS Configuration (`tailwind.config.js`)
+### 2.1 NRP source palette (brand chart)
 
-Extend Tailwind with the ATLAS custom colour tokens:
+These are the canonical brand colours. They are exposed as CSS custom properties on `:root` in `src/index.css` and mapped into `atlas-*` theme tokens per theme mode.
+
+| Role | Name | Hex | CSS variable |
+|---|---|---|---|
+| Primary | NRP Purple | `#7a6bab` | `--nrp-purple` |
+| Secondary | Teal | `#086783` | `--nrp-teal` |
+| Secondary | Sky blue | `#039ad2` | `--nrp-sky` |
+| Accent | Deep purple | `#40216d` | `--nrp-accent` |
+| Neutral | Mid grey | `#646365` | `--nrp-neutral-mid` |
+| Neutral | Light grey | `#bfbfbf` | `--nrp-neutral-light` |
+| Neutral | Off-white | `#f7f7f7` | `--nrp-neutral-pale` |
+| Neutral | Near black | `#101010` | `--nrp-neutral-black` |
+| Neutral | Charcoal | `#383838` | `--nrp-neutral-charcoal` |
+
+### 2.2 Theme implementation
+
+Runtime colours live in `src/index.css` under `html[data-theme='night']` and `html[data-theme='day']`. Tailwind references them via CSS variables in `tailwind.config.js` (e.g. `atlas-brand: 'var(--color-atlas-brand)'`).
+
+**Night theme mapping (summary):**
+
+| Token | Hex | NRP basis |
+|---|---|---|
+| `atlas-space` | `#101010` | Neutral black |
+| `atlas-void` | `#181618` | Black + purple undertone |
+| `atlas-deep` | `#2a183f` | Accent purple (darkened) |
+| `atlas-mid` | `#342052` | Elevated panels |
+| `atlas-rich` | `#40216d` | Accent purple |
+| `atlas-brand` | `#7a6bab` | NRP Purple |
+| `atlas-vivid` | `#039ad2` | Sky blue (interactive) |
+| `atlas-border` | `#7a6bab` | NRP Purple |
+| `atlas-border-glow` | `#039ad2` | Sky blue |
+
+**Day theme mapping (summary):**
+
+| Token | Hex | NRP basis |
+|---|---|---|
+| `atlas-void` / surfaces | `#f7f7f7` | Off-white |
+| `atlas-white` (text) | `#101010` | Near black |
+| `atlas-brand` | `#7a6bab` | NRP Purple |
+| `atlas-vivid` | `#086783` | Teal |
+| `atlas-border` | `#bfbfbf` | Light grey |
+
+### 2.3 Tailwind CSS configuration (`tailwind.config.js`)
 
 ```js
-// tailwind.config.js
+// tailwind.config.js — colours resolve from CSS variables in src/index.css
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         atlas: {
-          // === BACKGROUNDS ===
-          'space':       '#0f0520',   // Deepest background — starfield base
-          'void':        '#1a0a2e',   // Primary page background
-          'deep':        '#2d1155',   // Card/panel background (default)
-          'mid':         '#3d1a6e',   // Elevated panel / hover state
-          'rich':        '#4a1a8a',   // Active panel / selected state
-
-          // === BRAND PURPLES ===
-          'brand':       '#5e1fa0',   // Core brand purple
-          'bright':      '#6b21a8',   // Bright brand purple (pill backgrounds)
-          'vivid':       '#7c3aed',   // Accent / interactive elements
-          'glow':        '#8b5cf6',   // Border glow / icon fills
-          'bloom':       '#a855f7',   // Glow auras, focus rings
-
-          // === TEXT ===
-          'white':       '#ffffff',   // Primary text on dark
-          'bright-text': '#f5f3ff',   // Near-white with purple tint
-          'muted':       '#c4b5fd',   // Secondary / supporting text (lavender)
-          'label':       '#a78bfa',   // Labels, captions, metadata (violet-400)
-          'dim':         '#7c6db0',   // Disabled / placeholder text
-
-          // === BORDERS ===
-          'border':      '#6d28d9',   // Default panel border
-          'border-glow': '#8b5cf6',   // Active / highlighted border
-          'border-dim':  '#3d1a6e',   // Subtle separator border
-
-          // === SCORE SEMANTIC COLOURS ===
-          // ETS (Established Truth Scale) pill colours
-          'score-4':     '#7c3aed',   // +4 Complete Mechanistic Theory
-          'score-3':     '#6d28d9',   // +3 Proven Phenomenon Theory
-          'score-2':     '#5b21b6',   // +2 Strongly Supported Theory
-          'score-1':     '#4c1d95',   // +1 Emerging Supported Theory
-          'score-0':     '#2d1155',   // 0 Indeterminate
-          'score-neg1':  '#1a0a2e',   // -1 Debunked (near-black pill)
-          'debunked':    '#000000',   // -1 Debunked pill exact black
-
-          // Proven/grey swatch (from imagery: grey pill for "Proven" legend)
-          'proven-pill': '#d1d5db',   // Proven legend indicator
-
-          // === BACKGROUND GRADIENTS (use as from/to values) ===
-          'grad-start':  '#0f0520',
-          'grad-mid':    '#2e0f5e',
-          'grad-end':    '#1a0a2e',
+          space: 'var(--color-atlas-space)',
+          void: 'var(--color-atlas-void)',
+          deep: 'var(--color-atlas-deep)',
+          mid: 'var(--color-atlas-mid)',
+          rich: 'var(--color-atlas-rich)',
+          brand: 'var(--color-atlas-brand)',
+          bright: 'var(--color-atlas-bright)',
+          vivid: 'var(--color-atlas-vivid)',
+          glow: 'var(--color-atlas-glow)',
+          bloom: 'var(--color-atlas-bloom)',
+          // … see tailwind.config.js for full list
         },
       },
-
-      // === BACKGROUND GRADIENTS ===
-      backgroundImage: {
-        'atlas-space': 'radial-gradient(ellipse at top, #2e0f5e 0%, #1a0a2e 50%, #0f0520 100%)',
-        'atlas-card':  'linear-gradient(135deg, #3d1a6e 0%, #2d1155 100%)',
-        'atlas-glow':  'radial-gradient(ellipse at center, #6b21a8 0%, transparent 70%)',
-        'atlas-panel': 'linear-gradient(180deg, #4a1a8a 0%, #2d1155 100%)',
-        'atlas-score-positive': 'linear-gradient(135deg, #7c3aed, #5b21b6)',
-        'atlas-score-negative': 'linear-gradient(135deg, #1a0a2e, #000000)',
-      },
-
-      // === BOX SHADOWS (glow effects) ===
-      boxShadow: {
-        'atlas-glow-sm':  '0 0 8px 2px rgba(124, 58, 237, 0.4)',
-        'atlas-glow-md':  '0 0 16px 4px rgba(124, 58, 237, 0.5)',
-        'atlas-glow-lg':  '0 0 32px 8px rgba(124, 58, 237, 0.4)',
-        'atlas-bloom':    '0 0 48px 12px rgba(168, 85, 247, 0.3)',
-        'atlas-inset':    'inset 0 1px 0 rgba(139, 92, 246, 0.3)',
-        'atlas-card':     '0 4px 24px rgba(15, 5, 32, 0.8), 0 0 0 1px rgba(109, 40, 217, 0.4)',
-      },
-
-      // === TYPOGRAPHY ===
       fontFamily: {
-        'display': ['"Inter"', '"Rajdhani"', 'sans-serif'],   // Headers, score labels
-        'body':    ['"Inter"', 'system-ui', 'sans-serif'],    // Body copy
-        'mono':    ['"JetBrains Mono"', 'monospace'],         // Scores, numbers
-      },
-
-      // === BORDER RADIUS ===
-      borderRadius: {
-        'atlas-pill': '9999px',
-        'atlas-card': '12px',
-        'atlas-panel': '8px',
+        display: ['"Arial Black"', 'Arial', 'sans-serif'],
+        body: ['Arial', 'Helvetica', 'sans-serif'],
+        mono: ['ui-monospace', 'Consolas', 'monospace'],
       },
     },
   },
-  plugins: [],
-}
+};
 ```
+
+Composite and sub-scale accent ramps in `src/utils/scoreColor.ts` interpolate through the NRP purple → accent → sky blue range for positive scores.
 
 ---
 
-## 3. Colour Reference Table
+## 3. Colour Reference Table (Night theme)
 
 | Token | Hex | Usage |
 |---|---|---|
-| `atlas-space` | `#0f0520` | Page background base (darkest) |
-| `atlas-void` | `#1a0a2e` | Primary page background |
-| `atlas-deep` | `#2d1155` | Default card/panel background |
-| `atlas-mid` | `#3d1a6e` | Elevated panels, hover states |
-| `atlas-rich` | `#4a1a8a` | Active/selected panels |
-| `atlas-brand` | `#5e1fa0` | Core brand purple |
-| `atlas-bright` | `#6b21a8` | Bright brand (pill fills) |
-| `atlas-vivid` | `#7c3aed` | Primary accent, interactive |
-| `atlas-glow` | `#8b5cf6` | Border glows, icon fills |
-| `atlas-bloom` | `#a855f7` | Focus rings, aura effects |
-| `atlas-white` | `#ffffff` | Primary text |
-| `atlas-bright-text` | `#f5f3ff` | Near-white with purple tint |
-| `atlas-muted` | `#c4b5fd` | Secondary text, descriptions |
-| `atlas-label` | `#a78bfa` | Labels, captions |
-| `atlas-dim` | `#7c6db0` | Disabled / placeholder |
-| `atlas-border` | `#6d28d9` | Default borders |
-| `atlas-border-glow` | `#8b5cf6` | Active/highlighted borders |
-| `atlas-debunked` | `#000000` | Debunked score pill (black) |
-| `atlas-proven-pill` | `#d1d5db` | Proven legend swatch (grey) |
+| `atlas-space` | `#101010` | Page background base (darkest) |
+| `atlas-void` | `#181618` | Primary page background |
+| `atlas-deep` | `#2a183f` | Default card/panel background |
+| `atlas-mid` | `#342052` | Elevated panels, hover states |
+| `atlas-rich` | `#40216d` | Active/selected panels (accent purple) |
+| `atlas-brand` | `#7a6bab` | Core brand purple (NRP Purple) |
+| `atlas-bright` | `#8d82b8` | Lighter brand (pill fills) |
+| `atlas-vivid` | `#039ad2` | Primary interactive accent (sky blue) |
+| `atlas-glow` | `#7a6bab` | Border glows, icon fills |
+| `atlas-bloom` | `#9a8fc4` | Focus rings, aura effects |
+| `atlas-white` | `#ffffff` | Primary text on dark |
+| `atlas-bright-text` | `#f7f7f7` | Near-white body emphasis |
+| `atlas-muted` | `#bfbfbf` | Secondary text, descriptions |
+| `atlas-label` | `#9a8fc4` | Labels, captions |
+| `atlas-dim` | `#646365` | Disabled / placeholder |
+| `atlas-border` | `#7a6bab` | Default borders |
+| `atlas-border-glow` | `#039ad2` | Active/highlighted borders |
+| `atlas-debunked` | `#101010` | Debunked score pill |
+| `atlas-proven-pill` | `#646365` | Proven legend swatch (grey) |
 
 ---
 
@@ -459,21 +441,25 @@ const SCALES = ['NANO', 'MICRO', 'INTERMEDIATE', 'MACRO', 'META'];
 
 ## 6. Typography
 
+Per the NRP brand chart:
+
+| Role | Font | Casing | Tailwind |
+|---|---|---|---|
+| Headings | Arial Black | ALL CAPS | `font-display font-black uppercase` |
+| Body | Arial | Regular sentence case | `font-body` |
+| Scores / codes | System monospace | As needed | `font-mono` |
+
 | Element | Class | Notes |
 |---|---|---|
-| Page title | `text-4xl font-black text-atlas-white tracking-tight` | Theory name hero |
-| Section header | `text-xl font-bold text-atlas-white uppercase tracking-widest` | Scale names |
+| Page title | `font-display text-4xl font-black uppercase text-atlas-white tracking-tight` | Theory name hero |
+| Section header | `font-display text-xl font-black uppercase tracking-widest text-atlas-white` | Scale names |
 | Score number (large) | `text-6xl font-black text-atlas-white font-mono` | The big +/- number |
 | Score label | `text-sm font-semibold text-atlas-bright-text` | e.g. "Core Scientific Program" |
-| Body text | `text-sm text-atlas-muted leading-relaxed` | Descriptions, prose |
+| Body text | `font-body text-sm text-atlas-muted leading-relaxed` | Descriptions, prose |
 | Caption / meta | `text-xs text-atlas-label uppercase tracking-wider` | Tags, scale names |
 | Composite score | `text-3xl font-black text-atlas-bloom font-mono` | Total composite |
 
-**Recommended Google Fonts:**
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet" />
-```
+No webfont imports are required; Arial and Arial Black are system fonts on Windows and have suitable fallbacks elsewhere.
 
 ---
 
@@ -554,8 +540,8 @@ All Radix components should have their default styles **overridden** with ATLAS 
 
 /* Glow pulse on score cards */
 @keyframes atlas-pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px 2px rgba(124, 58, 237, 0.4); }
-  50%       { box-shadow: 0 0 24px 6px rgba(168, 85, 247, 0.6); }
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(122, 107, 171, 0.45); }
+  50%       { box-shadow: 0 0 24px 6px rgba(3, 154, 210, 0.5); }
 }
 
 /* Score bar fill on mount */
@@ -585,7 +571,7 @@ All Radix components should have their default styles **overridden** with ATLAS 
 
 - Maintain **4.5:1 contrast** minimum for all score text against backgrounds. The `atlas-white` on `atlas-deep` is ~10:1.
 - Never rely on colour alone — always pair score numbers with labels.
-- The "Debunked" pill uses black background (`atlas-debunked`) — ensure label text uses `atlas-muted` (`#c4b5fd`) for contrast.
+- The "Debunked" pill uses near-black background (`atlas-debunked`, `#101010`) — ensure label text uses `atlas-muted` (`#bfbfbf`) for contrast.
 - All interactive elements must have `:focus-visible` ring using `ring-2 ring-atlas-bloom ring-offset-2 ring-offset-atlas-void`.
 - Score triptych panels should have `aria-label` describing the scale and score.
 
@@ -612,8 +598,8 @@ bg-atlas-debunked border border-atlas-border text-atlas-muted rounded-atlas-pill
 // Focus ring
 focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void
 
-// Hero radial bg
-bg-atlas-space bg-[radial-gradient(ellipse_at_top,_#2e0f5e_0%,_#1a0a2e_50%,_#0f0520_100%)]
+// Hero radial bg (or use bg-atlas-space utility)
+bg-atlas-space
 
 // Composite score text
 text-4xl font-black text-atlas-bloom font-mono
@@ -624,4 +610,4 @@ text-xs text-atlas-label uppercase tracking-widest
 
 ---
 
-*ATLAS Design System v1.0 — Non-Reductionist Philosophy 2026*
+*ATLAS Design System v1.1 — NRP colour palette — Non-Reductionist Philosophy 2026*

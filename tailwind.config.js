@@ -57,9 +57,9 @@ module.exports = {
         'atlas-card': 'var(--shadow-atlas-card)',
       },
       fontFamily: {
-        display: ['"Inter"', '"Rajdhani"', 'sans-serif'],
-        body: ['"Inter"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Arial Black"', 'Arial', 'sans-serif'],
+        body: ['Arial', 'Helvetica', 'sans-serif'],
+        mono: ['ui-monospace', 'Consolas', 'monospace'],
       },
       borderRadius: {
         'atlas-pill': '9999px',

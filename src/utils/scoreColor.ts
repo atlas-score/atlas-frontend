@@ -4,7 +4,7 @@ import type { ThemeMode } from '../types/theme';
 
 export type ETSScore = -1 | 0 | 1 | 2 | 3 | 4;
 
-const NEUTRAL = '#c8c4dc';
+const NEUTRAL = '#bfbfbf';
 const ORANGE = '#fb923c';
 const RED = '#dc2626';
 const WARM_NEG = '#ea580c';
@@ -13,17 +13,17 @@ const COMPOSITE_MIN = -5;
 const COMPOSITE_MAX = 10;
 
 const COMPOSITE_POSITIVE_STOPS: readonly string[] = [
-  '#c8c4dc',
-  '#beb5d6',
-  '#ae9edc',
-  '#9d84e6',
-  '#8d6cef',
-  '#7d52f5',
-  '#8f57f7',
-  '#a855f7',
-  '#bf7dff',
-  '#d8a3ff',
-  '#f0abfc',
+  '#bfbfbf',
+  '#b0a8c8',
+  '#a198bb',
+  '#9289ae',
+  '#7a6bab',
+  '#6d5f9e',
+  '#605390',
+  '#534682',
+  '#40216d',
+  '#2d5f87',
+  '#039ad2',
 ];
 const ETS_MAX = 4;
 const SECONDARY_MIN = -2;
@@ -84,23 +84,23 @@ function relativeLuminance(hex: string): number {
 function adjustAccentForLightSurface(hex: string): string {
   const L = relativeLuminance(hex);
   if (L > 0.72) {
-    return lerpHex(hex, '#5b21b6', 0.5);
+    return lerpHex(hex, '#40216d', 0.5);
   }
   if (L > 0.55) {
-    return lerpHex(hex, '#4c1d95', 0.32);
+    return lerpHex(hex, '#534482', 0.32);
   }
   if (L > 0.42) {
-    return lerpHex(hex, '#3d1a6e', 0.18);
+    return lerpHex(hex, '#2a183f', 0.18);
   }
   return hex;
 }
 
 function cardBase(mode: ThemeMode): string {
-  return mode === 'day' ? '#ffffff' : '#1a0a2e';
+  return mode === 'day' ? '#ffffff' : '#181618';
 }
 
 function cardBaseMid(mode: ThemeMode): string {
-  return mode === 'day' ? '#faf7f2' : '#2d1155';
+  return mode === 'day' ? '#f7f7f7' : '#2a183f';
 }
 
 function blendOntoCard(
@@ -199,7 +199,7 @@ export function getSubscalePillStyle(
       borderColor: accent,
       borderWidth: 1,
       borderStyle: 'solid',
-      color: '#2d1f45',
+      color: '#383838',
       boxShadow: 'none',
     };
   }
@@ -208,7 +208,7 @@ export function getSubscalePillStyle(
     borderColor: accent,
     borderWidth: 1,
     borderStyle: 'solid',
-    color: '#f5f3ff',
+    color: '#f7f7f7',
     boxShadow: `0 0 14px ${hexAlpha(accent, 0.4)}`,
   };
 }
@@ -218,7 +218,7 @@ export function getCompositeBarFillStyle(
   mode: ThemeMode = 'night'
 ): CSSProperties {
   const c = getCompositeAccentColor(composite, mode);
-  const hi = lerpHex(c, mode === 'day' ? '#f5f0ff' : '#fdf4ff', 0.22);
+  const hi = lerpHex(c, mode === 'day' ? '#f7f7f7' : '#ffffff', 0.22);
   const t = getCompositePositiveRampT(composite);
   if (mode === 'day') {
     return {
@@ -262,8 +262,8 @@ export function getTheoryCardChromeStyle(
     borderColor: edge,
     borderWidth: composite >= 5 ? 2 : 1,
     boxShadow: selected
-      ? `0 4px 28px rgba(15, 5, 32, 0.85), 0 0 ${18 + t * 22}px ${glow}`
-      : `0 4px 24px rgba(15, 5, 32, 0.75), 0 0 ${10 + t * 20}px ${glow}`,
+      ? `0 4px 28px rgba(16, 16, 16, 0.85), 0 0 ${18 + t * 22}px ${glow}`
+      : `0 4px 24px rgba(16, 16, 16, 0.75), 0 0 ${10 + t * 20}px ${glow}`,
     backgroundImage: `linear-gradient(135deg, ${blendOntoCard(accent, bgTint + (selected ? 0.06 : 0), mode)} 0%, ${cardBaseMid(mode)} 55%, ${cardBase(mode)} 100%)`,
   };
 }
@@ -317,10 +317,10 @@ export function triptychSubtitleStyle(
   mode: ThemeMode = 'night'
 ): CSSProperties {
   if (mode === 'day') {
-    return { color: lerpHex('#6d28d9', accentHex, 0.35) };
+    return { color: lerpHex('#40216d', accentHex, 0.35) };
   }
   return {
-    color: lerpHex('#a78bfa', accentHex, 0.38),
+    color: lerpHex('#9a8fc4', accentHex, 0.38),
   };
 }
 
@@ -330,12 +330,12 @@ export function triptychScoreNumberStyle(
 ): CSSProperties {
   if (mode === 'day') {
     return {
-      color: '#2d1f45',
+      color: '#383838',
       textShadow: `0 1px 0 ${hexAlpha(accentHex, 0.15)}`,
     };
   }
   return {
-    color: '#f5f3ff',
+    color: '#f7f7f7',
     textShadow: `0 0 26px ${hexAlpha(accentHex, 0.42)}`,
   };
 }
