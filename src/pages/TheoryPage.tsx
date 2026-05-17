@@ -163,6 +163,10 @@ export function TheoryPage() {
         <h2 className="text-xl font-bold uppercase tracking-widest text-atlas-white">
           Base scores
         </h2>
+        <p className="text-sm text-atlas-muted">
+          Truth (ETS) is the primary scale, rated out of 4. Engagement (SES) and
+          Integration (EIS) are rated out of 3.
+        </p>
         <ScoreTriptych evaluation={evaluation} />
       </section>
 

@@ -1,5 +1,5 @@
 import type { AtlasEvaluation } from '../types/evaluation';
-import { formatSigned } from './scoreColor';
+import { formatScoreOutOf, formatSigned } from './scoreColor';
 
 function mdEscapeInline(s: string): string {
   // -- Minimal escaping for Markdown inline contexts.
@@ -123,11 +123,11 @@ export function evaluationToMarkdown(e: AtlasEvaluation): string {
     formatList(e.ontological_scales.map(String)),
     '',
     '## Base scores',
-    `- **Truth (ETS)**: ${formatSigned(e.ets.score)} — ${mdEscapeInline(e.ets.label)}${
+    `- **Truth (ETS)** *(primary, out of 4)*: ${formatScoreOutOf(e.ets.score, 'ETS')} (${formatSigned(e.ets.score)}) — ${mdEscapeInline(e.ets.label)}${
       e.ets.closure_status ? ` (Closure: ${mdEscapeInline(e.ets.closure_status)})` : ''
     }`,
-    `- **Engagement (SES)**: ${formatSigned(e.ses.score)} — ${mdEscapeInline(e.ses.label)}`,
-    `- **Integration (EIS)**: ${formatSigned(e.eis.score)} — ${mdEscapeInline(e.eis.label)}`,
+    `- **Engagement (SES)** *(out of 3)*: ${formatScoreOutOf(e.ses.score, 'SES')} (${formatSigned(e.ses.score)}) — ${mdEscapeInline(e.ses.label)}`,
+    `- **Integration (EIS)** *(out of 3)*: ${formatScoreOutOf(e.eis.score, 'EIS')} (${formatSigned(e.eis.score)}) — ${mdEscapeInline(e.eis.label)}`,
     '',
     '## Score calculation',
     `- **Raw ETS**: ${e.score_calculation.raw_ets}`,

@@ -1,6 +1,11 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-18th - Emphasized ETS in base scores with larger panel, primary badge, and score-out-of-max (4 for ETS, 3 for SES/EIS)
+* 2026-05-18th - Switched header logo to ATLAS-Tree-coloured-transparent.webp for purple gradient backgrounds
+* 2026-05-18th - Replaced header atlas-logo.svg with tree WebP mark
+* 2026-05-18th - Wired apple-touch-icon, PNG favicons, and web manifest links in index.html
+* 2026-05-18th - Removed duplicate composite score block from theory detail above score calculation
 * 2026-05-15th - Adopted NRP brand colour palette and Arial typography as the primary theme; updated design.md and theme tokens
 * 2026-05-06th - Emphasized the Truth/Engagement/Integration labels and added ETS/SES/EIS hints in sub-scores and raw score calculation UI
 * 2026-05-06th - Added theory pages with case-insensitive IDs plus fuzzy search (header + explorer) and a mobile explorer drawer with URL-persisted filters

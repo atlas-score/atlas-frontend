@@ -25,9 +25,9 @@ export function Header() {
           className="group mb-3 flex items-center gap-3 rounded-atlas-card px-1 py-1 transition-colors hover:bg-atlas-deep/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
         >
           <img
-            src={`${import.meta.env.BASE_URL}atlas-logo.svg`}
+            src={`${import.meta.env.BASE_URL}ATLAS-Tree-coloured-transparent.webp`}
             alt="ATLAS"
-            className="h-8 w-8"
+            className="h-8 w-8 shrink-0 object-contain"
           />
           <span className="font-display text-xl font-black uppercase tracking-widest text-atlas-white">
             ATLAS

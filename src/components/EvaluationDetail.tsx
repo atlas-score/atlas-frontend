@@ -7,10 +7,9 @@ import {
   getHighlightTagStyle,
 } from '../utils/evaluationHighlightTags';
 import {
+  formatScoreOutOf,
   formatSigned,
-  getCompositeAccentColor,
-  getCompositePositiveRampT,
-  hexAlpha,
+  getScaleMax,
 } from '../utils/scoreColor';
 
 const ANALYSIS_LABELS: Record<string, string> = {
@@ -61,9 +60,6 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
   const filled = Object.entries(aa).filter(
     ([, v]) => v != null && String(v).trim() !== ''
   ) as [string, string][];
-  const compositeScore = evaluation.composite_score;
-  const compositeAccent = getCompositeAccentColor(compositeScore, mode);
-  const compositeRamp = getCompositePositiveRampT(compositeScore);
   const highlightTags = buildEvaluationHighlightTags(evaluation);
 
   return (
@@ -76,25 +72,6 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
 
       <InfoBlock title="Framework description">
         <p>{evaluation.framework_description}</p>
-      </InfoBlock>
-
-      <InfoBlock title="Composite score">
-        <p
-          className="font-mono text-3xl font-black"
-          style={{
-            color: compositeAccent,
-            ...(mode === 'day'
-              ? { textShadow: 'none' }
-              : {
-                  textShadow: `0 0 ${8 + compositeRamp * 20}px ${hexAlpha(
-                    compositeAccent,
-                    0.2 + compositeRamp * 0.35
-                  )}`,
-                }),
-          }}
-        >
-          {formatSigned(evaluation.composite_score)}
-        </p>
       </InfoBlock>
 
       <InfoBlock
@@ -213,13 +190,23 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
           </dl>
         ) : (
           <dl className="space-y-4 text-sm">
-            <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-              <dt className="text-atlas-label">Truth (ETS)</dt>
-              <dd className="mt-1 text-atlas-bright-text">
-                <span className="font-mono font-bold">
+            <div className="rounded-atlas-card border-2 border-atlas-brand/70 bg-atlas-void/50 p-4 shadow-atlas-glow-sm">
+              <dt className="text-sm font-bold uppercase tracking-wider text-atlas-label">
+                Truth (ETS){' '}
+                <span className="font-normal normal-case text-atlas-dim">
+                  — primary, out of {getScaleMax('ETS')}
+                </span>
+              </dt>
+              <dd className="mt-2 text-atlas-bright-text">
+                <span className="font-mono text-3xl font-black sm:text-4xl">
                   {formatSigned(evaluation.ets.score)}
                 </span>
-                <span className="text-atlas-muted"> — {evaluation.ets.label}</span>
+                <span className="ml-2 font-mono text-lg font-semibold text-atlas-muted">
+                  {formatScoreOutOf(evaluation.ets.score, 'ETS')}
+                </span>
+                <p className="mt-2 text-sm text-atlas-muted">
+                  {evaluation.ets.label}
+                </p>
               </dd>
               {evaluation.ets.closure_status ? (
                 <dd className="mt-1 text-xs text-atlas-dim">
@@ -228,12 +215,22 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
               ) : null}
             </div>
             <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-              <dt className="text-atlas-label">Engagement (SES)</dt>
+              <dt className="text-atlas-label">
+                Engagement (SES){' '}
+                <span className="font-normal text-atlas-dim">
+                  (out of {getScaleMax('SES')})
+                </span>
+              </dt>
               <dd className="mt-1 text-atlas-bright-text">
-                <span className="font-mono font-bold">
+                <span className="font-mono text-xl font-bold">
                   {formatSigned(evaluation.ses.score)}
                 </span>
-                <span className="text-atlas-muted"> — {evaluation.ses.label}</span>
+                <span className="ml-2 font-mono text-sm font-semibold text-atlas-muted">
+                  {formatScoreOutOf(evaluation.ses.score, 'SES')}
+                </span>
+                <p className="mt-1 text-sm text-atlas-muted">
+                  {evaluation.ses.label}
+                </p>
               </dd>
               {evaluation.ses.counted_in_composite === false ? (
                 <dd className="mt-1 text-xs text-atlas-dim">
@@ -242,12 +239,22 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
               ) : null}
             </div>
             <div className="rounded-lg border border-atlas-border-dim bg-atlas-void/40 p-3">
-              <dt className="text-atlas-label">Integration (EIS)</dt>
+              <dt className="text-atlas-label">
+                Integration (EIS){' '}
+                <span className="font-normal text-atlas-dim">
+                  (out of {getScaleMax('EIS')})
+                </span>
+              </dt>
               <dd className="mt-1 text-atlas-bright-text">
-                <span className="font-mono font-bold">
+                <span className="font-mono text-xl font-bold">
                   {formatSigned(evaluation.eis.score)}
                 </span>
-                <span className="text-atlas-muted"> — {evaluation.eis.label}</span>
+                <span className="ml-2 font-mono text-sm font-semibold text-atlas-muted">
+                  {formatScoreOutOf(evaluation.eis.score, 'EIS')}
+                </span>
+                <p className="mt-1 text-sm text-atlas-muted">
+                  {evaluation.eis.label}
+                </p>
               </dd>
               {evaluation.eis.counted_in_composite === false ? (
                 <dd className="mt-1 text-xs text-atlas-dim">

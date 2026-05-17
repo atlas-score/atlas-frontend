@@ -29,6 +29,41 @@ const ETS_MAX = 4;
 const SECONDARY_MIN = -2;
 const SECONDARY_MAX = 3;
 
+export type SubscaleKey = 'ets' | 'ses' | 'eis';
+export type ScaleAcronym = 'ETS' | 'SES' | 'EIS';
+
+export const SCALE_MAX: Record<SubscaleKey, number> = {
+  ets: ETS_MAX,
+  ses: SECONDARY_MAX,
+  eis: SECONDARY_MAX,
+};
+
+export const SCALE_MIN: Record<SubscaleKey, number> = {
+  ets: -1,
+  ses: SECONDARY_MIN,
+  eis: SECONDARY_MIN,
+};
+
+export const ACRONYM_TO_SCALE: Record<ScaleAcronym, SubscaleKey> = {
+  ETS: 'ets',
+  SES: 'ses',
+  EIS: 'eis',
+};
+
+export function getScaleMax(scale: SubscaleKey | ScaleAcronym): number {
+  if (scale === 'ETS' || scale === 'SES' || scale === 'EIS') {
+    return SCALE_MAX[ACRONYM_TO_SCALE[scale]];
+  }
+  return SCALE_MAX[scale];
+}
+
+export function formatScoreOutOf(
+  score: number,
+  scale: SubscaleKey | ScaleAcronym
+): string {
+  return `${score} out of ${getScaleMax(scale)}`;
+}
+
 type RGB = { r: number; g: number; b: number };
 
 function clamp(n: number, min: number, max: number): number {
@@ -348,6 +383,14 @@ export function getCompositeBarWidth(composite: number): string {
 export function formatSigned(n: number): string {
   if (n > 0) return `+${n}`;
   return String(n);
+}
+
+/** Compact score with scale ceiling, e.g. `4/4` or `-1/4` */
+export function formatScoreSlash(
+  score: number,
+  scale: SubscaleKey | ScaleAcronym
+): string {
+  return `${score}/${getScaleMax(scale)}`;
 }
 
 const SCALE_ORDER: OntologicalScale[] = [
