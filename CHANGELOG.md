@@ -1,6 +1,8 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-18th - Header logo hover expands layout to 2× in a clamped slot (no screen overflow) instead of scaling over the UI
+* 2026-05-18th - Enlarged header ATLAS logo with hover zoom and added hero tree image on the home “What is an ATLAS score?” section
 * 2026-05-18th - Emphasized ETS in base scores with larger panel, primary badge, and score-out-of-max (4 for ETS, 3 for SES/EIS)
 * 2026-05-18th - Switched header logo to ATLAS-Tree-coloured-transparent.webp for purple gradient backgrounds
 * 2026-05-18th - Replaced header atlas-logo.svg with tree WebP mark

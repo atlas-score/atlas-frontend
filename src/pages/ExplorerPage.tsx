@@ -4,6 +4,7 @@ import feed from '../../atlas-score-examples.json';
 import type { ExamplesFeed } from '../types/evaluation';
 import { ExplorerPanel, type ExplorerPanelState } from '../components/ExplorerPanel';
 import { ExplorerGuide } from '../components/ExplorerGuide';
+import { AtlasLogo } from '../components/AtlasLogo';
 import { RecentTheoryHistory } from '../components/RecentTheoryHistory';
 
 const data = feed as ExamplesFeed;
@@ -101,10 +102,19 @@ export function ExplorerPage() {
               What is an ATLAS score?
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-atlas-muted">
-              ATLAS evaluates a specific claim using three base scales—Truth,
-              Engagement, and Integration—to produce a composite diagnostic
-              score.
+              ATLAS evaluates a specific claim using three base scales:<br />
+              1. Established <strong>Truth</strong> Scale<br />
+              2. Scientific <strong>Engagement</strong> Scale<br />
+              3. Explanatory <strong>Integration</strong> Scale<br />
+              to produce a composite diagnostic score.
             </p>
+            <figure className="mt-8 flex justify-center">
+              <AtlasLogo
+                variant="hero"
+                alt="ATLAS diagram: Truth (ETS), Engagement (SES), and Integration (EIS) forming the composite score"
+                className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl"
+              />
+            </figure>
           </section>
 
           <section aria-label="Explorer">

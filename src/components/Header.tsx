@@ -1,7 +1,9 @@
+import type { CSSProperties } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/cn';
 import feed from '../../atlas-score-examples.json';
 import type { ExamplesFeed } from '../types/evaluation';
+import { AtlasLogo, HEADER_LOGO_SIZE_REM } from './AtlasLogo';
 import { FuzzySearchBox } from './FuzzySearchBox';
 
 const tabClass = ({ isActive }: { isActive: boolean }) =>
@@ -15,29 +17,52 @@ const tabClass = ({ isActive }: { isActive: boolean }) =>
 
 const data = feed as ExamplesFeed;
 
+const logoRest = `${HEADER_LOGO_SIZE_REM}rem`;
+const logoHoverMax = `min(${HEADER_LOGO_SIZE_REM * 2}rem, calc(100dvh - 6rem), calc(100vw - 2rem))`;
+
 export function Header() {
   const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 border-b border-atlas-border bg-atlas-void/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 pb-0 pt-4 sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-start justify-between gap-x-4 gap-y-3 px-4 pb-3 pt-4 sm:px-6">
         <Link
           to="/"
-          className="group mb-3 flex items-center gap-3 rounded-atlas-card px-1 py-1 transition-colors hover:bg-atlas-deep/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void"
+          className={cn(
+            'group -ml-1 flex max-w-full items-start gap-3 rounded-atlas-card p-2 transition-[padding,background-color] duration-200 ease-out',
+            'hover:bg-atlas-deep/50 hover:pb-3',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlas-bloom focus-visible:ring-offset-2 focus-visible:ring-offset-atlas-void',
+            'motion-reduce:transition-none motion-reduce:hover:pb-2'
+          )}
         >
-          <img
-            src={`${import.meta.env.BASE_URL}ATLAS-Tree-coloured-transparent.webp`}
-            alt="ATLAS"
-            className="h-8 w-8 shrink-0 object-contain"
-          />
-          <span className="font-display text-xl font-black uppercase tracking-widest text-atlas-white">
-            ATLAS
+          <span
+            className={cn(
+              'flex shrink-0 items-center justify-center',
+              'h-[var(--logo-rest)] w-[var(--logo-rest)]',
+              'transition-[width,height,filter] duration-200 ease-out',
+              'group-hover:h-[var(--logo-hover)] group-hover:w-[var(--logo-hover)]',
+              'group-hover:drop-shadow-[0_6px_20px_rgba(122,107,171,0.45)]',
+              'motion-reduce:transition-none motion-reduce:group-hover:h-[var(--logo-rest)] motion-reduce:group-hover:w-[var(--logo-rest)]'
+            )}
+            style={
+              {
+                '--logo-rest': logoRest,
+                '--logo-hover': logoHoverMax,
+              } as CSSProperties
+            }
+          >
+            <AtlasLogo variant="header" />
           </span>
-          <span className="hidden text-xs text-atlas-muted group-hover:text-atlas-label sm:inline">
-            Assessing Theoretical Legitimacy Across Scales
+          <span className="min-w-0 pt-0.5">
+            <span className="block font-display text-xl font-black uppercase tracking-widest text-atlas-white">
+              ATLAS
+            </span>
+            <span className="mt-0.5 hidden text-xs leading-snug text-atlas-muted transition-colors group-hover:text-atlas-label sm:block">
+              Assessing Theoretical Legitimacy Across Scales
+            </span>
           </span>
         </Link>
 
-        <div className="flex flex-1 flex-wrap items-end justify-end gap-3">
+        <div className="flex w-full min-w-0 flex-1 flex-wrap items-end justify-end gap-3 sm:w-auto">
           <div className="w-full max-w-[520px] sm:w-auto sm:min-w-[320px]">
             <FuzzySearchBox
               evaluations={data.examples}
