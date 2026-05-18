@@ -71,6 +71,24 @@ npm run deployS3
 
 Current primary deployment for production is SSH/rsync via `npm run deploy`; use `deployS3` when deploying to S3.
 
+## Telegram changelog notifications
+
+After a successful `npm run deploy` or `npm run deployS3`, if `TELEGRAM_BOT_HTTP_API_TOKEN` is in `.env`, the deploy script posts any new `# WIP` bullets from `CHANGELOG.md` that have not been sent yet. Progress is stored in `scripts/deploy-notify-state.json` under keys like `development:production` or `development:staging` (`TELEGRAM_NOTIFY_CHANNEL_KEY` + `DEPLOY_TARGET`).
+
+Private channel invite URLs (`https://t.me/+…`) cannot be used with the Bot API. Add the bot as a channel admin, obtain the numeric chat id (e.g. via @RawDataBot), and set `TELEGRAM_DEPLOY_CHAT_ID`. Public channels may use `@ChannelName` in `TELEGRAM_BOT_ATLAS_FRAMEWORK_DEVELOPMENT_NOTIFICATIONS_CHANNEL`.
+
+Dry-run without deploying:
+
+```bash
+npm run notify:deploy:dry-run
+```
+
+Mark the current newest `# WIP` line as already posted (no Telegram message) before your first real notify:
+
+```bash
+npm run notify:deploy:bootstrap
+```
+
 The script compares local file MD5 to remote object ETag and skips unchanged uploads when possible.
 
 ## Notes for CloudFront users

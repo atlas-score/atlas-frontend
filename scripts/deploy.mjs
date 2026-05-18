@@ -3,6 +3,8 @@ import { createHash } from 'crypto'
 import { readdirSync, readFileSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { loadEnv } from './lib/load-env.mjs'
+import { notifyDeployChangelog } from './lib/deploy-notify.mjs'
 import {
   DeleteObjectsCommand,
   ListObjectsV2Command,
@@ -14,30 +16,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const DIST = path.join(ROOT, 'dist')
 const WAIT_BEFORE_DELETE_MS = 2000
-
-function loadEnv() {
-  const envPath = path.join(ROOT, '.env')
-  try {
-    const content = readFileSync(envPath, 'utf8')
-    for (const line of content.split('\n')) {
-      const trimmed = line.trim()
-      if (!trimmed || trimmed.startsWith('#')) continue
-      const eq = trimmed.indexOf('=')
-      if (eq <= 0) continue
-      const key = trimmed.slice(0, eq).trim()
-      let value = trimmed.slice(eq + 1).trim()
-      if (
-        (value.startsWith('"') && value.endsWith('"')) ||
-        (value.startsWith("'") && value.endsWith("'"))
-      ) {
-        value = value.slice(1, -1)
-      }
-      if (!(key in process.env)) process.env[key] = value
-    }
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error
-  }
-}
 
 function requiredEnv(name) {
   const value = process.env[name]?.trim()
@@ -263,6 +241,13 @@ async function main() {
   }
 
   console.log('Deploy complete.')
+
+  const deployHost = prefix ? `${bucket}/${prefix}` : bucket
+  try {
+    await notifyDeployChangelog({ deployHost })
+  } catch (error) {
+    console.warn('Telegram deploy notify failed (deploy succeeded):', error.message)
+  }
 }
 
 main().catch((error) => {

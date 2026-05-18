@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "posts": {
+    "development:production": {
+      "lastPostedLine": "* 2026-05-18th - Added telegram:discover-chat helper and clearer errors when TELEGRAM_DEPLOY_CHAT_ID is a user id not a channel",
+      "lastPostedAt": "2026-05-18T17:25:24.530Z",
+      "deployHost": "atlas-scoring-frontend-2026"
+    }
+  }
+}

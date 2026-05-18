@@ -1,6 +1,9 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-18th - Added telegram:discover-chat helper and clearer errors when TELEGRAM_DEPLOY_CHAT_ID is a user id not a channel
+* 2026-05-18th - Posted new # WIP changelog lines to Telegram after deploy (staging/production cursors, bootstrap and dry-run scripts)
+* 2026-05-18th - Added ETS/SES/EIS full-name hovers on compact justification headings
 * 2026-05-18th - Fixed compact heading hierarchy (H1 theory, H2 sky sections, H3 teal subsections), section dividers, and header H1 when classic
 * 2026-05-18th - Added vertical separators between compact two-column meta sections (highlights, domains, ontological, classification)
 * 2026-05-18th - Show current theory title in the header center column on theory pages
@@ -13,7 +16,11 @@
 * 2026-05-18th - Replaced header atlas-logo.svg with tree WebP mark
 * 2026-05-18th - Wired apple-touch-icon, PNG favicons, and web manifest links in index.html
 * 2026-05-18th - Removed duplicate composite score block from theory detail above score calculation
+
+# Released 2026-05-15th Refined colour scheme
 * 2026-05-15th - Adopted NRP brand colour palette and Arial typography as the primary theme; updated design.md and theme tokens
+
+# Released 2026-05-07th Initial version
 * 2026-05-06th - Emphasized the Truth/Engagement/Integration labels and added ETS/SES/EIS hints in sub-scores and raw score calculation UI
 * 2026-05-06th - Added theory pages with case-insensitive IDs plus fuzzy search (header + explorer) and a mobile explorer drawer with URL-persisted filters
 * 2026-05-06th - Fixed search box focus so typing continues and made the desktop explorer sidebar visible by default

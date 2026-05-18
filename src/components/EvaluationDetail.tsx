@@ -11,6 +11,10 @@ import {
   formatSigned,
   getScaleMax,
 } from '../utils/scoreColor';
+import {
+  ScaleJustificationTitle,
+  ScaleScoreLabelWord,
+} from './ScaleDisplay';
 
 const ANALYSIS_LABELS: Record<string, string> = {
   scientific_significance: 'Scientific significance',
@@ -118,13 +122,7 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
           <dl className="grid grid-cols-1 gap-2 font-mono text-xs sm:grid-cols-2">
             <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
               <dt className="text-atlas-label">
-                Raw{' '}
-                <abbr
-                  title="Established Truth Scale (ETS)"
-                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-                >
-                  Truth
-                </abbr>{' '}
+                Raw <ScaleScoreLabelWord acronym="ETS">Truth</ScaleScoreLabelWord>{' '}
                 score
               </dt>
               <dd>{evaluation.score_calculation.raw_ets}</dd>
@@ -132,12 +130,9 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
             <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
               <dt className="text-atlas-label">
                 Raw{' '}
-                <abbr
-                  title="Scientific Engagement Scale (SES)"
-                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-                >
+                <ScaleScoreLabelWord acronym="SES">
                   Engagement
-                </abbr>{' '}
+                </ScaleScoreLabelWord>{' '}
                 score
               </dt>
               <dd>{evaluation.score_calculation.raw_ses}</dd>
@@ -145,12 +140,9 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
             <div className="flex justify-between gap-2 border-b border-atlas-border-dim py-1">
               <dt className="text-atlas-label">
                 Raw{' '}
-                <abbr
-                  title="Explanatory Integration Scale (EIS)"
-                  className="font-sans font-bold text-atlas-bright-text underline decoration-atlas-border decoration-dotted underline-offset-2"
-                >
+                <ScaleScoreLabelWord acronym="EIS">
                   Integration
-                </abbr>{' '}
+                </ScaleScoreLabelWord>{' '}
                 score
               </dt>
               <dd>{evaluation.score_calculation.raw_eis}</dd>
@@ -341,34 +333,13 @@ export function EvaluationDetail({ evaluation }: EvaluationDetailProps) {
         </ul>
       </InfoBlock>
 
-      <InfoBlock
-        title={
-          <>
-            Established <span className="text-atlas-bright-text">Truth</span>{' '}
-            Scale (ETS) justification
-          </>
-        }
-      >
+      <InfoBlock title={<ScaleJustificationTitle acronym="ETS" />}>
         <p>{evaluation.ets.justification}</p>
       </InfoBlock>
-      <InfoBlock
-        title={
-          <>
-            Scientific <span className="text-atlas-bright-text">Engagement</span>{' '}
-            Scale (SES) justification
-          </>
-        }
-      >
+      <InfoBlock title={<ScaleJustificationTitle acronym="SES" />}>
         <p>{evaluation.ses.justification}</p>
       </InfoBlock>
-      <InfoBlock
-        title={
-          <>
-            Explanatory <span className="text-atlas-bright-text">Integration</span>{' '}
-            Scale (EIS) justification
-          </>
-        }
-      >
+      <InfoBlock title={<ScaleJustificationTitle acronym="EIS" />}>
         <p>{evaluation.eis.justification}</p>
       </InfoBlock>
 

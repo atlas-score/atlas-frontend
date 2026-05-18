@@ -8,7 +8,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "node scripts/deploy-rsync.mjs",
-    "deployS3": "node scripts/deploy.mjs"
+    "deployS3": "node scripts/deploy.mjs",
+    "notify:deploy": "node scripts/notify-deploy.mjs",
+    "notify:deploy:dry-run": "node scripts/notify-deploy.mjs --dry-run",
+    "notify:deploy:bootstrap": "node scripts/notify-deploy-bootstrap.mjs",
+    "telegram:discover-chat": "node scripts/telegram-discover-chat.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.922.0",

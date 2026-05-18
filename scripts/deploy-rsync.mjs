@@ -1,6 +1,8 @@
 import { spawn } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { loadEnv } from './lib/load-env.mjs'
+import { notifyDeployChangelog } from './lib/deploy-notify.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -103,6 +105,7 @@ function runBuild() {
 }
 
 async function main() {
+  loadEnv()
   console.log('Building project...')
   logAboutToRun(`npm run build (cwd: ${quoteArg(ROOT)})`)
   await runBuild()
@@ -115,6 +118,12 @@ async function main() {
   await runCommand(rsync.command, rsync.args)
 
   console.log('Deploy complete.')
+
+  try {
+    await notifyDeployChangelog({ deployHost: REMOTE_HOST })
+  } catch (error) {
+    console.warn('Telegram deploy notify failed (deploy succeeded):', error.message)
+  }
 }
 
 main().catch((error) => {

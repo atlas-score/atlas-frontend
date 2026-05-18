@@ -101,6 +101,8 @@ Example:
 DEPLOY_SSH_HOST=54.169.49.54 npm run deploy
 ```
 
+After a successful deploy, if `TELEGRAM_BOT_HTTP_API_TOKEN` is set in `.env`, the script posts any new `# WIP` bullets from `CHANGELOG.md` that were not yet sent (tracked in `scripts/deploy-notify-state.json`). Use `TELEGRAM_DEPLOY_CHAT_ID` for private channels (`t.me/+…` invite links cannot be used by the Bot API). Set `DEPLOY_TARGET=staging` or `production` (default) for separate notify cursors. Test without deploying: `npm run notify:deploy:dry-run`. To avoid posting the whole existing `# WIP` history on first use, run `npm run notify:deploy:bootstrap` once.
+
 For Windows setups, run this command from WSL if your SSH keys/config are managed there.
 
 
