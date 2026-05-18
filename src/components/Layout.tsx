@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { Header } from './Header';
 import { ThemeToggle } from './ThemeToggle';
+import { ScoreLayoutToggle } from './ScoreLayoutToggle';
 
 export function Layout() {
   return (
@@ -10,8 +11,9 @@ export function Layout() {
         <Header />
         <Outlet />
         <footer className="border-t border-atlas-border px-4 py-8 sm:px-6">
-          <div className="mx-auto flex max-w-7xl justify-center">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3">
             <ThemeToggle />
+            <ScoreLayoutToggle />
           </div>
         </footer>
       </div>

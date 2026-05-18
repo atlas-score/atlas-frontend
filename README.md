@@ -52,7 +52,7 @@ Open the URL Vite prints (usually [http://localhost:5173/](http://localhost:5173
 | `src/components/`              | UI pieces (header, triptych, cards, Radix wrappers)     |
 | `src/types/evaluation.ts`      | TypeScript shapes aligned with the schema               |
 | `src/utils/scoreColor.ts`      | ETS pill classes, composite bar width helper            |
-| `public/ATLAS-Tree-coloured-transparent.webp` | Header mark (square, transparent)      |
+| `public/ATLAS-Logo-1.5k-transparent.webp` | Header mark (transparent)                 |
 | `LICENSE.md`                   | License terms (legal text)                              |
 | `LICENSE-AI-Summary.md`        | Plain-English license summary (not legally binding)     |
 | `generalInfo.md`               | Long-form notes on how this frontend was built          |

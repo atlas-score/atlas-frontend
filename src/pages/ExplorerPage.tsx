@@ -1,13 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import feed from '../../atlas-score-examples.json';
-import type { ExamplesFeed } from '../types/evaluation';
+import { evaluations } from '../data/evaluations';
 import { ExplorerPanel, type ExplorerPanelState } from '../components/ExplorerPanel';
 import { ExplorerGuide } from '../components/ExplorerGuide';
 import { AtlasLogo } from '../components/AtlasLogo';
 import { RecentTheoryHistory } from '../components/RecentTheoryHistory';
-
-const data = feed as ExamplesFeed;
 
 type ScaleFilter = ExplorerPanelState['scaleFilter'];
 
@@ -42,7 +39,7 @@ function parseRange(raw: string | null): [number, number] {
 export function ExplorerPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const examples = data.examples;
+  const examples = evaluations;
   const [sidebarOpen] = useState(true);
 
   const [panelState, setPanelState] = useState<ExplorerPanelState>(() => ({

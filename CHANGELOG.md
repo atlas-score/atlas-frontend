@@ -1,10 +1,15 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-18th - Fixed compact heading hierarchy (H1 theory, H2 sky sections, H3 teal subsections), section dividers, and header H1 when classic
+* 2026-05-18th - Added vertical separators between compact two-column meta sections (highlights, domains, ontological, classification)
+* 2026-05-18th - Show current theory title in the header center column on theory pages
+* 2026-05-18th - Persisted compact full-view preference across theories; two-column meta sections; full-width justifications; subtler section link buttons; expand/collapse icons
+* 2026-05-18th - Added Classic/Compact score layout toggle, compact single-panel theory view with expandable sections, section link copying, conditional overrides, and random next theory
 * 2026-05-18th - Header logo hover expands layout to 2× in a clamped slot (no screen overflow) instead of scaling over the UI
 * 2026-05-18th - Enlarged header ATLAS logo with hover zoom and added hero tree image on the home “What is an ATLAS score?” section
 * 2026-05-18th - Emphasized ETS in base scores with larger panel, primary badge, and score-out-of-max (4 for ETS, 3 for SES/EIS)
-* 2026-05-18th - Switched header logo to ATLAS-Tree-coloured-transparent.webp for purple gradient backgrounds
+* 2026-05-18th - Switched header logo to ATLAS-Logo-1.5k-transparent.webp
 * 2026-05-18th - Replaced header atlas-logo.svg with tree WebP mark
 * 2026-05-18th - Wired apple-touch-icon, PNG favicons, and web manifest links in index.html
 * 2026-05-18th - Removed duplicate composite score block from theory detail above score calculation

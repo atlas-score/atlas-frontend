@@ -1,7 +1,6 @@
 import {cn} from '../lib/cn';
 
-const LOGO_TRANSPARENT = 'ATLAS-Tree-coloured-transparent.webp';
-// const LOGO_COLOURED = 'ATLAS-Tree-coloured-purple.webp';
+const LOGO_TRANSPARENT = 'ATLAS-Logo-1.5k-transparent.webp';
 
 /** Header logo rest size (rem); hover slot is 2× this */
 export const HEADER_LOGO_SIZE_REM = 2.75;

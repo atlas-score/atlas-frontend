@@ -1,8 +1,9 @@
 import type { CSSProperties } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/cn';
-import feed from '../../atlas-score-examples.json';
-import type { ExamplesFeed } from '../types/evaluation';
+import { evaluations } from '../data/evaluations';
+import { useCurrentEvaluation } from '../hooks/useCurrentEvaluation';
+import { useScoreLayout } from '../context/ScoreLayoutContext';
 import { AtlasLogo, HEADER_LOGO_SIZE_REM } from './AtlasLogo';
 import { FuzzySearchBox } from './FuzzySearchBox';
 
@@ -15,16 +16,25 @@ const tabClass = ({ isActive }: { isActive: boolean }) =>
       : 'border-atlas-border/60 border-b-atlas-void bg-atlas-void/80 text-atlas-label hover:border-atlas-border hover:bg-atlas-deep/80 hover:text-atlas-white'
   );
 
-const data = feed as ExamplesFeed;
-
 const logoRest = `${HEADER_LOGO_SIZE_REM}rem`;
 const logoHoverMax = `min(${HEADER_LOGO_SIZE_REM * 2}rem, calc(100dvh - 6rem), calc(100vw - 2rem))`;
 
 export function Header() {
   const navigate = useNavigate();
+  const evaluation = useCurrentEvaluation();
+  const { layout } = useScoreLayout();
+  const theoryTitleInPage = layout === 'compact' && evaluation;
+
   return (
     <header className="sticky top-0 z-50 border-b border-atlas-border bg-atlas-void/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-start justify-between gap-x-4 gap-y-3 px-4 pb-3 pt-4 sm:px-6">
+      <div
+        className={cn(
+          'mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-4 gap-y-3 px-4 pb-3 pt-4 sm:px-6',
+          evaluation
+            ? 'lg:grid-cols-[minmax(0,auto)_minmax(0,1fr)_minmax(0,auto)]'
+            : 'lg:grid-cols-[minmax(0,1fr)_auto]'
+        )}
+      >
         <Link
           to="/"
           className={cn(
@@ -62,10 +72,38 @@ export function Header() {
           </span>
         </Link>
 
-        <div className="flex w-full min-w-0 flex-1 flex-wrap items-end justify-end gap-3 sm:w-auto">
+        {evaluation ? (
+          <div className="min-w-0 px-1 text-center lg:col-start-2 lg:px-4">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-atlas-label lg:sr-only">
+              Current theory
+            </p>
+            {theoryTitleInPage ? (
+              <p
+                className="truncate font-display text-base font-black leading-snug text-atlas-white sm:text-lg lg:text-xl"
+                title={evaluation.framework_name}
+              >
+                {evaluation.framework_name}
+              </p>
+            ) : (
+              <h1
+                className="truncate font-display text-base font-black leading-snug text-atlas-white sm:text-lg lg:text-xl"
+                title={evaluation.framework_name}
+              >
+                {evaluation.framework_name}
+              </h1>
+            )}
+          </div>
+        ) : null}
+
+        <div
+          className={cn(
+            'flex w-full min-w-0 flex-wrap items-end justify-end gap-3',
+            evaluation ? 'lg:col-start-3' : 'lg:col-start-2'
+          )}
+        >
           <div className="w-full max-w-[520px] sm:w-auto sm:min-w-[320px]">
             <FuzzySearchBox
-              evaluations={data.examples}
+              evaluations={evaluations}
               placeholder="Search ATLAS (try “cos”, “intellligent”)…"
               onPick={(ev) => navigate(`/${ev.id}`)}
             />
