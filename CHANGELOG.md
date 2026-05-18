@@ -1,6 +1,9 @@
 # CHANGELOG
 
 # WIP
+* 2026-05-18th - **Specific claim evaluated** is now above the composite score
+* 2026-05-18th - The list is now single grid, don't need multiple columns in an already 2 column setup.
+* 2026-05-18th - Adjusted the Show Full / Compact button so it's outside the main article.
 * 2026-05-18th - Added telegram:discover-chat helper and clearer errors when TELEGRAM_DEPLOY_CHAT_ID is a user id not a channel
 * 2026-05-18th - Posted new # WIP changelog lines to Telegram after deploy (staging/production cursors, bootstrap and dry-run scripts)
 * 2026-05-18th - Added ETS/SES/EIS full-name hovers on compact justification headings

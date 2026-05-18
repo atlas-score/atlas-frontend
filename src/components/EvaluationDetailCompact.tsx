@@ -266,7 +266,14 @@ export function EvaluationDetailCompact({
           {formatSigned(evaluation.composite_score)}
         </span>
                 </div>
-
+                <CompactBlock>
+                    <CompactSectionHeading slug="specific-claim">
+                        Specific claim evaluated
+                    </CompactSectionHeading>
+                    <p className="mt-2 text-sm font-medium leading-relaxed text-atlas-bright-text">
+                        {evaluation.specific_claim}
+                    </p>
+                </CompactBlock>
                 <CompactBlock divider={false}>
                     <CompactSectionHeading slug="composite">
                         Composite score
@@ -300,14 +307,7 @@ export function EvaluationDetailCompact({
                     </div>
                 </CompactBlock>
 
-                <CompactBlock>
-                    <CompactSectionHeading slug="specific-claim">
-                        Specific claim evaluated
-                    </CompactSectionHeading>
-                    <p className="mt-2 text-sm font-medium leading-relaxed text-atlas-bright-text">
-                        {evaluation.specific_claim}
-                    </p>
-                </CompactBlock>
+
 
                 <CompactBlock>
                     <CompactSectionHeading slug="framework-description">
